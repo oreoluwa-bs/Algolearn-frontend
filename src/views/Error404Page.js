@@ -17,9 +17,9 @@ const Error404Page = (props) => {
                 </div>
             </Header>
             <Content style={{ padding: '0 50px' }}>
-                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 134px)'}}>
+                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 133px)' }}>
                     <h2>Sorry page not found</h2>
-                    <Button type="primary" onClick={()=>{
+                    <Button type="primary" onClick={() => {
                         props.history.goBack()
                     }}>Go back</Button>
                 </div>

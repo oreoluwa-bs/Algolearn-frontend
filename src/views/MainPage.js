@@ -16,7 +16,7 @@ const MainPage = () => {
                 </div>
             </Header>
             <Content style={{ padding: '0 50px' }}>
-                <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 133px)' }}>Content</div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
         </Layout>
