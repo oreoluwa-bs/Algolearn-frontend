@@ -1,30 +1,19 @@
 import React from 'react';
-import { Layout, Menu, Button } from 'antd';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import MainPage from './views/MainPage';
 import './App.css';
-
-const { Header, Content, Footer } = Layout;
+import Error404Page from './views/Error404Page';
 
 function App() {
   return (
-    <div className="">
-      <Layout className="layout">
-        <Header>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['1']}
-            style={{ lineHeight: '64px', float: 'right' }}
-          >
-            <Button type="primary">Login</Button>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
-      </Layout>
-    </div>
+    <BrowserRouter>
+      <div className="">
+        <Switch>
+          <Route exact path='/' component={MainPage} />
+          <Route component={Error404Page} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
