@@ -1,0 +1,34 @@
+  .maincontainer .ant-layout-header {
+    background-color: white;
+  }
+  .maincontainer .nav-links-right { 
+    /* line-height: 64px; */
+    float: right ;
+  }
+  .maincontainer .barsMenu {
+    display: none;
+  }  
+  @media screen and (max-width:575px) {
+    .maincontainer .nav-links-right{
+      display: none;
+    }
+    .maincontainer .barsMenu {
+      display: inline-block;
+    }
+  }
+
+.ant-carousel .slick-slide {
+  /* text-align: center; */
+  height: 400px;
+  /* line-height: 160px; */
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide .carousel-content {
+  margin: 5% 20%;
+}
+  
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}

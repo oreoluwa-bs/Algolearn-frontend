@@ -22,7 +22,7 @@ class LandingPageNavbar extends Component {
     render() {
         return (
             <Header>
-                <div className="logo" />
+                <Link to='/home'><div className="logo" /></Link>
 
                 <div style={{ float: 'right' }}>
                     <Button className="barsMenu" type="default" onClick={this.showDrawer}>
@@ -37,7 +37,7 @@ class LandingPageNavbar extends Component {
                     >
                         <Menu.Item key="catalogue">
                             Courses
-                                <Link to='/catalogue' />
+                                <Link to='/home/catalogue' />
                         </Menu.Item>
                     </Menu>
                     <span className="ant-divider" style={{ margin: '0 1em' }} />
