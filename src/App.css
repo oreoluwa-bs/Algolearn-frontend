@@ -1,7 +1,25 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(5, 0, 5, 0.8);
   margin: 16px 24px 16px 0;
   float: left;
+}
+.maincontainer .ant-layout-header {
+  background-color: white;
+}
+.maincontainer .nav-links-right { 
+  /* line-height: 64px; */
+  float: right ;
+}
+.maincontainer .barsMenu {
+  display: none;
+}
+@media screen and (max-width:575px) {
+  .maincontainer .nav-links-right{
+    display: none;
+  }
+  .maincontainer .barsMenu {
+    display: inline-block;
+  }
 }
