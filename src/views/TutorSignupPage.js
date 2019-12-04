@@ -4,10 +4,9 @@ import { Layout, Form, Icon, Input, Button, Row, Col } from 'antd';
 import '../styles/forms.css'
 
 
-
-class LoginPage extends Component {
+class TutorSignupPage extends Component {
     state = {
-
+        role: 'Tutor'
     }
 
     handleSubmit = (e) => {
@@ -27,13 +26,45 @@ class LoginPage extends Component {
     };
 
     render() {
+        console.log(this.props)
         const { getFieldDecorator } = this.props.form;
         return (
             <Layout className='layout' >
                 <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
                     <div style={{ margin: '50px auto', maxWidth: '500px' }}>
-                        <p className='large-text bold'>Login</p>
+                        <p className='large-text bold'>Create an account</p>
                         <Form onSubmit={this.handleSubmit} className='login-form'>
+                            <Row gutter={{ md: 24 }}>
+                                <Col span={12}>
+                                    <Form.Item>
+                                        <label>First Name:</label>
+                                        {getFieldDecorator('firstname', {
+                                            rules: [{ required: true, message: 'Please input your first name!' }],
+                                        })(
+                                            <Input
+                                                size='large'
+                                                type='text'
+                                                placeholder='John' onChange={this.handleTextChange} id='firstname'
+                                            />,
+                                        )}
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item>
+                                        <label>Last Name:</label>
+                                        {getFieldDecorator('lastname', {
+                                            rules: [{ required: true, message: 'Please input your last name!' }],
+                                        })(
+                                            <Input
+                                                size='large'
+                                                type='text'
+                                                placeholder='Doe' onChange={this.handleTextChange} id='lastname'
+                                            />,
+                                        )}
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+
                             <Form.Item>
                                 <label>Email Address:</label>
                                 {getFieldDecorator('email', {
@@ -56,7 +87,7 @@ class LoginPage extends Component {
                                         size='large'
                                         prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         type='password'
-                                        onChange={this.handleTextChange} id='passowrd'
+                                        placeholder='' onChange={this.handleTextChange} id='passowrd'
                                     />,
                                 )}
                             </Form.Item>
@@ -64,17 +95,14 @@ class LoginPage extends Component {
                                 <Row>
                                     <Col span={12}>
                                         <div style={{ float: 'left' }}>
-                                            <Link to=''>Forgot password?</Link>
+                                            <Link to='/login'>Already have an account?</Link>
                                         </div>
                                     </Col>
                                     <Col span={12}>
                                         <div style={{ float: 'right' }}>
                                             <Button type='primary' htmlType='submit' className='login-form-button'>
-                                                Log in
+                                                Sign up
                                             </Button>
-                                            <span style={{ marginLeft: 10 }}>
-                                                Or <Link to='/signup'>register now!</Link>
-                                            </span>
                                         </div>
                                     </Col>
                                 </Row>
@@ -87,6 +115,6 @@ class LoginPage extends Component {
     }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'login' })(LoginPage);
+const WrappedNormalTutorSignupForm = Form.create({ name: 'signup' })(TutorSignupPage);
 
-export default WrappedNormalLoginForm;
+export default WrappedNormalTutorSignupForm;

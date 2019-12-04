@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Error404Page from './views/Error404Page';
 import LandingPage from './views/LandingPage';
-import LoginPage from './views/LoginPage';
 import Catalogue from './components/Catalogue';
 import Navbar from './components/Navbar';
+import WrappedNormalLoginForm from './views/LoginPage';
+import WrappedNormalTutorSignupForm from './views/TutorSignupPage';
+import WrappedNormalStudentSignupForm from './views/SignupPage';
 
 import './App.css';
 
@@ -20,8 +22,9 @@ function App() {
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route path='/catalogue' component={Catalogue} />
-            <Route path='/login' component={LoginPage} />
-            <Route path='/signup' component={() => <div>Hi</div>} />
+            <Route path='/login' component={WrappedNormalLoginForm} />
+            <Route path='/signup' component={WrappedNormalStudentSignupForm} />
+            <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
 
             <Route component={Error404Page} />
           </Switch>
