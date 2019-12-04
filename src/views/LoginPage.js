@@ -1,32 +1,47 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Layout, Form, Icon, Input, Button, Row, Col } from 'antd';
+import '../styles/forms.css'
 
 
 
 class LoginPage extends Component {
-    handleSubmit = e => {
+    state = {
+
+    }
+
+    handleSubmit = (e) => {
+        // console.log(this.state);
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log(values);
             }
         });
     };
+
+    handleTextChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    };
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <Layout className="layout" >
-                <div style={{ marginTop: '50px' }}>
-                    <div>
-                        <Form onSubmit={this.handleSubmit} className="login-form">
+            <Layout className='layout' >
+                <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
+                    <div style={{ margin: '50px auto', maxWidth: '500px' }}>
+                        <p className='large-text bold'>Login</p>
+                        <Form onSubmit={this.handleSubmit} className='login-form'>
                             <Form.Item>
-                                {getFieldDecorator('username', {
-                                    rules: [{ required: true, message: 'Please input your username!' }],
+                                {getFieldDecorator('email', {
+                                    rules: [{ required: true, message: 'Please input your email!' }],
                                 })(
                                     <Input
-                                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder="Username"
+                                        type='email'
+                                        prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        placeholder='email' onChange={this.handleTextChange} id='email'
                                     />,
                                 )}
                             </Form.Item>
@@ -35,24 +50,30 @@ class LoginPage extends Component {
                                     rules: [{ required: true, message: 'Please input your Password!' }],
                                 })(
                                     <Input
-                                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        type="password"
-                                        placeholder="Password"
+                                        prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        type='password'
+                                        placeholder='Password' onChange={this.handleTextChange} id='passowrd'
                                     />,
                                 )}
                             </Form.Item>
                             <Form.Item>
-                                {getFieldDecorator('remember', {
-                                    valuePropName: 'checked',
-                                    initialValue: true,
-                                })(<Checkbox>Remember me</Checkbox>)}
-                                <Link to=''>
-                                    Forgot password
-          </Link>
-                                <Button type="primary" htmlType="submit" className="login-form-button">
-                                    Log in
-          </Button>
-                                Or <Link to=''>register now!</Link>
+                                <Row>
+                                    <Col span={12}>
+                                        <div style={{ float: 'left' }}>
+                                            <Link to=''>Forgot password</Link>
+                                        </div>
+                                    </Col>
+                                    <Col span={12}>
+                                        <div style={{ float: 'right' }}>
+                                            <Button type='primary' htmlType='submit' className='login-form-button'>
+                                                Log in
+                                            </Button>
+                                            <span style={{ marginLeft: 10 }}>
+                                                Or <Link to=''>register now!</Link>
+                                            </span>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </Form.Item>
                         </Form>
                     </div>
@@ -62,6 +83,6 @@ class LoginPage extends Component {
     }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(LoginPage);
+const WrappedNormalLoginForm = Form.create({ name: 'login' })(LoginPage);
 
 export default WrappedNormalLoginForm;

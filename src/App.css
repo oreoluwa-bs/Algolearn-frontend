@@ -10,3 +10,11 @@
   font-size: 40px;
   margin: 30px 0;
 }
+
+
+.bold{
+  font-weight: bold;
+}
+.large-text{
+  font-size: 20px;
+}
