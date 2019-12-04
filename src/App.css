@@ -5,21 +5,8 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
-.maincontainer .ant-layout-header {
-  background-color: white;
-}
-.maincontainer .nav-links-right { 
-  /* line-height: 64px; */
-  float: right ;
-}
-.maincontainer .barsMenu {
-  display: none;
-}
-@media screen and (max-width:575px) {
-  .maincontainer .nav-links-right{
-    display: none;
-  }
-  .maincontainer .barsMenu {
-    display: inline-block;
-  }
+
+.error404-text {
+  font-size: 40px;
+  margin: 30px 0;
 }

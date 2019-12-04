@@ -1,0 +1,18 @@
+.app-container .ant-layout-header {
+    background-color: white;
+}
+.app-container .nav-links-right { 
+/* line-height: 64px; */
+    float: right ;
+}
+.app-container .barsMenu {
+   display: none;
+}  
+@media screen and (max-width:575px) {
+  .app-container .nav-links-right{
+    display: none;
+  }
+  .app-container .barsMenu {
+    display: inline-block;
+  }
+}
