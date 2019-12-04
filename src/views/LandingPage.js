@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 // import { Link, Route } from 'react-router-dom';
-import { Layout, Carousel, Button, Row, Col, Card, Icon } from 'antd';
-// import { Layout, Carousel, Button,  } from 'antd';
+import { Layout, Carousel, Button, Row, Col, Icon } from 'antd';
 import '../styles/landingpage.css';
 
-
-const { Meta } = Card;
 
 class LandingPage extends Component {
 
