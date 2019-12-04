@@ -2,7 +2,11 @@
   /* text-align: center; */
   height: 400px;
   /* line-height: 160px; */
-  background: #364d79;
+  background: #7451eb;
+  background-image: url('https://oc-static.imgix.net/prod/images/home/image_hp_banner.png?v4&auto=compress,format&q=80&w=468&h=390');
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+  background-position-x: 85%;
   overflow: hidden;
 }
 
@@ -12,6 +16,19 @@
   
 .ant-carousel .slick-slide h3 {
   color: #fff;
+}
+
+.carousel-content{
+  color: white;
+}
+.carousel-content .carousel-caption{
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+}
+.carousel-content .carousel-text{
+  font-size: 20px;
+  margin: 0 0 40px;
 }
 
 #components-form-demo-normal-login .login-form {
