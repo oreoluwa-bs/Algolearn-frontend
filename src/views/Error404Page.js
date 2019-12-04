@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Layout, Button, Empty } from 'antd';
 import emptyImage from '../assets/images/undraw_404.svg';
 
