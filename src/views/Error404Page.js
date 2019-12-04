@@ -8,14 +8,14 @@ const Error404Page = (props) => {
     console.log(props)
     return (
         <Layout className="layout">
-            <Header>
+            {/* <Header>
                 <div className="logo" />
                 <div style={{ lineHeight: '64px', float: 'right' }}>
                     <Link to='/other'>
                         <Button type="primary">Login</Button>
                     </Link>
                 </div>
-            </Header>
+            </Header> */}
             <div style={{ minHeight: 'calc(100vh - 133px)', backgroundColor: 'white' }}>
                 <Empty
                     image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import { Link, Route } from 'react-router-dom';
 // import { Layout, Button, Drawer, Icon, Menu, Switch } from 'antd';
 import { Layout, Carousel, Button } from 'antd';
+import '../styles/landingpage.css';
+
 
 // const { } = Layout;
 
@@ -11,12 +13,13 @@ class LandingPage extends Component {
             <Layout className="layout" >
                 <Carousel autoplay easing='ease-out'>
                     <div className='carousel-content'>
-                        <h3>Start your learning today</h3>
-                        <Button type='primary'>Join us</Button>
+                        <p className='carousel-caption'>Your Course to Success</p>
+                        <p className='carousel-text'>Build skills with courses, certificates, and degrees online from world-class universities and companies</p>
+                        <Button type='primary'>Join for free</Button>
                     </div>
                     <div className='carousel-content'>
-                        <h3>Become a tutor with us</h3>
-                        <Button type='primary'>Join us</Button>
+                        <p className='carousel-caption'>Make a global impact</p>
+                        <Button type='primary'>Become a tutor</Button>
                     </div>
                 </Carousel>
                 {/* <div style={{ backgroundColor: 'purple', minHeight: 'calc(400px)' }}>

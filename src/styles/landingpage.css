@@ -1,22 +1,3 @@
-  .maincontainer .ant-layout-header {
-    background-color: white;
-  }
-  .maincontainer .nav-links-right { 
-    /* line-height: 64px; */
-    float: right ;
-  }
-  .maincontainer .barsMenu {
-    display: none;
-  }  
-  @media screen and (max-width:575px) {
-    .maincontainer .nav-links-right{
-      display: none;
-    }
-    .maincontainer .barsMenu {
-      display: inline-block;
-    }
-  }
-
 .ant-carousel .slick-slide {
   /* text-align: center; */
   height: 400px;
@@ -31,4 +12,14 @@
   
 .ant-carousel .slick-slide h3 {
   color: #fff;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
 }
