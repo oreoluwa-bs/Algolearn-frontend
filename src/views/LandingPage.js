@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Carousel, Button, Row, Col, Icon, Rate, Typography } from 'antd';
 import '../styles/landingpage.css';
+import WrappedNormalContactForm from '../components/Misc/ContactView';
 
 const { Paragraph, Text, Title } = Typography;
 
@@ -139,6 +140,7 @@ class LandingPage extends Component {
                         </Row>
                     </div>
                 </div> */}
+                <WrappedNormalContactForm />
             </Layout >
         );
     }
