@@ -25,42 +25,72 @@ class ContactView extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <Layout className='layout' style={{ bacor: 'white' }} >
-                <div style={{ marginTop: '100px' }}>
-                    <div style={{ margin: '50px auto', maxWidth: '500px' }}>
-                        <p className='large-text bold'>Get in Touch</p>
-                        <Form onSubmit={this.handleSubmit} className='login-form'>
-
-                            <Form.Item>
-                                {getFieldDecorator('email', {
-                                    rules: [{ required: true, message: 'Please input your email!' }],
-                                })(
-                                    <Input
-                                        type='email'
-                                        prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder='email' onChange={this.handleTextChange} id='email'
-                                    />,
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                {getFieldDecorator('message', {
-                                    rules: [{ required: true, message: 'Please input your message!' }],
-                                })(
-                                    <TextArea rows={4}
-                                        prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        onChange={this.handleTextChange} id='message'
-                                    />,
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                <div style={{ float: 'right' }}>
-                                    <Button type='primary' htmlType='submit' className='login-form-button'>
-                                        Log in
+            <Layout className='layout' style={{ backgroundColor: 'white' }} >
+                <div style={{ margin: '50px auto', maxWidth: '500px' }}>
+                    <p className='large-text bold'>Get in Touch</p>
+                    <Form onSubmit={this.handleSubmit} className='login-form'>
+                        <Row gutter={{ md: 24 }}>
+                            <Col span={12}>
+                                <Form.Item>
+                                    <label>First Name:</label>
+                                    {getFieldDecorator('firstname', {
+                                        rules: [{ required: true, message: 'Please input your first name!' }],
+                                    })(
+                                        <Input
+                                            size='large'
+                                            type='text'
+                                            placeholder='John' onChange={this.handleTextChange} id='firstname'
+                                        />,
+                                    )}
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item>
+                                    <label>Last Name:</label>
+                                    {getFieldDecorator('lastname', {
+                                        rules: [{ required: true, message: 'Please input your last name!' }],
+                                    })(
+                                        <Input
+                                            size='large'
+                                            type='text'
+                                            placeholder='Doe' onChange={this.handleTextChange} id='lastname'
+                                        />,
+                                    )}
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Form.Item>
+                            <label>Email Address:</label>
+                            {getFieldDecorator('email', {
+                                rules: [{ required: true, message: 'Please input your email!' }],
+                            })(
+                                <Input
+                                    type='email'
+                                    size='large'
+                                    prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder='email' onChange={this.handleTextChange} id='email'
+                                />,
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            <label>Message:</label>
+                            {getFieldDecorator('message', {
+                                rules: [{ required: true, message: 'Please input your message!' }],
+                            })(
+                                <TextArea autoSize={{ minRows: 4 }}
+                                    size='large'
+                                    onChange={this.handleTextChange} id='message'
+                                />,
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            <div style={{ float: 'right' }}>
+                                <Button type='primary' htmlType='submit' className='login-form-button'>
+                                    Submit
                                     </Button>
-                                </div>
-                            </Form.Item>
-                        </Form>
-                    </div>
+                            </div>
+                        </Form.Item>
+                    </Form>
                 </div>
             </Layout>);
     }
