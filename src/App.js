@@ -11,6 +11,7 @@ import WrappedNormalStudentSignupForm from './views/SignupPage';
 import CourseDetailLarge from './components/Catalogue/CourseDetailLarge';
 
 import './App.css';
+import Dashboard from './views/Dashboard';
 
 
 const { Footer } = Layout;
@@ -28,6 +29,7 @@ function App() {
             <Route path='/login' component={WrappedNormalLoginForm} />
             <Route path='/signup' component={WrappedNormalStudentSignupForm} />
             <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
+            <Route path='/dashboard' component={Dashboard} />
 
             <Route component={Error404Page} />
           </Switch>
