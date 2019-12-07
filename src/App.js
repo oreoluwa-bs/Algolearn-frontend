@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Error404Page from './views/Error404Page';
 import LandingPage from './views/LandingPage';
-import Catalogue from './components/Catalogue';
+import CataloguePage from './views/CataloguePage';
 import Navbar from './components/Navbar';
 import WrappedNormalLoginForm from './views/LoginPage';
 import WrappedNormalTutorSignupForm from './views/TutorSignupPage';
 import WrappedNormalStudentSignupForm from './views/SignupPage';
+import CourseDetailLarge from './components/Catalogue/CourseDetailLarge';
 
 import './App.css';
+
 
 const { Footer } = Layout;
 function App() {
@@ -21,7 +23,8 @@ function App() {
 
           <Switch>
             <Route exact path='/' component={LandingPage} />
-            <Route path='/catalogue' component={Catalogue} />
+            <Route exact path='/catalogue' component={CataloguePage} />
+            <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
             <Route path='/login' component={WrappedNormalLoginForm} />
             <Route path='/signup' component={WrappedNormalStudentSignupForm} />
             <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />

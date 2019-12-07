@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Rate, Typography } from 'antd';
+import { Rate, Typography, Avatar } from 'antd';
 
 const { Paragraph, Text } = Typography;
 
-class CourseViewSmall extends Component {
+class CourseDetailSmall extends Component {
     state = {}
     render() {
         return (
@@ -20,7 +20,10 @@ class CourseViewSmall extends Component {
                         language for background applications, is refined by Ant UED Team.
                                         </Paragraph>
                     <div>
-                        <Text type='secondary'>-John Doe</Text>
+                        <div>
+                            <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
+                            <Text type='secondary'>John Doe</Text>
+                        </div>
                     </div>
                     <Rate defaultValue={3} disabled />
                 </div>
@@ -29,4 +32,4 @@ class CourseViewSmall extends Component {
     }
 }
 
-export default CourseViewSmall;
+export default CourseDetailSmall;
