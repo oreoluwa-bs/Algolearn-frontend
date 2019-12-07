@@ -21,7 +21,7 @@ class SignedInLinks extends Component {
                     <Menu.Item key="classroom">
                         <Icon type="dashboard" />
                         <span>Dashboard</span>
-                        <Link to='/dashboard/classroom' />
+                        <Link to='/dashboard' />
                     </Menu.Item>
                     <span className="ant-divider" style={{ margin: '0 1em' }} />
                     <SubMenu

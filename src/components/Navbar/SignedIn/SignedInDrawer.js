@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Drawer, Icon, Menu, Button } from 'antd';
 
 class SignedInDrawer extends Component {
@@ -17,10 +17,12 @@ class SignedInDrawer extends Component {
                         <Menu.Item key="catalogue">
                             <Icon type="book" />
                             <span>Catalogue</span>
+                            <Link to='/catalogue' />
                         </Menu.Item>
                         <Menu.Item key="classroom">
                             <Icon type="dashboard" />
                             <span>Dashboard</span>
+                            <Link to='/dashboard' />
                         </Menu.Item>
                         <Menu.Divider />
                         <Menu.Item key="manageaccount">
