@@ -13,7 +13,7 @@ class SignedOutLinks extends Component {
                 >
                     <Menu.Item key="catalogue">
                         <Icon type="book" />
-                        <span>Courses</span>
+                        <span>Catalogue</span>
                         <Link to='/catalogue' />
                     </Menu.Item>
                 </Menu>

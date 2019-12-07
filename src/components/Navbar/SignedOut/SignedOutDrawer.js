@@ -16,7 +16,7 @@ class SignedOutDrawer extends Component {
                     <Menu theme="light" mode="vertical" style={{ border: 0 }}>
                         <Menu.Item key="coursess">
                             <Icon type="book" />
-                            <span>Courses</span>
+                            <span>Catalogue</span>
                         </Menu.Item>
                         <Menu.Divider />
                     </Menu>

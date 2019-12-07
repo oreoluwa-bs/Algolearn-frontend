@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Button, Drawer, Icon, Menu, Avatar } from 'antd';
+import { Button, Icon, Menu, Avatar } from 'antd';
 
 const { SubMenu } = Menu;
 
@@ -15,7 +15,7 @@ class SignedInLinks extends Component {
                 >
                     <Menu.Item key="catalogue">
                         <Icon type="book" />
-                        <span>Courses</span>
+                        <span>Catalogue</span>
                         <Link to='/catalogue' />
                     </Menu.Item>
                     <Menu.Item key="classroom">
