@@ -13,7 +13,21 @@
     height: 120px;
     background-color: firebrick;
 }
-  
+.course-header{
+    text-align: center;
+    padding: 5% 0;
+}
+.course-header .course-header-container {
+    color: white;
+    padding: 2% 0;
+}
+.course-header .course-header-container  i.anticon{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.course-header .course-header-container  h1.ant-typography{
+    margin-bottom: 0;
+}
 .course-card-body {
     padding: 15px;
 }
@@ -22,9 +36,9 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.course-details{
+/* .course-details{
 
-}
+} */
 .course-details-body{
     padding: 1px 24px 0 20px;
 }
@@ -43,4 +57,13 @@
 }
 .course-add-info .course-add-body .course-add-meta div i.anticon{
     margin-right: 10px;
+}
+.course-add-info .course-add-body .enroll-btn{
+    margin-top: 30px;
+}
+
+@media screen and (min-width:768px){
+    .course-meta-container {
+        border-left: 1px solid rgb(235, 237, 240)
+    }
 }
