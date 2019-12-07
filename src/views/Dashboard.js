@@ -1,22 +1,41 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Steps, Popover } from 'antd';
+import '../styles/dashboard.css';
 
 const { Content, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Step } = Steps;
+
+const customDot = (dot, { title }) => (
+    <Popover
+        content={
+            <span>
+                {title}
+            </span>
+        }
+    >
+        {dot}
+    </Popover>
+);
 
 const Dashboard = () => {
     const [isCollapsed, setCollapsed] = useState(false)
+    const [current, setCurrent] = useState(0)
 
     const onCollapse = collapsed => {
         setCollapsed(!isCollapsed);
     };
+    const onChange = current => {
+        setCurrent(current)
+    };
     return (
-        <Layout style={{ minHeight: '100vh' }}>
+        <Layout style={{ minHeight: 'calc(100vh - 64px)' }} hasSider>
             <Sider
                 breakpoint="md"
-                collapsedWidth="0"
-                collapsible collapsed={isCollapsed} onCollapse={onCollapse}>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                className='dashboard-sider'
+                collapsible collapsed={isCollapsed} onCollapse={onCollapse}
+                theme='dark'
+            >
+                <Menu theme='dark' mode="inline" style={{ height: '100%', borderRight: 0 }}>
                     <Menu.Item key="1">
                         <Icon type="pie-chart" />
                         <span>Option 1</span>
@@ -25,40 +44,26 @@ const Dashboard = () => {
                         <Icon type="desktop" />
                         <span>Option 2</span>
                     </Menu.Item>
-                    <SubMenu
-                        key="sub1"
-                        title={
-                            <span>
-                                <Icon type="user" />
-                                <span>User</span>
-                            </span>
-                        }
-                    >
-                        <Menu.Item key="3">Tom</Menu.Item>
-                        <Menu.Item key="4">Bill</Menu.Item>
-                        <Menu.Item key="5">Alex</Menu.Item>
-                    </SubMenu>
-                    <SubMenu
-                        key="sub2"
-                        title={
-                            <span>
-                                <Icon type="team" />
-                                <span>Team</span>
-                            </span>
-                        }
-                    >
-                        <Menu.Item key="6">Team 1</Menu.Item>
-                        <Menu.Item key="8">Team 2</Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="9">
-                        <Icon type="file" />
-                        <span>File</span>
-                    </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout style={{ margin: '100px 0 0' }}>
-                <Content style={{ margin: '0 16px' }}>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
+            <Layout style={{ margin: '50px 0 0' }}>
+                <Content style={{ margin: '0 30px' }}>
+                    <div style={{ padding: 24, background: '#fff', minHeight: 'calc(100vh - 164px)' }}>
+                        <Steps current={current} onChange={onChange} progressDot={customDot} labelPlacement='horizontal'>
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                            <Step title='hey' />
+                        </Steps>
+                        Bill is a cat.
+                        </div>
                 </Content>
             </Layout>
         </Layout>

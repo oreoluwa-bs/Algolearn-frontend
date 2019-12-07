@@ -1,0 +1,7 @@
+.dashboard-sider .ant-layout-sider-trigger{
+    position: static;
+}
+
+.ant-steps-label-vertical .ant-steps-item-content {
+    display: none;
+}
