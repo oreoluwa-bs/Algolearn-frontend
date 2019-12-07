@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Carousel, Button, Row, Col, Rate, Typography } from 'antd';
-import '../styles/landingpage.css';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
+import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
+import '../styles/landingpage.css';
 
 const { Paragraph, Text, Title } = Typography;
 
@@ -30,85 +31,17 @@ class LandingPage extends Component {
                         <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                             <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
                                 <Link to=''>
-                                    <div className='course-card'>
-                                        <div className='course-card-top'></div>
-                                        <div className='course-card-body'>
-                                            <h1>Course 1</h1>
-                                            <Paragraph ellipsis={{ rows: 3 }}>
-                                                Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                                Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-                                                a design language for background applications, is refined by Ant UED Team. Ant Design, a
-                                                design language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                                language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                                language for background applications, is refined by Ant UED Team.
-                                        </Paragraph>
-                                            <div>
-                                                <Text type='secondary'>-John Doe</Text>
-                                            </div>
-                                            <Rate defaultValue={3} disabled />
-                                        </div>
-                                    </div>
+                                    <CourseDetailSmall />
                                 </Link>
                             </Col>
                             <Col xs={{ span: 0 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-                                <div className='course-card'>
-                                    <div className='course-card-top'></div>
-                                    <div className='course-card-body'>
-                                        <h1>Course 2</h1>
-                                        <Paragraph ellipsis={{ rows: 3 }}>
-                                            Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                            Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-                                            a design language for background applications, is refined by Ant UED Team. Ant Design, a
-                                            design language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team.
-                                        </Paragraph>
-                                        <div>
-                                            <Text type='secondary'>-John Doe</Text>
-                                        </div>
-                                        <Rate defaultValue={3} disabled />
-                                    </div>
-                                </div>
+                                <CourseDetailSmall />
                             </Col>
                             <Col xs={{ span: 0 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-                                <div className='course-card'>
-                                    <div className='course-card-top'></div>
-                                    <div className='course-card-body'>
-                                        <h1>Course 3</h1>
-                                        <Paragraph ellipsis={{ rows: 3 }}>
-                                            Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                            Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-                                            a design language for background applications, is refined by Ant UED Team. Ant Design, a
-                                            design language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team.
-                                        </Paragraph>
-                                        <div>
-                                            <Text type='secondary'>-John Doe</Text>
-                                        </div>
-                                        <Rate defaultValue={3} disabled />
-                                    </div>
-                                </div>
+                                <CourseDetailSmall />
                             </Col>
                             <Col xs={{ span: 0 }} xl={{ span: 6 }}>
-                                <div className='course-card'>
-                                    <div className='course-card-top'></div>
-                                    <div className='course-card-body'>
-                                        <h1>Course 4</h1>
-                                        <Paragraph ellipsis={{ rows: 3 }}>
-                                            Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                            Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-                                            a design language for background applications, is refined by Ant UED Team. Ant Design, a
-                                            design language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team. Ant Design, a design
-                                            language for background applications, is refined by Ant UED Team.
-                                        </Paragraph>
-                                        <div>
-                                            <Text type='secondary'>-John Doe</Text>
-                                        </div>
-                                        <Rate defaultValue={3} disabled />
-                                    </div>
-                                </div>
+                                <CourseDetailSmall />
                             </Col>
                         </Row>
                     </div>
