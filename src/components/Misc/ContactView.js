@@ -20,7 +20,7 @@ const ContactView = (props) => {
                 <p className='large-text bold'>Get in Touch</p>
                 <Form onSubmit={handleSubmit} className='login-form'>
                     <Row gutter={{ md: 24 }}>
-                        <Col span={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item>
                                 <label>First Name:</label>
                                 {getFieldDecorator('firstname', {
@@ -34,7 +34,7 @@ const ContactView = (props) => {
                                 )}
                             </Form.Item>
                         </Col>
-                        <Col span={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item>
                                 <label>Last Name:</label>
                                 {getFieldDecorator('lastname', {
@@ -74,11 +74,9 @@ const ContactView = (props) => {
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <div style={{ float: 'right' }}>
-                            <Button type='primary' htmlType='submit' className='login-form-button'>
-                                Submit
-                                    </Button>
-                        </div>
+                        <Button size='large' block type='primary' htmlType='submit' className='login-form-button'>
+                            Send us a mail
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>

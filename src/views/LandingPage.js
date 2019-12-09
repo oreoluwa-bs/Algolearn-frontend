@@ -46,33 +46,6 @@ class LandingPage extends Component {
                         </Row>
                     </div>
                 </Layout>
-                {/* <div style={{ backgroundColor: 'white' }}>
-                    <div style={{ width: '65vw', margin: '100px auto' }}>
-                        <Row gutter={{ md: 24, lg: 36 }}>
-                            <Col xs={{ span: 12 }} lg={{ span: 8 }}>
-                                <div className='testimonials' style={{ textAlign: 'center' }}>
-                                    <Icon type="smile" theme="twoTone" style={{ fontSize: '100px' }} />
-                                    <p className='ds-desc'>Ultimately, Udacity is what really became the driving force behind the career change.</p>
-                                    <p className='ds-author' style={{}}>-Mike</p>
-                                </div>
-                            </Col>
-                            <Col xs={{ span: 12 }} lg={{ span: 8 }}>
-                                <div className='' style={{ textAlign: 'center' }}>
-                                    <Icon type="smile" theme="twoTone" style={{ fontSize: '100px' }} />
-                                    <p className='ds-desc'>Before Udacity, I was working two minimum wage jobs. Now, I have a new job, a new mindset, and new life!</p>
-                                    <p className='ds-author' style={{}}>-Ryan</p>
-                                </div>
-                            </Col>
-                            <Col xs={{ span: 0 }} lg={{ span: 8 }}>
-                                <div className='' style={{ textAlign: 'center' }}>
-                                    <Icon type="smile" theme="twoTone" style={{ fontSize: '100px' }} />
-                                    <p className='ds-desc'>Before Udacity, I was working two minimum wage jobs. Now, I have a new job, a new mindset, and new life!</p>
-                                    <p className='ds-author' style={{}}>-Isaure</p>
-                                </div>
-                            </Col>
-                        </Row>
-                    </div>
-                </div> */}
                 <WrappedNormalContactForm />
             </Layout >
         );

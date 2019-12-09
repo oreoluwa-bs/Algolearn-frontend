@@ -1,3 +1,49 @@
 .login-form .ant-row.ant-form-item{
     margin-bottom: 12px;
 }
+
+.form-wrappwe {
+    background-color: white;
+    border-radius: 8px;
+    margin: 50px auto;
+    max-width: 40vw;
+}
+
+.form-wrappwe .form-img{
+    width: 100%;
+    min-height: 600px;
+    background-color: aquamarine;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+@media screen and (max-width:1200px){
+    .form-wrappwe .form-img{
+        min-height: 200px;
+        border-radius: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+}
+
+@media screen and (max-width:992px){
+    .form-wrappwe {
+        max-width: 60vw;
+    }
+    .form-wrappwe .form-img{
+        min-height: 200px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+}
+
+@media screen and (max-width:768px){
+    .form-wrappwe {
+        max-width: 80vw;
+    }
+    .form-wrappwe .form-img{
+        min-height: 200px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+}

@@ -70,7 +70,7 @@ const Dashboard = () => {
                             </Steps> */}
                         </div>
                         <div className='dashboard-tabs'>
-                            <Tabs tabBarExtraContent={[isCollapsed ? <Link to='' className='ant-btn ant-btn-default'>Create a course</Link> : null]}>
+                            <Tabs tabBarExtraContent={[isCollapsed ? <Link to='/course/create' className='ant-btn ant-btn-default'>Create a course</Link> : null]}>
                                 {
                                     isCollapsed &&
                                     <TabPane tab="Created Courses" key="created-courses">
