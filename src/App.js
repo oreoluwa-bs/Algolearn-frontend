@@ -9,10 +9,11 @@ import WrappedNormalLoginForm from './views/LoginPage';
 import WrappedNormalTutorSignupForm from './views/TutorSignupPage';
 import WrappedNormalStudentSignupForm from './views/SignupPage';
 import CourseDetailLarge from './components/Catalogue/CourseDetailLarge';
-
-import './App.css';
 import Dashboard from './views/Dashboard';
 import WrappedNormalCreateCourseForm from './views/CreateCoursePage';
+import Classroom from './components/Classroom';
+
+import './App.css';
 
 
 const { Footer } = Layout;
@@ -32,6 +33,7 @@ function App() {
             <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
+            <Route path='/classroom/1' component={Classroom} />
 
             <Route component={Error404Page} />
           </Switch>
