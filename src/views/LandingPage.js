@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Carousel, Button, Row, Col, Rate, Typography } from 'antd';
+import { Layout, Carousel, Button, Row, Col, Typography } from 'antd';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import '../styles/landingpage.css';

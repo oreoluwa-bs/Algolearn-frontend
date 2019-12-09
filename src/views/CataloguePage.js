@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Input, Row, Col, Skeleton } from 'antd';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
-import CourseViewSmall from '../components/Catalogue/CourseDetailSmall';
+import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import '../styles/catalogue.css';
 
 const { Search } = Input;
@@ -26,32 +26,32 @@ class CataloguePage extends Component {
                             <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to='/catalogue/1'>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                     </Link>
                                 </Col>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to=''>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                     </Link>
                                 </Col>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to=''>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                     </Link>
                                 </Col>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to=''>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                     </Link>
                                 </Col>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to=''>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                     </Link>
                                 </Col>
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                     <Link to=''>
-                                        <CourseViewSmall />
+                                        <CourseDetailSmall />
                                         {/* <Skeleton
                                         // title={false}
                                         // avatar={{ shape: "square", size: 300, style: { borderRadius: 20 } }}
