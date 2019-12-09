@@ -1,0 +1,12 @@
+.dashboard-sider .ant-layout-sider-trigger{
+    position: static;
+}
+
+.ant-steps-label-vertical .ant-steps-item-content {
+    display: none;
+}
+
+.dashboard-tabs .ant-tabs .ant-tabs-top-content > .ant-tabs-tabpane, .dashboard-tabs.ant-tabs .ant-tabs-bottom-content > .ant-tabs-tabpane {
+    padding-left: 20px;
+    padding-right: 20px;
+}

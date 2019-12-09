@@ -8,7 +8,7 @@
 .app-container .barsMenu {
    display: none;
 }  
-@media screen and (max-width:575px) {
+@media screen and (max-width:768px) {
   .app-container .nav-links-right{
     display: none;
   }
