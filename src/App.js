@@ -14,33 +14,36 @@ import WrappedNormalCreateCourseForm from './views/CreateCoursePage';
 import Classroom from './components/Classroom';
 
 import './App.css';
+import RootContext from './store/Contexts';
 
 
 const { Footer } = Layout;
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Layout>
-          <Navbar />
+      <RootContext>
+        <div className="app-container">
+          <Layout>
+            <Navbar />
 
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route exact path='/catalogue' component={CataloguePage} />
-            <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
-            <Route path='/login' component={WrappedNormalLoginForm} />
-            <Route path='/signup' component={WrappedNormalStudentSignupForm} />
-            <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
-            <Route path='/dashboard' component={Dashboard} />
-            <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
-            <Route path='/classroom/1' component={Classroom} />
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route exact path='/catalogue' component={CataloguePage} />
+              <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
+              <Route path='/login' component={WrappedNormalLoginForm} />
+              <Route path='/signup' component={WrappedNormalStudentSignupForm} />
+              <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
+              <Route path='/dashboard' component={Dashboard} />
+              <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
+              <Route path='/classroom/1' component={Classroom} />
 
-            <Route component={Error404Page} />
-          </Switch>
+              <Route component={Error404Page} />
+            </Switch>
 
-          <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
-        </Layout>
-      </div>
+            <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
+          </Layout>
+        </div>
+      </RootContext>
     </BrowserRouter>
   );
 }
