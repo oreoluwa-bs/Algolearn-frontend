@@ -59,7 +59,6 @@ const Dashboard = () => {
                                         {
                                             createdCourses && createdCourses.length < 1 &&
                                             <Empty
-                                                // image={Empty.PRESENTED_IMAGE_SIMPLE}
                                                 imageStyle={{
                                                     height: 200,
                                                 }}

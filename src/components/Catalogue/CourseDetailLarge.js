@@ -17,7 +17,12 @@ const CourseDetailLarge = (props) => {
     });
     const isEnrolled = auth.enrolledCourses.some((cour) => {
         return cour.id === course.id
-    })
+    });
+    const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich']
+    let rating = 0;
+    course.ratings.forEach(rate => {
+        rating += rate;
+    });
     return (
         <div>
             <Layout style={{ backgroundColor: 'white', borderTop: '1px solid  rgb(235, 237, 240)' }}>
@@ -45,11 +50,11 @@ const CourseDetailLarge = (props) => {
                                     <div className='course-add-meta'>
                                         <div>
                                             <Icon type="file" />
-                                            <Text type='secondary'>12 lessons</Text>
+                                            <Text type='secondary'>{course.lessons && course.lessons.length}{!course.lessons && 0} lessons</Text>
                                         </div>
                                         <div>
                                             <Icon type="read" />
-                                            <Text type='secondary'>Rich Learning Content</Text>
+                                            <Text type='secondary'>{contentValue[Math.round(rating / course.ratings.length) - 1]} Learning Content</Text>
                                         </div>
                                         {
                                             course.tests && course.tests.length > 0 &&
@@ -67,7 +72,7 @@ const CourseDetailLarge = (props) => {
                                         <Avatar style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
                                         <Text type='secondary'>John Doe</Text>
                                     </div>
-                                    <Rate defaultValue={3} disabled />
+                                    <Rate defaultValue={Math.round(rating / course.ratings.length)} disabled />
                                     <div>
                                         {
                                             auth &&

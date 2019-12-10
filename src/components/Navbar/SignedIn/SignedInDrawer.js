@@ -27,6 +27,7 @@ const SignedInDrawer = (props) => {
                     <Menu.Item key="manageaccount">
                         <Icon type="user" />
                         <span>Manage my account</span>
+                        <Link to='/account' />
                     </Menu.Item>
                     <Menu.Item key="logout">
                         <Button block>Logout</Button>

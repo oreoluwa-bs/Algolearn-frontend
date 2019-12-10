@@ -9,11 +9,11 @@ const Error404Page = (props) => {
     return (
         <div>
             <Layout className="layout">
-                <div style={{ minHeight: 'calc(100vh - 233px)', marginTop: '100px' }}>
+                <div style={{ minHeight: '50vh', marginTop: '25vh' }}>
                     <Empty
                         image={emptyImage}
                         imageStyle={{
-                            height: 400,
+                            margin: '0 0px 50px'
                         }}
                         description={
                             <span className='error404-text'>
@@ -21,7 +21,7 @@ const Error404Page = (props) => {
                         </span>
                         }
                     >
-                        <Button type="primary" onClick={() => {
+                        <Button style={{ margin: '30px 0px 0px' }} type="primary" onClick={() => {
                             props.history.goBack()
                         }}>Go back</Button>
                     </Empty>

@@ -8,11 +8,18 @@
 .app-container .barsMenu {
    display: none;
 }  
+
 @media screen and (max-width:768px) {
   .app-container .nav-links-right{
     display: none;
   }
   .app-container .barsMenu {
     display: inline-block;
+  }
+}
+
+@media screen and (max-width:575px) {
+  .ant-layout-header {
+    padding: 0 30px;
   }
 }

@@ -16,6 +16,7 @@ class CourseContextProvider extends Component {
                         language for background applications, is refined by Ant UED Team.`,
                 authorId: '1111',
                 ratings: [3],
+                lessons: [{},{}],
             },
             {
                 id: '2',

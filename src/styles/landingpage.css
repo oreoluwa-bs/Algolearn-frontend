@@ -10,6 +10,14 @@
   overflow: hidden;
 }
 
+.hero {
+  height: 50vh;
+  background-color: #7451eb;
+  overflow: hidden;
+  padding: 80px;
+  position: relative;
+}
+
 .ant-carousel .slick-slide .carousel-content {
   margin: 5% 20%;
 }
@@ -31,12 +39,20 @@
   margin: 0 0 40px;
 }
 
-#components-form-demo-normal-login .login-form {
-  max-width: 300px;
+.hero .carousel-content{
+  position: absolute;
+  bottom: 0;
+  padding: 0 0 100px;
 }
-#components-form-demo-normal-login .login-form-forgot {
-  float: right;
+
+@media screen and (min-width:2000px){
+  .hero {
+    height: calc(100vh - 800px);
+  }
 }
-#components-form-demo-normal-login .login-form-button {
-  width: 100%;
+@media screen and (max-width:575px){
+  .hero {
+    padding: 40px;
+  }
+  
 }

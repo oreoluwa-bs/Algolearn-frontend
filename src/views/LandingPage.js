@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Carousel, Button, Row, Col, Typography } from 'antd';
+import { Layout, Button, Row, Col, Typography, Divider } from 'antd';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import '../styles/landingpage.css';
@@ -31,10 +31,10 @@ const LandingPage = () => {
         // names must be equal
         return 0;
     });
-    
+
     return (
         <Layout className="layout" >
-            <Carousel autoplay easing='ease-out'>
+            {/* <Carousel autoplay easing='ease-out'>
                 <div className='carousel-content'>
                     <p className='carousel-caption'>Your Course to Success</p>
                     <p className='carousel-text'>Build skills with courses</p>
@@ -45,7 +45,16 @@ const LandingPage = () => {
                     <p className='carousel-text'>Teach skills through courses</p>
                     <Button size='large' type='primary'>Become a tutor</Button>
                 </div>
-            </Carousel>
+            </Carousel> */}
+            <div className='hero'>
+                <div className='carousel-content'>
+                    <p className='carousel-caption'>Your Course to Success</p>
+                    <p className='carousel-text'>Build skills with courses</p>
+                    <Button size='large' type='default'>Become a tutor</Button>
+                    <Divider type='vertical'/>
+                    <Button size='large' type='primary'>Become a learner</Button>
+                </div>
+            </div>
             <Layout>
                 <div style={{ width: '65vw', margin: '100px auto' }}>
                     <Title level={2}>Check out our newest courses</Title>

@@ -9,7 +9,7 @@ class AuthContextProvider extends Component {
             lastname: 'Doe',
             email: 'john.d@gmail.com',
             userId: '12gh13ki',
-            role: 'student',
+            role: 'tutor',
             enrolledCourses: [{
                 id: '1',
                 isCompleted: true
