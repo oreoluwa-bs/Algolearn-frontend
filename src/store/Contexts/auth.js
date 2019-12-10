@@ -10,8 +10,18 @@ class AuthContextProvider extends Component {
             email: 'john.d@gmail.com',
             userId: '12gh13ki',
             role: 'student',
-            enrolledCourses: [],
-        }
+            enrolledCourses: [{
+                id: '1',
+                isCompleted: true
+            }, {
+                id: '4',
+                isCompleted: false
+            }],
+            createdCourses: [{
+                id: '2'
+            }]
+        },
+        authError: null
     }
     render() {
         return (

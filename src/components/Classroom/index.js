@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Steps, Popover, Button, message, Pagination } from 'antd';
+import { Layout, Steps, Popover, Button, message, Empty } from 'antd';
 import '../../styles/classroom.css'
 
 const { Content } = Layout;
@@ -17,51 +17,46 @@ const customDot = (dot, { title }) => (
     </Popover>
 );
 
-const steps = [
-    {
-        title: 'First',
-        content: 'First-content',
-    },
-    {
-        title: 'Second',
-        content: 'Second-content',
-    },
-    {
-        title: 'Last',
-        content: 'Last-content',
-    },
-];
-
-
 const Classroom = () => {
     const [current, setCurrent] = useState(0)
 
     const onChange = current => {
         setCurrent(current)
     };
+
+        const lessons = [];
     return (
         <Layout>
             <Content style={{ padding: '50px 50px' }}>
-                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 234px', width: '100%' }}>
+                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 234px)', width: '100%' }}>
                     <div style={{}}>
                         <Steps current={current} onChange={onChange} progressDot={customDot}>
-                            {steps.map(item => (
-                                <Step key={item.title} title={item.title} />
-                            ))}
-                            {steps.map(item => (
-                                <Step key={item.title} title={item.title} />
-                            ))}
-                            {steps.map(item => (
-                                <Step key={item.title} title={item.title} />
-                            ))}
-                            {steps.map(item => (
+                            {lessons.map(item => (
                                 <Step key={item.title} title={item.title} />
                             ))}
                         </Steps>
                     </div>
-                    <div className="steps-content">{steps[current].content}</div>
+                    <div className="steps-content">
+                        {
+                            lessons && lessons.length > 0 && lessons[current].content
+                        }
+                        {
+                            lessons && lessons.length <= 0 &&
+                            <Empty
+                                imageStyle={{
+                                    height: 200,
+                                }}
+                                description={
+                                    <span>
+                                        There are no lessons available at the momment
+                                    </span>
+                                }
+                            >
+                            </Empty>
+                        }
+                    </div>
                     <div className="steps-action">
-                        {current < steps.length - 1 && (
+                        {current < lessons.length - 1 && (
                             <Button type="primary" onClick={() => {
                                 const nextStep = current + 1;
                                 setCurrent(nextStep);
@@ -69,7 +64,7 @@ const Classroom = () => {
                                 Next lesson
                             </Button>
                         )}
-                        {current === steps.length - 1 && (
+                        {current === lessons.length - 1 && (
                             <Button type="primary" onClick={() => message.success('Processing complete!')}>
                                 Done
                             </Button>

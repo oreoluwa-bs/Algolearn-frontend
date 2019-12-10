@@ -1,10 +1,13 @@
 import React from 'react';
 import AuthContextProvider from './auth';
+import CourseContextProvider from './course';
 
 function RootContext(props) {
     return (
         <AuthContextProvider>
-            {props.children}
+            <CourseContextProvider>
+                {props.children}
+            </CourseContextProvider>
         </AuthContextProvider>
     );
 }

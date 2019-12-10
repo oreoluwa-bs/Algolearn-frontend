@@ -16,9 +16,9 @@ const Error404Page = (props) => {
                             height: 400,
                         }}
                         description={
-                            <p className='error404-text'>
+                            <span className='error404-text'>
                                 Page not found
-                        </p>
+                        </span>
                         }
                     >
                         <Button type="primary" onClick={() => {
