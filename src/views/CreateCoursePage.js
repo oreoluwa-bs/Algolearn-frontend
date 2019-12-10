@@ -18,7 +18,7 @@ const CreateCoursePage = (props) => {
     return (
         <Layout className='layout' >
             <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
-            <div style={{ margin: '50px auto', maxWidth: '540px', padding:'0 40px' }}>
+                <div style={{ margin: '50px auto', maxWidth: '540px', padding: '0 40px' }}>
                     <p className='large-text bold'>Create a course</p>
                     <Form onSubmit={handleSubmit} className='login-form'>
                         <Form.Item>
@@ -45,11 +45,9 @@ const CreateCoursePage = (props) => {
                             )}
                         </Form.Item>
                         <Form.Item>
-                            <div style={{ float: 'right' }}>
-                                <Button block size='large' type='primary' htmlType='submit' className='login-form-button'>
-                                    Create course
-                                </Button>
-                            </div>
+                            <Button block size='large' type='primary' htmlType='submit' className='login-form-button'>
+                                Create course
+                            </Button>
                         </Form.Item>
                     </Form>
                 </div>

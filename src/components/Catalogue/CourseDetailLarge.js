@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Rate, Typography, Button, Layout, Row, Col, Avatar, Icon } from 'antd';
+import { Rate, Typography, Button, Layout, Row, Col, Avatar, Icon, Card, Tooltip } from 'antd';
 import WrappedNormalContactForm from '../Misc/ContactView';
 import CourseDetailSmall from './CourseDetailSmall';
 import { CourseContext } from '../../store/Contexts/course';
@@ -18,11 +18,21 @@ const CourseDetailLarge = (props) => {
     const isEnrolled = auth.enrolledCourses.some((cour) => {
         return cour.id === course.id
     });
-    const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich']
+    const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich'];
     let rating = 0;
     course.ratings.forEach(rate => {
         rating += rate;
     });
+
+    const moreButtons = auth && auth.role === 'tutor' && auth.userId === course.authorId ? [
+        <Tooltip title='Delete this course' key='del-button'>
+            <Button type='danger' size='default' style={{ marginRight: 10 }}><Icon type='delete' /></Button>
+        </Tooltip>
+        ,
+        <Tooltip title='Edit this course' key='edit-button'>
+            <Button type='primary' size='default'><Icon type='edit' /></Button>
+        </Tooltip>
+    ] : []
     return (
         <div>
             <Layout style={{ backgroundColor: 'white', borderTop: '1px solid  rgb(235, 237, 240)' }}>
@@ -46,54 +56,44 @@ const CourseDetailLarge = (props) => {
                         <Col xs={{ span: 24 }} md={{ span: 8 }} className='course-meta-container'>
                             <div className='course-add-info'>
                                 <div className='course-add-body'>
-                                    <h1>Course Information</h1>
-                                    <div className='course-add-meta'>
-                                        <div>
-                                            <Icon type="file" />
-                                            <Text type='secondary'>{course.lessons && course.lessons.length}{!course.lessons && 0} lessons</Text>
+                                    <Card bordered={false} title="Course Information" extra={moreButtons}>
+                                        <div className='course-add-meta'>
+                                            <div>
+                                                <Icon type="file" />
+                                                <Text type='secondary'>{course.lessons && course.lessons.length}{!course.lessons && 0} lessons</Text>
+                                            </div>
+                                            <div>
+                                                <Icon type="read" />
+                                                <Text type='secondary'>{contentValue[Math.round(rating / course.ratings.length) - 1]} Learning Content</Text>
+                                            </div>
+                                            {
+                                                course.tests && course.tests.length > 0 &&
+                                                <div>
+                                                    <Icon type="check-square" />
+                                                    <Text type='secondary'>Interactive Quizes</Text>
+                                                </div>
+                                            }
+                                            <div>
+                                                <Icon type="clock-circle" />
+                                                <Text type='secondary'>Self-Paced Learning</Text>
+                                            </div>
                                         </div>
                                         <div>
-                                            <Icon type="read" />
-                                            <Text type='secondary'>{contentValue[Math.round(rating / course.ratings.length) - 1]} Learning Content</Text>
+                                            <Avatar style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
+                                            <Text type='secondary'>John Doe</Text>
                                         </div>
-                                        {
-                                            course.tests && course.tests.length > 0 &&
-                                            <div>
-                                                <Icon type="check-square" />
-                                                <Text type='secondary'>Interactive Quizes</Text>
-                                            </div>
-                                        }
+                                        <Rate defaultValue={Math.round(rating / course.ratings.length)} disabled />
                                         <div>
-                                            <Icon type="clock-circle" />
-                                            <Text type='secondary'>Self-Paced Learning</Text>
+                                            {
+                                                auth &&
+                                                <div>
+                                                    <div className='enroll-btn'>
+                                                        <Button type='primary' size='large' disabled={auth.userId === course.authorId || isEnrolled}>Enroll in course</Button>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
-                                    </div>
-                                    <div>
-                                        <Avatar style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
-                                        <Text type='secondary'>John Doe</Text>
-                                    </div>
-                                    <Rate defaultValue={Math.round(rating / course.ratings.length)} disabled />
-                                    <div>
-                                        {
-                                            auth &&
-                                            <div>
-                                                <div className='enroll-btn'>
-                                                    <Button type='primary' size='large' disabled={auth.userId === course.authorId || isEnrolled}>Enroll in course</Button>
-                                                </div>
-                                            </div>
-                                        }
-                                        {
-                                            auth && auth.userId === course.authorId &&
-                                            <div>
-                                                <div className='enroll-btn'>
-                                                    <Button type='danger' size='large'>Delete course</Button>
-                                                </div>
-                                                <div className='enroll-btn'>
-                                                    <Button type='primary' size='large'>Edit course</Button>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
+                                    </Card>
                                 </div>
                             </div>
                         </Col>

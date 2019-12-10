@@ -8,7 +8,6 @@ const CourseDetailSmall = (props) => {
     props.course.ratings.forEach(rate => {
         rating += rate;
     });
-    // console.log(rating/props.course.ratings.length);
     return (
         <div className='course-card'>
             <div className='course-card-top'></div>
