@@ -4,10 +4,14 @@
     border-radius: 6px;
     background-color: #fafafa;
     min-height: calc(100vh - 370px);
-    text-align: center;
-    padding-top: 80px;
+    /* text-align: center; */
+    padding: 10px 20px;
   }
   
   .steps-action {
     margin-top: 24px;
+  }
+
+  .references-links .ant-list-item {
+    padding: 2px 0;
   }

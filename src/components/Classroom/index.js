@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { Layout, Steps, Popover, Button, message, Empty } from 'antd';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { Layout, Steps, Popover, Button, message, Empty, Typography, List } from 'antd';
 import '../../styles/classroom.css'
+import { CourseContext } from '../../store/Contexts/course';
 
 const { Content } = Layout;
 const { Step } = Steps;
+const { Title, Paragraph } = Typography;
 
 const customDot = (dot, { title }) => (
     <Popover
@@ -17,14 +20,20 @@ const customDot = (dot, { title }) => (
     </Popover>
 );
 
-const Classroom = () => {
+const Classroom = (props) => {
     const [current, setCurrent] = useState(0)
 
     const onChange = current => {
         setCurrent(current)
     };
 
-        const lessons = [];
+    const { courses } = useContext(CourseContext);
+    // const { auth } = useContext(AuthContext);
+    const course = courses.find((course) => {
+        return course.id === props.match.params.courseId
+    });
+
+    const lessons = course.lessons
     return (
         <Layout>
             <Content style={{ padding: '50px 50px' }}>
@@ -38,7 +47,40 @@ const Classroom = () => {
                     </div>
                     <div className="steps-content">
                         {
-                            lessons && lessons.length > 0 && lessons[current].content
+                            lessons && lessons.length > 0 &&
+                            <div>
+                                <Title level={4}>{lessons[current].title}</Title>
+                                {
+                                    lessons[current].videoUrl &&
+                                    <iframe title={lessons[current].title} style={{ width: '80%', height: '600px', margin: '20px 0' }} src="https://www.youtube.com/embed/HyHNuVaZJ-k" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+                                }
+                                {
+                                    lessons[current].textContent &&
+                                    <Paragraph>{lessons[current].textContent}</Paragraph>
+                                }
+                                {
+
+                                    lessons[current].references && lessons[current].references.length > 0 &&
+                                    <div className='references-links'>
+                                        {/* <Paragraph>references</Paragraph> */}
+                                        <List
+                                            header='References'
+                                            itemLayout='horizontal'
+                                            split={false}
+                                            dataSource={lessons[current].references}
+                                            renderItem={(item, index) => (
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        // title={item.text}
+                                                        description={<span>{index + 1}. <Link to={item.url}>{item.text || 'Link'}</Link></span>}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </div>
+                                }
+                            </div>
                         }
                         {
                             lessons && lessons.length <= 0 &&

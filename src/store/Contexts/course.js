@@ -79,6 +79,42 @@ class CourseContextProvider extends Component {
                         language for background applications, is refined by Ant UED Team.`,
                 authorId: '22111',
                 ratings: [5],
+                lessons: [{
+                    id: '1',
+                    title: 'Introduction',
+                    videoUrl: 'hah',
+                    textContent: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+                    Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
+                    a design language for background applications, is refined by Ant UED Team. Ant Design, a
+                    design language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team.`,
+                    references: [{
+                        id: 'laa',
+                        url: 'www.google.com',
+                        text: 'Google',
+                    },
+                    {
+                        id: 'laa',
+                        url: 'www.google.com',
+                        // text: 'Google',
+                    }],
+                },
+                {
+                    id: '2',
+                    title: 'Basics',
+                    textContent: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+                    Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
+                    a design language for background applications, is refined by Ant UED Team. Ant Design, a
+                    design language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team.`,
+                    references: [{
+                        id: 'laa',
+                        url: 'lala',
+                        text: 'laa',
+                    }],
+                }]
             }
         ]
     }
