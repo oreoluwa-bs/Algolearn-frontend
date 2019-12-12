@@ -63,10 +63,7 @@ class CourseContextProvider extends Component {
                         language for background applications, is refined by Ant UED Team.`,
                 authorId: '12gh13ki',
                 ratings: [1, 2],
-                tests: [{
-                    id: '21', question: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                Design, a design language for background applications, is refined by Ant UED Team. `, options: []
-                }],
+                tests: [],
                 lessons: [{
                     id: '1',
                     title: 'Introduction',
@@ -104,7 +101,49 @@ class CourseContextProvider extends Component {
                 ratings: [5],
                 tests: [{
                     id: '21', question: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                Design, a design language for background applications, is refined by Ant UED Team. `, options: []
+                Design, a design language for background applications, is refined by Ant UED Team. `,
+                    answers: [
+                        {
+                            value: 'a',
+                            text: 'tree',
+                        },
+                        {
+                            value: 'b',
+                            text: 'dda',
+                        },
+                        {
+                            value: 'c',
+                            text: 'tee',
+                        },
+                        {
+                            value: 'd',
+                            text: 'qda',
+                        },
+                    ],
+                    answer: 'a'
+                },
+                {
+                    id: '1', question: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+                Design, a design language for background applications, is refined by Ant UED Team. `,
+                    answers: [
+                        {
+                            value: 'a',
+                            text: 'tree',
+                        },
+                        {
+                            value: 'b',
+                            text: 'dda',
+                        },
+                        {
+                            value: 'c',
+                            text: 'tee',
+                        },
+                        {
+                            value: 'd',
+                            text: 'qda',
+                        },
+                    ],
+                    answer: 'a'
                 }],
                 lessons: [{
                     id: '1',

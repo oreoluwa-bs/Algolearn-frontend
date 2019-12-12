@@ -5,7 +5,6 @@ import emptyImage from '../assets/images/undraw_404.svg';
 
 
 const Error404Page = (props) => {
-    console.log(props)
     return (
         <div>
             <Layout className="layout">

@@ -21,7 +21,7 @@ const Classroom = (props) => {
         return course.id === props.match.params.courseId
     });
 
-    const lessons = [...course.lessons]
+    const lessons = course.lessons
 
     const lessonIndex = lessons.findIndex((lesson) => {
         return lesson.id === props.match.params.lessonId
