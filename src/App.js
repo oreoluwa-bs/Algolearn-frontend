@@ -17,6 +17,7 @@ import './App.css';
 import RootContext from './store/Contexts';
 import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
 import TestPage from './components/Classroom/TestPage';
+import WrappedNormalAccountPageForm from './views/AccountPage';
 
 
 const { Footer } = Layout;
@@ -40,7 +41,7 @@ function App() {
               <Route path='/lesson/create' component={WrappedNormalCreateLessonForm} />
               <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
               <Route path='/tests/:courseId/' component={TestPage} />
-              <Route path='/account/' component={TestPage} />
+              <Route path='/account' component={WrappedNormalAccountPageForm} />
 
               <Route component={Error404Page} />
             </Switch>
