@@ -43,7 +43,7 @@ const Classroom = (props) => {
         if (!course.tests) {
             return message.success('This is a success message');
         } else {
-            props.history.push(`/tests/${course.id}`)
+            props.history.push(`/tests/${course.id}`);
         }
     };
 
