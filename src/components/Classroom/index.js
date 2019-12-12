@@ -73,7 +73,7 @@ const Classroom = (props) => {
                                                 <List.Item>
                                                     <List.Item.Meta
                                                         // title={item.text}
-                                                        description={<span>{index + 1}. <Link to={item.url}>{item.text || 'Link'}</Link></span>}
+                                                        description={<span>{index + 1}. <Link to={item.url || '/'}>{item.text || 'Link'}</Link></span>}
                                                     />
                                                 </List.Item>
                                             )}
