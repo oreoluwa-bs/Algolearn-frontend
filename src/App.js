@@ -15,6 +15,7 @@ import Classroom from './components/Classroom';
 
 import './App.css';
 import RootContext from './store/Contexts';
+import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
 
 
 const { Footer } = Layout;
@@ -35,6 +36,7 @@ function App() {
               <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
+              <Route path='/lesson/create' component={WrappedNormalCreateLessonForm} />
               <Route path='/classroom/:courseId' component={Classroom} />
 
               <Route component={Error404Page} />

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Rate, Typography, Button, Layout, Row, Col, Avatar, Icon, Card, Tooltip } from 'antd';
+import { Rate, Typography, Button, Layout, Row, Col, Avatar, Icon, Card, Tooltip, Table, Divider } from 'antd';
 import WrappedNormalContactForm from '../Misc/ContactView';
 import CourseDetailSmall from './CourseDetailSmall';
 import { CourseContext } from '../../store/Contexts/course';
@@ -23,14 +23,59 @@ const CourseDetailLarge = (props) => {
     course.ratings.forEach(rate => {
         rating += rate;
     });
+    const columns = [
+        {
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
+        },
+        {
+            title: 'Text Content',
+            dataIndex: 'textcontent',
+            key: 'textcontent',
+        },
+        {
+            title: 'References',
+            dataIndex: 'references',
+            key: 'references',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: () => (
+                <span>
+                    <Tooltip title='Delete this lesson' key='del-button'>
+                        <Button type='danger' icon='delete' />
+                    </Tooltip>
+                    <Divider type='vertical' />
+                    <Tooltip title='Edit this lesson' key='edit-button'>
+                        <Button type='primary' icon='edit' />
+                    </Tooltip>
+                </span>
+            ),
+        },
+    ];
+
+    const data = []
+    course.lessons.forEach(lesson => {
+        const format = {
+            key: lesson.id,
+            title: lesson.title,
+            textcontent: lesson.textContent.substring(0, 100),
+            references: lesson.references.length
+        };
+        data.push(format);
+    });
 
     const moreButtons = auth && auth.role === 'tutor' && auth.userId === course.authorId ? [
         <Tooltip title='Delete this course' key='del-button'>
-            <Button type='danger' size='default' style={{ marginRight: 10 }}><Icon type='delete' /></Button>
+            <Button type='danger' icon='delete' />
         </Tooltip>
         ,
+        <Divider type='vertical' />
+        ,
         <Tooltip title='Edit this course' key='edit-button'>
-            <Button type='primary' size='default'><Icon type='edit' /></Button>
+            <Button type='primary' icon='edit' />
         </Tooltip>
     ] : []
     return (
@@ -38,7 +83,7 @@ const CourseDetailLarge = (props) => {
             <Layout style={{ backgroundColor: 'white', borderTop: '1px solid  rgb(235, 237, 240)' }}>
                 <div style={{ backgroundColor: 'firebrick' }} className='course-header'>
                     <div className='course-header-container'>
-                        <Icon type="book" />
+                        <Icon type='book' />
                         <Title level={1} style={{ color: 'white' }}>{course.title}</Title>
                     </div>
                 </div>
@@ -56,25 +101,25 @@ const CourseDetailLarge = (props) => {
                         <Col xs={{ span: 24 }} md={{ span: 8 }} className='course-meta-container'>
                             <div className='course-add-info'>
                                 <div className='course-add-body'>
-                                    <Card bordered={false} title="Course Information" extra={moreButtons}>
+                                    <Card bordered={false} title='Course Information' extra={moreButtons}>
                                         <div className='course-add-meta'>
                                             <div>
-                                                <Icon type="file" />
+                                                <Icon type='file' />
                                                 <Text type='secondary'>{course.lessons && course.lessons.length}{!course.lessons && 0} lessons</Text>
                                             </div>
                                             <div>
-                                                <Icon type="read" />
+                                                <Icon type='read' />
                                                 <Text type='secondary'>{contentValue[Math.round(rating / course.ratings.length) - 1]} Learning Content</Text>
                                             </div>
                                             {
                                                 course.tests && course.tests.length > 0 &&
                                                 <div>
-                                                    <Icon type="check-square" />
+                                                    <Icon type='check-square' />
                                                     <Text type='secondary'>Interactive Quizes</Text>
                                                 </div>
                                             }
                                             <div>
-                                                <Icon type="clock-circle" />
+                                                <Icon type='clock-circle' />
                                                 <Text type='secondary'>Self-Paced Learning</Text>
                                             </div>
                                         </div>
@@ -98,6 +143,13 @@ const CourseDetailLarge = (props) => {
                             </div>
                         </Col>
                     </Row>
+                    {
+                        auth.userId === course.authorId &&
+                        <div>
+                            <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a lesson</Link>
+                            <Table dataSource={data} columns={columns} />
+                        </div>
+                    }
                 </Content>
                 <Layout>
                     <div style={{ width: '65vw', margin: '100px auto' }}>

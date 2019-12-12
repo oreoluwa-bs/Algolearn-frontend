@@ -16,7 +16,7 @@ class CourseContextProvider extends Component {
                         language for background applications, is refined by Ant UED Team.`,
                 authorId: '1111',
                 ratings: [3],
-                lessons: [{},{}],
+                lessons: [{}, {}],
             },
             {
                 id: '2',
@@ -43,7 +43,18 @@ class CourseContextProvider extends Component {
                         language for background applications, is refined by Ant UED Team.`,
                 authorId: '12gh13ki',
                 ratings: [1, 2],
-                tests: [{ id: '21' }]
+                tests: [{ id: '21' }],
+                lessons: [{
+                    id: '1',
+                    title: 'Introduction',
+                    textContent: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+                    Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
+                    a design language for background applications, is refined by Ant UED Team. Ant Design, a
+                    design language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team. Ant Design, a design
+                    language for background applications, is refined by Ant UED Team.`,
+                    references: [],
+                }]
             },
             {
                 id: '3',
