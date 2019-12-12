@@ -23,7 +23,7 @@ const CourseDetailLarge = (props) => {
     course.ratings.forEach(rate => {
         rating += rate;
     });
-    const columns = [
+    const lessonColumns = [
         {
             title: 'Title',
             dataIndex: 'title',
@@ -55,8 +55,40 @@ const CourseDetailLarge = (props) => {
             ),
         },
     ];
+    const testColumns = [
+        {
+            title: 'S/N',
+            dataIndex: 'number',
+            key: 'number',
+        },
+        {
+            title: 'Question',
+            dataIndex: 'question',
+            key: 'question',
+        },
+        {
+            title: 'Options',
+            dataIndex: 'options',
+            key: 'options',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: () => (
+                <span>
+                    <Tooltip title='Delete this lesson' key='del-button'>
+                        <Button type='danger' icon='delete' />
+                    </Tooltip>
+                    <Divider type='vertical' />
+                    <Tooltip title='Edit this lesson' key='edit-button'>
+                        <Button type='primary' icon='edit' />
+                    </Tooltip>
+                </span>
+            ),
+        },
+    ];
 
-    const data = []
+    const lessonData = []
     course.lessons.forEach(lesson => {
         const format = {
             key: lesson.id,
@@ -64,7 +96,18 @@ const CourseDetailLarge = (props) => {
             textcontent: lesson.textContent.substring(0, 100),
             references: lesson.references.length
         };
-        data.push(format);
+        lessonData.push(format);
+    });
+
+    const testData = []
+    course.tests.forEach((question, index) => {
+        const format = {
+            key: question.id,
+            number: index + 1,
+            question: question.question.substring(0, 100),
+            options: question.options.length
+        };
+        testData.push(format);
     });
 
     const moreButtons = auth && auth.role === 'tutor' && auth.userId === course.authorId ? [
@@ -146,8 +189,20 @@ const CourseDetailLarge = (props) => {
                     {
                         auth.userId === course.authorId &&
                         <div>
-                            <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a lesson</Link>
-                            <Table dataSource={data} columns={columns} />
+                            <Row>
+                                <Col>
+                                    <div>
+                                        <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a lesson</Link>
+                                        <Table dataSource={lessonData} columns={lessonColumns} />
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <div>
+                                        <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a Question</Link>
+                                        <Table dataSource={testData} columns={testColumns} />
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
                     }
                 </Content>

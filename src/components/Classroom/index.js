@@ -1,116 +1,169 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Steps, Popover, Button, message, Empty, Typography, List } from 'antd';
-import '../../styles/classroom.css'
+import { Layout, Button, message, Empty, Typography, List, Menu, Modal, Rate } from 'antd';
 import { CourseContext } from '../../store/Contexts/course';
+import '../../styles/classroom.css';
 
-const { Content } = Layout;
-const { Step } = Steps;
+const { Content, Sider } = Layout;
 const { Title, Paragraph } = Typography;
 
-const customDot = (dot, { title }) => (
-    <Popover
-        content={
-            <span>
-                {title}
-            </span>
-        }
-    >
-        {dot}
-    </Popover>
-);
-
 const Classroom = (props) => {
-    const [current, setCurrent] = useState(0)
-
-    const onChange = current => {
-        setCurrent(current)
-    };
-
+    const [collapsed, setCollapsed] = useState(false);
+    const [modalVisible, setModal] = useState(false);
+    const [userRate, setRate] = useState(3);
     const { courses } = useContext(CourseContext);
-    // const { auth } = useContext(AuthContext);
+
+    const onCollapse = collapsed => {
+        setCollapsed(collapsed);
+    };
+    console.log(props)
     const course = courses.find((course) => {
         return course.id === props.match.params.courseId
     });
 
-    const lessons = course.lessons
+    const lessons = [...course.lessons]
+
+    const lessonIndex = lessons.findIndex((lesson) => {
+        return lesson.id === props.match.params.lessonId
+    })
+    const lesson = lessons.find((lesson) => {
+        return lesson.id === props.match.params.lessonId
+    });
+
+
+    const showModal = () => {
+        setModal(true);
+    };
+
+    const handleRating = (value) => {
+        setRate(value);
+    };
+
+    const handleOk = () => {
+        if (!course.tests) {
+            return message.success('This is a success message');
+        } else {
+            props.history.push(`/tests/${course.id}`)
+        }
+    };
+
+    const handleCancel = () => {
+        setModal(false);
+    };
+
     return (
-        <Layout>
-            <Content style={{ padding: '50px 50px' }}>
-                <div style={{ background: '#fff', padding: 24, minHeight: 'calc(100vh - 234px)', width: '100%' }}>
-                    <div style={{}}>
-                        <Steps current={current} onChange={onChange} progressDot={customDot}>
-                            {lessons.map(item => (
-                                <Step key={item.title} title={item.title} />
-                            ))}
-                        </Steps>
-                    </div>
-                    <div className="steps-content">
+        <Layout className='classroom'>
+            <Content className='classroom-main'>
+                <div style={{ background: '#fff', minHeight: 'calc(100vh - 234px)', width: '100%' }}>
+                    <div>
                         {
                             lessons && lessons.length > 0 &&
-                            <div>
-                                <Title level={4}>{lessons[current].title}</Title>
-                                {
-                                    lessons[current].videoUrl &&
-                                    <iframe title={lessons[current].title} style={{ width: '80%', height: '600px', margin: '20px 0' }} src="https://www.youtube.com/embed/HyHNuVaZJ-k" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            <Layout>
+                                <Sider theme='dark' className='class-sider' style={{ minHeight: 'calc(100vh - 113px)' }}
+                                    collapsible collapsed={collapsed} onCollapse={onCollapse} breakpoint='sm' collapsedWidth={0}>
+                                    <Menu
+                                        theme='dark'
+                                        defaultSelectedKeys={[lesson.id]}
+                                        mode='inline'>
+                                        {
+                                            lessons.map((lesson) => (
+                                                <Menu.Item key={lesson.id}>
+                                                    <span>{lesson.title}</span>
+                                                    <Link to={`/classroom/${course.id}/${lesson.id}`} />
+                                                </Menu.Item>
+                                            ))
+                                        }
+                                    </Menu>
+                                </Sider>
+                                <Content style={{ background: '#fff' }}>
+                                    <div className='class-content'>
+                                        {
+                                            lesson &&
+                                            <div>
+                                                <Title level={4}>{lesson.title}</Title>
+                                                {
+                                                    lesson.videoUrl &&
+                                                    <iframe title={lesson.title} style={{ width: '100%', height: '600px', margin: '20px 0' }} src="https://www.youtube.com/embed/HyHNuVaZJ-k" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
-                                }
-                                {
-                                    lessons[current].textContent &&
-                                    <Paragraph>{lessons[current].textContent}</Paragraph>
-                                }
-                                {
+                                                }
+                                                {
+                                                    lesson.textContent &&
+                                                    <Paragraph>{lesson.textContent}</Paragraph>
+                                                }
+                                                {
 
-                                    lessons[current].references && lessons[current].references.length > 0 &&
-                                    <div className='references-links'>
-                                        {/* <Paragraph>references</Paragraph> */}
-                                        <List
-                                            header='References'
-                                            itemLayout='horizontal'
-                                            split={false}
-                                            dataSource={lessons[current].references}
-                                            renderItem={(item, index) => (
-                                                <List.Item>
-                                                    <List.Item.Meta
-                                                        // title={item.text}
-                                                        description={<span>{index + 1}. <Link to={item.url || '/'}>{item.text || 'Link'}</Link></span>}
-                                                    />
-                                                </List.Item>
-                                            )}
-                                        />
+                                                    lesson.references && lesson.references.length > 0 &&
+                                                    <div className='references-links'>
+                                                        <List
+                                                            header='References'
+                                                            itemLayout='horizontal'
+                                                            split={false}
+                                                            dataSource={lesson.references}
+                                                            renderItem={(item, index) => (
+                                                                <List.Item>
+                                                                    <List.Item.Meta
+                                                                        description={<span>{index + 1}. <Link to={item.url || '/'}>{item.text || 'Link'}</Link></span>}
+                                                                    />
+                                                                </List.Item>
+                                                            )}
+                                                        />
+                                                    </div>
+                                                }
+                                                <div className="steps-action">
+                                                    {
+                                                        lessons[lessons.length - 1].id !== lesson.id && (
+                                                            <Link to={`/classroom/${course.id}/${lessons[lessonIndex + 1].id}`} className='ant-btn ant-btn-primary'>
+                                                                Next lesson
+                                                            </Link>
+                                                        )
+                                                    }
+                                                    {
+                                                        lessons[lessons.length - 1].id === lesson.id && (
+                                                            <div>
+                                                                <Button type="primary" onClick={showModal}>
+                                                                    Done
+                                                                </Button>
+                                                                <Modal
+                                                                    width={300}
+                                                                    title="Feedback"
+                                                                    visible={modalVisible}
+                                                                    onOk={handleOk}
+                                                                    onCancel={handleCancel}
+                                                                    footer={[
+                                                                        <Button key="submit" type="primary" onClick={handleOk}>
+                                                                            {
+                                                                                course.tests ? 'Take test' : 'Done'
+                                                                            }
+                                                                        </Button>,
+                                                                    ]}
+                                                                >
+                                                                    <Rate onChange={handleRating} value={userRate} style={{ fontSize: 30 }} />
+                                                                </Modal>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        }
+                                        {
+                                            !lesson &&
+                                            <Empty
+                                                imageStyle={{
+                                                    height: 200,
+                                                }}
+                                                description={
+                                                    <span>
+                                                        There are no lessons available at the momment
+                                                    </span>
+                                                }
+                                            >
+                                            </Empty>
+                                        }
                                     </div>
-                                }
-                            </div>
+                                </Content>
+                            </Layout>
                         }
-                        {
-                            lessons && lessons.length <= 0 &&
-                            <Empty
-                                imageStyle={{
-                                    height: 200,
-                                }}
-                                description={
-                                    <span>
-                                        There are no lessons available at the momment
-                                    </span>
-                                }
-                            >
-                            </Empty>
-                        }
-                    </div>
-                    <div className="steps-action">
-                        {current < lessons.length - 1 && (
-                            <Button type="primary" onClick={() => {
-                                const nextStep = current + 1;
-                                setCurrent(nextStep);
-                            }}>
-                                Next lesson
-                            </Button>
-                        )}
-                        {current === lessons.length - 1 && (
-                            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                                Done
-                            </Button>
-                        )}
                     </div>
                 </div>
             </Content>

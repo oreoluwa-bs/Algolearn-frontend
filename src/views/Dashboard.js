@@ -81,7 +81,7 @@ const Dashboard = () => {
                                                 activeCourses.map((course) => {
                                                     return (
                                                         <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                            <Link to={`/classroom/${course.id}`}>
+                                                            <Link to={`/classroom/${course.id}/${course.lessons[0].id}`}>
                                                                 <CourseDetailSmall course={course} />
                                                             </Link>
                                                         </Col>
@@ -115,7 +115,7 @@ const Dashboard = () => {
                                                 completedCourses.map((course) => {
                                                     return (
                                                         <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                            <Link to={`/classroom/${course.id}`}>
+                                                            <Link to={`/classroom/${course.id}/${course.lessons[0].id}`}>
                                                                 <CourseDetailSmall course={course} />
                                                             </Link>
                                                         </Col>
