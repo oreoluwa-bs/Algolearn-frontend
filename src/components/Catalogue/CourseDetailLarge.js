@@ -115,7 +115,7 @@ const CourseDetailLarge = (props) => {
             <Button type='danger' icon='delete' />
         </Tooltip>
         ,
-        <Divider type='vertical' />
+        <Divider type='vertical' key='div' />
         ,
         <Tooltip title='Edit this course' key='edit-button'>
             <Button type='primary' icon='edit' />
@@ -192,13 +192,13 @@ const CourseDetailLarge = (props) => {
                             <Row>
                                 <Col>
                                     <div>
-                                        <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a lesson</Link>
+                                        <Link to={`/${course.id}/lesson/create`} className='ant-btn ant-btn' style={{ marginBottom: 20 }}>Add a lesson</Link>
                                         <Table dataSource={lessonData} columns={lessonColumns} />
                                     </div>
                                 </Col>
                                 <Col>
                                     <div>
-                                        <Link to='/lesson/create' className='ant-btn ant-btn-lg' style={{ marginBottom: 20 }}>Add a Question</Link>
+                                        <Link to={`/${course.id}/lesson/create`} className='ant-btn ant-btn' style={{ marginBottom: 20 }}>Add a Question</Link>
                                         <Table dataSource={testData} columns={testColumns} />
                                     </div>
                                 </Col>

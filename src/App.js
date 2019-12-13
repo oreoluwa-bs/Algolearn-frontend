@@ -38,7 +38,7 @@ function App() {
               <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
-              <Route path='/lesson/create' component={WrappedNormalCreateLessonForm} />
+              <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
               <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
               <Route path='/tests/:courseId/' component={TestPage} />
               <Route path='/account' component={WrappedNormalAccountPageForm} />
