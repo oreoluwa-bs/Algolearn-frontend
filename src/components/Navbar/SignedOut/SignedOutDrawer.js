@@ -24,7 +24,7 @@ const SignedOutDrawer = (props) => {
                         <Button type="link" block>Login</Button>
                     </Link>
 
-                    <Link to='/signup'>
+                    <Link to='/signup/student'>
                         <Button type="primary" block>Sign Up</Button>
                     </Link>
                 </div>

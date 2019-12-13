@@ -19,7 +19,7 @@ const SignOutLinks = () => {
             <Link to='/login'>
                 <Button type="link">Login</Button>
             </Link>
-            <Link to='/signup' style={{ marginLeft: '5px' }}>
+            <Link to='/signup/student' style={{ marginLeft: '5px' }}>
                 <Button type="primary">Sign Up</Button>
             </Link>
         </div>

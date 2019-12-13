@@ -2,19 +2,31 @@ import React, { useContext } from 'react';
 import { Layout, Form, Icon, Input, Button, Row, Col, Radio } from 'antd';
 import '../styles/forms.css'
 import { AuthContext } from '../store/Contexts/auth';
+import { Redirect } from 'react-router-dom';
 
 
 const AccountPage = (props) => {
-    const { auth } = useContext(AuthContext);
+    const { auth, handleAccountUpdate } = useContext(AuthContext);
+
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values);
+                if (values.password === undefined) {
+                    values.password = null
+                }
+                handleAccountUpdate(auth._id, values);
             }
         });
     };
+
     const { getFieldDecorator } = props.form;
+
+    if (!auth) {
+        return <Redirect to='/' />
+    }
     return (
         <Layout className='layout' >
             <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
@@ -56,7 +68,7 @@ const AccountPage = (props) => {
                         <Form.Item>
                             <label>Account Type:</label>
                             <br />
-                            {getFieldDecorator('radio-button', {
+                            {getFieldDecorator('role', {
                                 initialValue: auth.role
                             })(
                                 <Radio.Group name="radiogroup">
@@ -94,7 +106,7 @@ const AccountPage = (props) => {
                             )}
                         </Form.Item>
                         <Form.Item>
-                            <Button size='large' block type='primary' htmlType='submit' className='login-form-button'>
+                            <Button size='large' block type='primary' htmlType='submit'>
                                 Save
                             </Button>
                         </Form.Item>

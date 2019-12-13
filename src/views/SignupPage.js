@@ -14,9 +14,11 @@ const StudentSignupPage = (props) => {
                 if (props.match.params.accountType.toLowerCase() === 'tutor') {
                     values.role = 'tutor'
                     handleCreateAccount(values);
+                    props.history.push('/login');
                 } else {
                     values.role = 'student'
                     handleCreateAccount(values);
+                    props.history.push('/login');
                 }
             }
         });
@@ -111,6 +113,6 @@ const StudentSignupPage = (props) => {
     );
 }
 
-const WrappedNormalStudentSignupForm = Form.create({ name: 'signup' })(StudentSignupPage);
+const WrappedNormalSignupForm = Form.create({ name: 'signup' })(StudentSignupPage);
 
-export default WrappedNormalStudentSignupForm;
+export default WrappedNormalSignupForm;

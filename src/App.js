@@ -6,17 +6,17 @@ import LandingPage from './views/LandingPage';
 import CataloguePage from './views/CataloguePage';
 import Navbar from './components/Navbar';
 import WrappedNormalLoginForm from './views/LoginPage';
-import WrappedNormalStudentSignupForm from './views/SignupPage';
+import WrappedNormalSignupForm from './views/SignupPage';
 import CourseDetailLarge from './components/Catalogue/CourseDetailLarge';
 import Dashboard from './views/Dashboard';
 import WrappedNormalCreateCourseForm from './views/CreateCoursePage';
 import Classroom from './components/Classroom';
-
-import './App.css';
 import RootContext from './store/Contexts';
 import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
 import TestPage from './components/Classroom/TestPage';
 import WrappedNormalAccountPageForm from './views/AccountPage';
+
+import './App.css';
 
 
 const { Footer } = Layout;
@@ -33,8 +33,7 @@ function App() {
               <Route exact path='/catalogue' component={CataloguePage} />
               <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
               <Route path='/login' component={WrappedNormalLoginForm} />
-              <Route path='/signup/:accountType' component={WrappedNormalStudentSignupForm} />
-              {/* <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} /> */}
+              <Route path='/signup/:accountType' component={WrappedNormalSignupForm} />
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
               <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
