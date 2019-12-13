@@ -1,19 +1,31 @@
-import React, { } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Layout, Form, Icon, Input, Button, Row, Col, Typography } from 'antd';
+import { AuthContext } from '../store/Contexts/auth';
 
 const { Title } = Typography;
 
 const StudentSignupPage = (props) => {
+    const { auth, handleCreateAccount } = useContext(AuthContext);
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values);
+                if (props.match.params.accountType.toLowerCase() === 'tutor') {
+                    values.role = 'tutor'
+                    handleCreateAccount(values);
+                } else {
+                    values.role = 'student'
+                    handleCreateAccount(values);
+                }
             }
         });
     };
+
     const { getFieldDecorator } = props.form;
+    if (auth) {
+        return <Redirect to='/dashboard' />
+    }
     return (
         <Layout className='layout' >
             <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
@@ -30,8 +42,7 @@ const StudentSignupPage = (props) => {
                                 <Form onSubmit={handleSubmit} className='login-form'>
                                     <Row gutter={{ md: 24 }}>
                                         <Col xs={24} md={12}>
-                                            <Form.Item>
-                                                <label>First Name:</label>
+                                            <Form.Item label='First Name'>
                                                 {getFieldDecorator('firstname', {
                                                     rules: [{ required: true, message: 'Please input your first name!' }],
                                                 })(
@@ -44,8 +55,7 @@ const StudentSignupPage = (props) => {
                                             </Form.Item>
                                         </Col>
                                         <Col xs={24} md={12}>
-                                            <Form.Item>
-                                                <label>Last Name:</label>
+                                            <Form.Item label='Last Name'>
                                                 {getFieldDecorator('lastname', {
                                                     rules: [{ required: true, message: 'Please input your last name!' }],
                                                 })(
@@ -59,8 +69,7 @@ const StudentSignupPage = (props) => {
                                         </Col>
                                     </Row>
 
-                                    <Form.Item>
-                                        <label>Email Address:</label>
+                                    <Form.Item label='Email Address'>
                                         {getFieldDecorator('email', {
                                             rules: [{ required: true, message: 'Please input your email!' }],
                                         })(
@@ -72,8 +81,7 @@ const StudentSignupPage = (props) => {
                                             />,
                                         )}
                                     </Form.Item>
-                                    <Form.Item>
-                                        <label>Password:</label>
+                                    <Form.Item label='Password'>
                                         {getFieldDecorator('password', {
                                             rules: [{ required: true, message: 'Please input your Password!' }],
                                         })(
@@ -86,7 +94,7 @@ const StudentSignupPage = (props) => {
                                         )}
                                     </Form.Item>
                                     <Form.Item>
-                                        <Link to='/login'>Already have a member?</Link>
+                                        <Link to='/login'>Already are a member?</Link>
                                     </Form.Item>
                                     <Form.Item>
                                         <Button size='large' block type='primary' htmlType='submit' className='login-form-button'>

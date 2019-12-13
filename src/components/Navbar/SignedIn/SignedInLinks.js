@@ -6,7 +6,7 @@ import { AuthContext } from '../../../store/Contexts/auth';
 const { SubMenu } = Menu;
 
 const SignedInLinks = () => {
-    const { auth } = useContext(AuthContext)
+    const { auth, handleLogout } = useContext(AuthContext)
     return (
         <div className='nav-links-right'>
             <Menu
@@ -33,7 +33,7 @@ const SignedInLinks = () => {
                 >
                     <Menu.Item key="manageaccount">Manage your account<Link to='/account' /></Menu.Item>
                     <Menu.Item key="logout">
-                        <Button block>Logout</Button>
+                        <Button block type='primary' onClick={handleLogout}>Logout</Button>
                     </Menu.Item>
                 </SubMenu>
             </Menu>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Layout, Row, Col, Tabs, Empty } from 'antd';
 import '../styles/dashboard.css';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
@@ -32,6 +32,9 @@ const Dashboard = () => {
         }).length === 1;
     });
 
+    if (!auth) {
+        return <Redirect to='/' />
+    }
     return (
         <Layout>
             <Layout style={{ margin: '50px 0 0' }}>
