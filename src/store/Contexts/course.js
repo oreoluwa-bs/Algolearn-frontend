@@ -92,6 +92,30 @@ class CourseContextProvider extends Component {
         });
     }
 
+
+    handleEditCourse = (id, values) => {
+        axios.put(`${this.props.apiUrl}/course/${id}`, {
+            title: values.title,
+            description: values.description,
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then(() => {
+            this.feedback({
+                status: 'success',
+                message: `Your course has been edited!`
+            });
+            this.getCourses();
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Course could not be updated. Try again later!'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -108,6 +132,7 @@ class CourseContextProvider extends Component {
                 getCourse: this.getCourse,
                 handleCreateCourse: this.handleCreateCourse,
                 handleDeleteCourse: this.handleDeleteCourse,
+                handleEditCourse: this.handleEditCourse,
             }}>
                 {this.props.children}
             </CourseContext.Provider>

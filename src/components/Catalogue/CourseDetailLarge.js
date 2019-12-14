@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Rate, Typography, Button, Layout, Row, Col, Avatar, Icon, Card, Tooltip, Table, Divider, Popconfirm } from 'antd';
+import {
+    Rate, Typography, Button, Layout, Row, Col, Avatar, Icon,
+    Card, Tooltip, Table, Divider, Popconfirm, Modal,
+} from 'antd';
+
 import WrappedNormalContactForm from '../Misc/ContactView';
 import { CourseContext } from '../../store/Contexts/course';
 import { AuthContext } from '../../store/Contexts/auth';
 import CheckOtherCourses from './CheckOthers';
+import WrappedNormalEditCourseForm from './EditCoursePage';
 
 const { Paragraph, Text, Title } = Typography;
 const { Content } = Layout;
@@ -41,8 +46,9 @@ export default CourseDetailLarge;
 
 
 const DetailsView = (props) => {
-    const { handleDeleteCourse } = useContext(CourseContext);
+    const { handleDeleteCourse, handleEditCourse } = useContext(CourseContext);
     const { handleEnrollInCourse } = useContext(AuthContext);
+    const [courseEditModal, setCourseEditModal] = useState(false);
 
     const { course, auth } = props;
 
@@ -169,14 +175,14 @@ const DetailsView = (props) => {
     const moreButtons = auth && auth.role === 'tutor' && auth._id === course.authorId ? [
         <Tooltip title='Delete this course' key='del-button'>
             <Popconfirm
-                title="Are you sure delete this course?"
+                title='Are you sure delete this course?'
                 onConfirm={() => {
                     handleDeleteCourse(course._id);
                     props.history.push('/dashboard');
                 }}
                 onCancel={() => { return null }}
-                okText="Yes"
-                cancelText="No"
+                okText='Yes'
+                cancelText='No'
             >
                 <Button type='danger' icon='delete' />
             </Popconfirm>
@@ -185,7 +191,7 @@ const DetailsView = (props) => {
         <Divider type='vertical' key='div' />
         ,
         <Tooltip title='Edit this course' key='edit-button'>
-            <Button type='primary' icon='edit' />
+            <Button type='primary' icon='edit' onClick={() => setCourseEditModal(true)} />
         </Tooltip>
     ] : []
     return (
@@ -212,6 +218,16 @@ const DetailsView = (props) => {
                             <div className='course-add-body'>
                                 <Card bordered={false} title='Course Information' extra={moreButtons}>
                                     <div className='course-add-meta'>
+                                        <Modal
+                                            width={650}
+                                            title='Edit course'
+                                            visible={courseEditModal}
+                                            onOk={() => setCourseEditModal(false)}
+                                            onCancel={() => setCourseEditModal(false)}
+                                            footer={null}
+                                        >
+                                            <WrappedNormalEditCourseForm handleEditCourse={handleEditCourse} course={course} closeModal={setCourseEditModal} />
+                                        </Modal>
                                         <div>
                                             <Icon type='file' />
                                             <Text type='secondary'>{course.lessons && course.lessons.length}{!course.lessons && 0} lessons</Text>
