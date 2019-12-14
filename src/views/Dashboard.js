@@ -55,19 +55,7 @@ const Dashboard = () => {
         return <Redirect to='/' />
     }
 
-    console.log(activeCourses);
-    // const activeCourses = courses.filter((course) => {
-    //     return auth.enrolledCourses.filter((enrolled) => {
-    //         return enrolled._id === course._id && !enrolled.isCompleted
-    //     }).length === 1;
-    // });
-
-    // const completedCourses = courses.filter((course) => {
-    //     return auth.enrolledCourses.filter((enrolled) => {
-    //         return enrolled._id === course._id && enrolled.isCompleted
-    //     }).length === 1;
-    // });
-
+    // console.log(completedCourses);
     return (
         <Layout>
             <Layout style={{ margin: '50px 0 0' }}>
@@ -161,6 +149,7 @@ const Dashboard = () => {
                                         <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                             {
                                                 completedCourses.map((course) => {
+                                                    console.log(course);
                                                     return (
                                                         <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                                             {
@@ -170,7 +159,7 @@ const Dashboard = () => {
                                                                 </Link>
                                                             }
                                                             {
-                                                                course.lessons && course.lessons.length < 0 &&
+                                                                course.lessons && course.lessons.length <= 0 &&
                                                                 < Link to={`/classroom/${course._id}/undeefined`}>
                                                                     <CourseDetailSmall course={course} />
                                                                 </Link>
