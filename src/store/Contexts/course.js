@@ -49,11 +49,18 @@ class CourseContextProvider extends Component {
             description: values.description,
         }, {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
-        }).then(() => {
+        }).then((res) => {
+            localStorage.setItem('auth', JSON.stringify({
+                ...JSON.parse(localStorage.getItem('auth')),
+                ...{
+                    createdCourses: [...JSON.parse(localStorage.getItem('auth')).createdCourses, { _id: res.data.data }]
+                }
+            }));
             this.feedback({
                 status: 'success',
                 message: `Your course has been created!`
             });
+            this.getCourses();
         }).catch(() => {
             this.setState({
                 response: {
@@ -86,7 +93,6 @@ class CourseContextProvider extends Component {
     }
 
     feedback = (response) => {
-        console.log(response)
         if (response.status === 'success') {
             message.success(response.message);
         }
@@ -113,41 +119,8 @@ export default CourseContextProvider;
 
 
 // {
-//     id: '4',
-//     title: 'Course 4',
-//     description: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-//             Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-//             a design language for background applications, is refined by Ant UED Team. Ant Design, a
-//             design language for background applications, is refined by Ant UED Team. Ant Design, a design
-//             language for background applications, is refined by Ant UED Team. Ant Design, a design
-//             language for background applications, is refined by Ant UED Team.`,
-//     authorId: '22111',
-//     ratings: [5],
 //     tests: [{
 //         id: '21', question: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-//     Design, a design language for background applications, is refined by Ant UED Team. `,
-//         answers: [
-//             {
-//                 value: 'a',
-//                 text: 'tree',
-//             },
-//             {
-//                 value: 'b',
-//                 text: 'dda',
-//             },
-//             {
-//                 value: 'c',
-//                 text: 'tee',
-//             },
-//             {
-//                 value: 'd',
-//                 text: 'qda',
-//             },
-//         ],
-//         answer: 'a'
-//     },
-//     {
-//         id: '1', question: `Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
 //     Design, a design language for background applications, is refined by Ant UED Team. `,
 //         answers: [
 //             {

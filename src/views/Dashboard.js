@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Layout, Row, Col, Tabs, Empty } from 'antd';
+import { Layout, Row, Col, Tabs, Empty, message } from 'antd';
 import '../styles/dashboard.css';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import { AuthContext } from '../store/Contexts/auth';
@@ -13,28 +13,61 @@ const { TabPane } = Tabs;
 const Dashboard = () => {
     const { auth } = useContext(AuthContext);
     const { courses } = useContext(CourseContext);
+    const [createdCourses, setCreatedCourses] = useState();
+    const [activeCourses, setActiveCourses] = useState();
+    const [completedCourses, setCompletedCourses] = useState();
 
-    const createdCourses = courses.filter((course) => {
-        return auth.createdCourses.filter((created) => {
-            return created.id === course.id;
-        }).length === 1;
-    });
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            const newCreatedCourses = courses.filter((course) => {
+                return JSON.parse(localStorage.getItem('auth')).createdCourses.filter((created) => {
+                    return created._id === course._id;
+                }).length === 1;
+            });
+            setCreatedCourses(newCreatedCourses);
+        }
+    }, [courses, auth]);
 
-    const activeCourses = courses.filter((course) => {
-        return auth.enrolledCourses.filter((enrolled) => {
-            return enrolled.id === course.id && !enrolled.isCompleted
-        }).length === 1;
-    });
 
-    const completedCourses = courses.filter((course) => {
-        return auth.enrolledCourses.filter((enrolled) => {
-            return enrolled.id === course.id && enrolled.isCompleted
-        }).length === 1;
-    });
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            const newCreatedCourses = courses.filter((course) => {
+                return JSON.parse(localStorage.getItem('auth')).enrolledCourses.filter((enrolled) => {
+                    return enrolled._id === course._id && !enrolled.isCompleted
+                }).length === 1;
+            });
+            setActiveCourses(newCreatedCourses);
+        }
+    }, [courses, auth]);
+
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            const newCreatedCourses = courses.filter((course) => {
+                return JSON.parse(localStorage.getItem('auth')).enrolledCourses.filter((enrolled) => {
+                    return enrolled._id === course._id && enrolled.isCompleted
+                }).length === 1;
+            });
+            setCompletedCourses(newCreatedCourses);
+        }
+    }, [courses, auth]);
 
     if (!auth) {
         return <Redirect to='/' />
     }
+
+    console.log(activeCourses);
+    // const activeCourses = courses.filter((course) => {
+    //     return auth.enrolledCourses.filter((enrolled) => {
+    //         return enrolled._id === course._id && !enrolled.isCompleted
+    //     }).length === 1;
+    // });
+
+    // const completedCourses = courses.filter((course) => {
+    //     return auth.enrolledCourses.filter((enrolled) => {
+    //         return enrolled._id === course._id && enrolled.isCompleted
+    //     }).length === 1;
+    // });
+
     return (
         <Layout>
             <Layout style={{ margin: '50px 0 0' }}>
@@ -46,12 +79,12 @@ const Dashboard = () => {
                                     auth.role === 'tutor' &&
                                     <TabPane tab="Created Courses" key="created-courses">
                                         {
-                                            createdCourses &&
+                                            createdCourses && createdCourses.length > 0 &&
                                             <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                                 {createdCourses && createdCourses.map((course) => {
                                                     return (
-                                                        <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                            <Link to={`/catalogue/${course.id}`}>
+                                                        <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
+                                                            <Link to={`/catalogue/${course._id}`}>
                                                                 <CourseDetailSmall course={course} />
                                                             </Link>
                                                         </Col>
@@ -78,15 +111,27 @@ const Dashboard = () => {
                                 }
                                 <TabPane tab="Active Courses" key="active-courses">
                                     {
-                                        activeCourses &&
-                                        <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
+                                        activeCourses && activeCourses.length > 0 &&
+                                        < Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                             {
                                                 activeCourses.map((course) => {
+                                                    console.log(course)
                                                     return (
-                                                        <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                            <Link to={`/classroom/${course.id}/${course.lessons[0].id}`}>
-                                                                <CourseDetailSmall course={course} />
-                                                            </Link>
+                                                        <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
+                                                            {
+                                                                course.lessons && course.lessons.length > 0 &&
+                                                                < Link to={`/classroom/${course._id}/${course.lessons[0]._id}`}>
+                                                                    <CourseDetailSmall course={course} />
+                                                                </Link>
+                                                            }
+                                                            {
+                                                                course.lessons && course.lessons.length <= 0 &&
+                                                                <div className='no-lesson-small' onClick={() => {
+                                                                    message.info('No lessons available. Try again later')
+                                                                }}>
+                                                                    <CourseDetailSmall course={course} />
+                                                                </div>
+                                                            }
                                                         </Col>
                                                     )
                                                 })
@@ -94,7 +139,7 @@ const Dashboard = () => {
                                         </Row>
                                     }
                                     {
-                                        activeCourses && activeCourses.length < 1 &&
+                                        activeCourses && activeCourses.length <= 0 &&
                                         <Empty
                                             // image={Empty.PRESENTED_IMAGE_SIMPLE}
                                             imageStyle={{
@@ -112,15 +157,24 @@ const Dashboard = () => {
                                 </TabPane>
                                 <TabPane tab="Completed Courses" key="completed-courses">
                                     {
-                                        completedCourses &&
+                                        completedCourses && completedCourses.length > 0 &&
                                         <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                             {
                                                 completedCourses.map((course) => {
                                                     return (
-                                                        <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                            <Link to={`/classroom/${course.id}/${course.lessons[0].id}`}>
-                                                                <CourseDetailSmall course={course} />
-                                                            </Link>
+                                                        <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
+                                                            {
+                                                                course.lessons && course.lessons.length > 0 &&
+                                                                < Link to={`/classroom/${course._id}/${course.lessons[0]._id}`}>
+                                                                    <CourseDetailSmall course={course} />
+                                                                </Link>
+                                                            }
+                                                            {
+                                                                course.lessons && course.lessons.length < 0 &&
+                                                                < Link to={`/classroom/${course._id}/undeefined`}>
+                                                                    <CourseDetailSmall course={course} />
+                                                                </Link>
+                                                            }
                                                         </Col>
                                                     )
                                                 })
@@ -148,7 +202,7 @@ const Dashboard = () => {
                     </div>
                 </Content>
             </Layout>
-        </Layout>
+        </Layout >
     );
 }
 

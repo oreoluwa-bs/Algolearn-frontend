@@ -100,6 +100,7 @@ class AuthContextProvider extends Component {
                     message: 'Your account has been updated'
                 }
             });
+            localStorage.setItem('auth', JSON.stringify(this.state.auth));
             this.feedback(this.state.response);
         }).catch(() => {
             this.setState({
@@ -148,11 +149,12 @@ class AuthContextProvider extends Component {
                     ...{
                         enrolledCourses: [...JSON.parse(localStorage.getItem('auth')).enrolledCourses, {
                             isCompleted: false,
-                            courseId: id,
+                            _id: id,
                         }]
                     }
                 }
-            })
+            });
+            localStorage.setItem('auth', JSON.stringify(this.state.auth));
             this.feedback({
                 status: 'success',
                 message: `Course enrollment successfull!`
@@ -169,7 +171,6 @@ class AuthContextProvider extends Component {
     }
 
     feedback = (response) => {
-        console.log(response)
         if (response.status === 'success') {
             message.success(response.message);
         }

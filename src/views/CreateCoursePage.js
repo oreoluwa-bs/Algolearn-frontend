@@ -11,7 +11,6 @@ const CreateCoursePage = (props) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values);
                 handleCreateCourse(values);
                 props.history.push('/dashboard');
             }
