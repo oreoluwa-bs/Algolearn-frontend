@@ -42,11 +42,18 @@ export default CourseDetailLarge;
 
 const DetailsView = (props) => {
     const { handleDeleteCourse } = useContext(CourseContext);
+    const { handleEnrollInCourse } = useContext(AuthContext);
+
     const { course, auth } = props;
 
-    const isEnrolled = auth.enrolledCourses.some((cour) => {
-        return cour.id === course.id
-    });
+    let isEnrolled = false;
+
+    if (auth) {
+        isEnrolled = auth.enrolledCourses.some((cour) => {
+            return cour._id === course._id
+        });
+    }
+
     const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich'];
     let rating = 0;
     course.ratings.forEach(rate => {
@@ -140,7 +147,7 @@ const DetailsView = (props) => {
     const lessonData = []
     course.lessons.forEach(lesson => {
         const format = {
-            key: lesson.id,
+            key: lesson._id,
             title: lesson.title,
             textcontent: lesson.textContent.substring(0, 100),
             references: lesson.references.length
@@ -151,7 +158,7 @@ const DetailsView = (props) => {
     const testData = []
     course.test.forEach((question, index) => {
         const format = {
-            key: question.id,
+            key: question._id,
             number: index + 1,
             question: question.question.substring(0, 100),
             options: question.options.length
@@ -238,7 +245,17 @@ const DetailsView = (props) => {
                                             auth &&
                                             <div>
                                                 <div className='enroll-btn'>
-                                                    <Button type='primary' size='large' disabled={auth._id === course.authorId || isEnrolled}>Enroll in course</Button>
+                                                    <Button type='primary' size='large' disabled={auth._id === course.authorId || isEnrolled} onClick={() => {
+                                                        handleEnrollInCourse(course._id);
+                                                    }}>Enroll in course</Button>
+                                                </div>
+                                            </div>
+                                        }
+                                        {
+                                            !auth &&
+                                            <div>
+                                                <div className='enroll-btn'>
+                                                    <Link to='/login' className='ant-btn ant-btn-lg ant-btn-primary'>Enroll in course</Link>
                                                 </div>
                                             </div>
                                         }
@@ -249,7 +266,7 @@ const DetailsView = (props) => {
                     </Col>
                 </Row>
                 {
-                    auth._id === course.authorId &&
+                    auth && auth._id === course.authorId &&
                     <div>
                         <Row>
                             <Col>
@@ -268,6 +285,6 @@ const DetailsView = (props) => {
                     </div>
                 }
             </Content>
-        </div>
+        </div >
     );
 }
