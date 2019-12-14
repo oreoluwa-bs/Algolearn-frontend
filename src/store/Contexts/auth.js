@@ -27,7 +27,7 @@ class AuthContextProvider extends Component {
     }
 
     handleLogin = (credentials) => {
-        axios.post(`http://localhost:5000/api/v1/auth/login`, {
+        axios.post(`${this.props.apiUrl}/auth/login`, {
             email: credentials.email,
             password: credentials.password
         }).then((res) => {
@@ -52,7 +52,7 @@ class AuthContextProvider extends Component {
     }
 
     handleCreateAccount = (credentials) => {
-        axios.post(`http://localhost:5000/api/v1/auth/create-user`, {
+        axios.post(`${this.props.apiUrl}/auth/create-user`, {
             email: credentials.email,
             password: credentials.password,
             firstname: credentials.firstname,
@@ -75,7 +75,7 @@ class AuthContextProvider extends Component {
     }
 
     handleAccountUpdate = (id, credentials) => {
-        axios.put(`http://localhost:5000/api/v1/auth/${id}`, {
+        axios.put(`${this.props.apiUrl}/auth/${id}`, {
             email: credentials.email,
             password: credentials.password,
             firstname: credentials.firstname,
@@ -112,7 +112,7 @@ class AuthContextProvider extends Component {
     }
 
     handleAccountDelete = (id) => {
-        axios.delete(`http://localhost:5000/api/v1/auth/${id}`, {
+        axios.delete(`${this.props.apiUrl}/auth/${id}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

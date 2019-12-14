@@ -16,11 +16,11 @@ const CourseDetailSmall = (props) => {
                 <Paragraph ellipsis={{ rows: 3 }}>{props.course.description}</Paragraph>
                 <div>
                     <div>
-                        <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
-                        <Text type='secondary'>John Doe</Text>
+                        <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>{props.course.authorName.split(' ')[0][0]}{props.course.authorName.split(' ')[1][0]}</Avatar>
+                        <Text type='secondary'>{props.course.authorName}</Text>
                     </div>
                 </div>
-                <Rate defaultValue={Math.round(rating/props.course.ratings.length)} disabled />
+                <Rate defaultValue={Math.round(rating / props.course.ratings.length)} disabled />
             </div>
         </div>
     );

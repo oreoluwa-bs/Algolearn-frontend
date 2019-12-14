@@ -1,16 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Input, Row, Col, Empty } from 'antd';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
-import '../styles/catalogue.css';
 import { CourseContext } from '../store/Contexts/course';
+import '../styles/catalogue.css';
 
 const { Search } = Input;
 
 const CataloguePage = () => {
-    const { courses } = useContext(CourseContext);
-    const [catCourses, setCatCourses] = useState(courses);
+    const { courses, getCourses } = useContext(CourseContext);
+    const [catCourses, setCatCourses] = useState([]);
+    useEffect(() => {
+        getCourses();
+        setCatCourses(courses);
+    }, [courses, getCourses])
+
     return (
         <div>
             <Layout className="layout" >
@@ -19,7 +24,7 @@ const CataloguePage = () => {
                         <Search
                             placeholder="Search courses for"
                             onSearch={value => {
-                                setCatCourses(courses.filter((course) => {
+                                setCatCourses(catCourses.filter((course) => {
                                     return course.title.includes(value)
                                 }))
                             }}
@@ -36,8 +41,8 @@ const CataloguePage = () => {
                                 {
                                     catCourses.map((course) => {
                                         return (
-                                            <Col key={course.id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
-                                                <Link to={`/catalogue/${course.id}`}>
+                                            <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
+                                                <Link to={`/catalogue/${course._id}`}>
                                                     <CourseDetailSmall course={course} />
                                                 </Link>
                                             </Col>

@@ -3,9 +3,10 @@ import AuthContextProvider from './auth';
 import CourseContextProvider from './course';
 
 function RootContext(props) {
+    const apiUrl = 'http://localhost:5000/api/v1';
     return (
-        <AuthContextProvider>
-            <CourseContextProvider>
+        <AuthContextProvider apiUrl={apiUrl}>
+            <CourseContextProvider apiUrl={apiUrl}>
                 {props.children}
             </CourseContextProvider>
         </AuthContextProvider>

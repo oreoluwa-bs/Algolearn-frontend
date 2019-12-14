@@ -1,58 +1,51 @@
-import React, { } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { Layout, Form, Icon, Input, Button } from 'antd';
-import '../styles/forms.css'
+import { CourseContext } from '../store/Contexts/course';
 
 const { TextArea } = Input;
 
 const CreateCoursePage = (props) => {
+    const { handleCreateCourse } = useContext(CourseContext);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
                 console.log(values);
+                handleCreateCourse(values);
+                props.history.push('/dashboard');
             }
         });
     };
     const { getFieldDecorator } = props.form;
     return (
-        <Layout className='layout' >
-            <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
-                <div style={{ margin: '50px auto', maxWidth: '540px', padding: '0 40px' }}>
-                    <p className='large-text bold'>Create a course</p>
-                    <Form onSubmit={handleSubmit} className='login-form'>
-                        <Form.Item>
-                            <label>Title:</label>
-                            {getFieldDecorator('course-title', {
-                                rules: [{ required: true, message: 'Please input a title for this course' }],
-                            })(
-                                <Input
-                                    size='large'
-                                    prefix={<Icon type='book' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder='Algorithms 101'
-                                />,
-                            )}
-                        </Form.Item>
-                        <Form.Item>
-                            <label>Description:</label>
-                            {getFieldDecorator('course-description', {
-                                rules: [{ required: true, message: 'Please input course description!' }],
-                            })(
-                                <TextArea autoSize={{ minRows: 4 }}
-                                    size='large'
-                                    id='course-description'
-                                />,
-                            )}
-                        </Form.Item>
-                        <Form.Item>
-                            <Button block size='large' type='primary' htmlType='submit' className='login-form-button'>
-                                Create course
+        <Layout>
+            <div style={{ margin: '50px 50px 0', backgroundColor: 'white', padding: '40px 40px' }}>
+                <p className='large-text bold'>Create a course</p>
+                <Form onSubmit={handleSubmit} className='login-form'>
+                    <Form.Item label='Title'>
+                        {getFieldDecorator('title', {
+                            rules: [{ required: true, message: 'Please input a title for this course' }],
+                        })(
+                            <Input size='large' prefix={<Icon type='book' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                placeholder='Algorithms 101' />,
+                        )}
+                    </Form.Item>
+                    <Form.Item label='Description'>
+                        {getFieldDecorator('description', {
+                            rules: [{ required: true, message: 'Please input course description!' }],
+                        })(
+                            <TextArea autoSize={{ minRows: 21 }} size='large' />,
+                        )}
+                    </Form.Item>
+                    <Form.Item>
+                        <Button style={{ float: 'right' }} size='large' type='primary' htmlType='submit'>
+                            Create course
                             </Button>
-                        </Form.Item>
-                    </Form>
-                </div>
+                    </Form.Item>
+                </Form>
             </div>
-        </Layout>
+        </Layout >
     );
 }
 
