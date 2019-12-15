@@ -116,6 +116,30 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleCreateTest = (id, values) => {
+        axios.post(`${this.props.apiUrl}/course/${id}/create-test`, {
+            question: values.question,
+            answer: values.correctOption,
+            options: values.options,
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then((res) => {
+            this.feedback({
+                status: 'success',
+                message: `Your test has been created!`
+            });
+            this.getCourses();
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Test could not be created'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -133,6 +157,7 @@ class CourseContextProvider extends Component {
                 handleCreateCourse: this.handleCreateCourse,
                 handleDeleteCourse: this.handleDeleteCourse,
                 handleEditCourse: this.handleEditCourse,
+                handleCreateTest: this.handleCreateTest,
             }}>
                 {this.props.children}
             </CourseContext.Provider>

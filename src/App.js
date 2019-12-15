@@ -15,6 +15,7 @@ import RootContext from './store/Contexts';
 import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
 import TestPage from './components/Classroom/TestPage';
 import WrappedNormalAccountPageForm from './views/AccountPage';
+import WrappedNormalCreateTestForm from './views/CreateTestPage';
 
 import './App.css';
 
@@ -37,6 +38,7 @@ function App() {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
               <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
+              <Route path='/:courseId/test/create' component={WrappedNormalCreateTestForm} />
               <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
               <Route path='/tests/:courseId/' component={TestPage} />
               <Route path='/account' component={WrappedNormalAccountPageForm} />

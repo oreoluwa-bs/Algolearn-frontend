@@ -167,7 +167,7 @@ const DetailsView = (props) => {
             key: question._id,
             number: index + 1,
             question: question.question.substring(0, 100),
-            options: question.options.length
+            options: question.answers.length
         };
         testData.push(format);
     });
@@ -293,7 +293,7 @@ const DetailsView = (props) => {
                             </Col>
                             <Col>
                                 <div>
-                                    <Link to={`/${course._id}/lesson/create`} className='ant-btn ant-btn' style={{ marginBottom: 20, marginTop: 20 }}>Add a Question</Link>
+                                    <Link to={`/${course._id}/test/create`} className='ant-btn ant-btn' style={{ marginBottom: 20, marginTop: 20 }}>Add a Question</Link>
                                     <Table dataSource={testData} columns={testColumns} />
                                 </div>
                             </Col>
