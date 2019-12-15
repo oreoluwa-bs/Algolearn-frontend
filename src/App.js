@@ -19,6 +19,7 @@ import WrappedNormalCreateTestForm from './views/CreateTestPage';
 
 import './App.css';
 import EditTestPageWrapper from './components/TutorMisc/EditPageWrapper';
+import EditLessonPageWrapper from './components/TutorMisc/EditLessonWrapper';
 
 
 const { Footer } = Layout;
@@ -44,6 +45,7 @@ function App() {
               <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
               <Route path='/:courseId/test/create' component={WrappedNormalCreateTestForm} />
               <Route path='/:courseId/:questId/test/edit' component={EditTestPageWrapper} />
+              <Route path='/:courseId/:lessonId/lesson/edit' component={EditLessonPageWrapper} />
 
               <Route path='/account' component={WrappedNormalAccountPageForm} />
 

@@ -43,6 +43,7 @@ class CourseContextProvider extends Component {
         });
     }
 
+    // Course
     handleCreateCourse = (values) => {
         axios.post(`${this.props.apiUrl}/course/create-course`, {
             title: values.title,
@@ -116,6 +117,8 @@ class CourseContextProvider extends Component {
         });
     }
 
+
+    // Lesson
     handleCreateLesson = (id, values) => {
         axios.post(`${this.props.apiUrl}/course/${id}/create-lesson`, {
             title: values.title,
@@ -141,6 +144,53 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleEditLesson = (courseId, lessonId, values) => {
+        axios.put(`${this.props.apiUrl}/course/${courseId}/${lessonId}`, {
+            title: values.title,
+            videoURL: values.videoUrl,
+            textContent: values.content,
+            references: values.references,
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then((res) => {
+            this.getCourses();
+            this.feedback({
+                status: 'success',
+                message: `Your lesson has been edited!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Lesson could not be edited'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
+    handleDeleteLesson = (courseId, lessonId) => {
+        axios.delete(`${this.props.apiUrl}/course/${courseId}/${lessonId}`, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then((res) => {
+            this.getCourses();
+            this.feedback({
+                status: 'success',
+                message: `Your lesson has been deleted!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'lesson could not be deleted'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
+
+    // Test
     handleCreateTest = (id, values) => {
         axios.post(`${this.props.apiUrl}/course/${id}/create-test`, {
             question: values.question,
@@ -231,8 +281,8 @@ class CourseContextProvider extends Component {
 
                 // Lesson
                 handleCreateLesson: this.handleCreateLesson,
-                // handleEditTest: this.handleEditTest,
-                // handleDeleteQuestion: this.handleDeleteQuestion,
+                handleEditLesson: this.handleEditLesson,
+                handleDeleteLesson: this.handleDeleteLesson,
 
                 // Test
                 handleCreateTest: this.handleCreateTest,

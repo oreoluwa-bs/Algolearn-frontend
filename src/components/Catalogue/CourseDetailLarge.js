@@ -46,7 +46,7 @@ export default CourseDetailLarge;
 
 
 const DetailsView = (props) => {
-    const { handleDeleteCourse, handleEditCourse, handleDeleteQuestion } = useContext(CourseContext);
+    const { handleDeleteCourse, handleEditCourse, handleDeleteLesson, handleDeleteQuestion } = useContext(CourseContext);
     const { handleEnrollInCourse } = useContext(AuthContext);
     const [courseEditModal, setCourseEditModal] = useState(false);
 
@@ -84,13 +84,13 @@ const DetailsView = (props) => {
         {
             title: 'Action',
             key: 'action',
-            render: () => (
+            render: (lesson) => (
                 <span>
                     <Tooltip title='Delete this lesson' key='del-button'>
                         <Popconfirm
                             title="Are you sure delete this lesson?"
                             onConfirm={() => {
-
+                                handleDeleteLesson(course._id, lesson.key);
                             }}
                             onCancel={null}
                             okText="Yes"
@@ -101,7 +101,9 @@ const DetailsView = (props) => {
                     </Tooltip>
                     <Divider type='vertical' />
                     <Tooltip title='Edit this lesson' key='edit-button'>
-                        <Button type='primary' icon='edit' />
+                        <Button type='primary' icon='edit' onClick={() => {
+                            props.history.push(`/${course._id}/${lesson.key}/lesson/edit`);
+                        }} />
                     </Tooltip>
                 </span>
             ),
