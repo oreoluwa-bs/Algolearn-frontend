@@ -116,6 +116,31 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleCreateLesson = (id, values) => {
+        axios.post(`${this.props.apiUrl}/course/${id}/create-lesson`, {
+            title: values.title,
+            videoURL: values.videoUrl,
+            textContent: values.content,
+            references: values.references,
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then(() => {
+            this.feedback({
+                status: 'success',
+                message: `Your lesson has been created!`
+            });
+            this.getCourses();
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Lesson could not be created'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
     handleCreateTest = (id, values) => {
         axios.post(`${this.props.apiUrl}/course/${id}/create-test`, {
             question: values.question,
@@ -198,9 +223,18 @@ class CourseContextProvider extends Component {
                 ...this.state,
                 getCourses: this.getCourses,
                 getCourse: this.getCourse,
+
+                // Course
                 handleCreateCourse: this.handleCreateCourse,
                 handleDeleteCourse: this.handleDeleteCourse,
                 handleEditCourse: this.handleEditCourse,
+
+                // Lesson
+                handleCreateLesson: this.handleCreateLesson,
+                // handleEditTest: this.handleEditTest,
+                // handleDeleteQuestion: this.handleDeleteQuestion,
+
+                // Test
                 handleCreateTest: this.handleCreateTest,
                 handleEditTest: this.handleEditTest,
                 handleDeleteQuestion: this.handleDeleteQuestion,

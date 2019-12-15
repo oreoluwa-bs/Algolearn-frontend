@@ -1,13 +1,12 @@
 import React, { } from 'react';
 import { Layout, Form, Input, Button } from 'antd';
 
-const ReferenceForm = (props) => {
+const EditReferenceForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                props.addRef(values);
-                props.form.resetFields();
+                props.editRef({ ...props.reference, ...values });
             }
         });
     };
@@ -18,17 +17,19 @@ const ReferenceForm = (props) => {
                 <Form onSubmit={handleSubmit} className='login-form'>
                     <Form.Item label='Reference'>
                         {getFieldDecorator('reference', {
+                            initialValue: props.reference.reference,
                             rules: [{ message: 'Please input a Text!' }],
                         })(
-                            <Input size='large' placeholder='Algo-use' />,
+                            <Input size='large' />,
                         )}
                     </Form.Item>
 
                     <Form.Item label='Link'>
                         {getFieldDecorator('link', {
+                            initialValue: props.reference.link,
                             rules: [{ message: 'Please input a link!' }],
                         })(
-                            <Input size='large' placeholder='www.somesite.com' />,
+                            <Input size='large' />,
                         )}
                     </Form.Item>
 
@@ -43,6 +44,6 @@ const ReferenceForm = (props) => {
     );
 }
 
-const WrappedNormalReferenceForm = Form.create({ name: 'referenceForm' })(ReferenceForm);
+const WrappedNormalEditReferenceForm = Form.create({ name: 'referenceEditForm' })(EditReferenceForm);
 
-export default WrappedNormalReferenceForm;
+export default WrappedNormalEditReferenceForm;
