@@ -46,7 +46,7 @@ export default CourseDetailLarge;
 
 
 const DetailsView = (props) => {
-    const { handleDeleteCourse, handleEditCourse } = useContext(CourseContext);
+    const { handleDeleteCourse, handleEditCourse, handleDeleteQuestion } = useContext(CourseContext);
     const { handleEnrollInCourse } = useContext(AuthContext);
     const [courseEditModal, setCourseEditModal] = useState(false);
 
@@ -88,7 +88,7 @@ const DetailsView = (props) => {
                 <span>
                     <Tooltip title='Delete this lesson' key='del-button'>
                         <Popconfirm
-                            title="Are you sure delete this task?"
+                            title="Are you sure delete this lesson?"
                             onConfirm={() => {
 
                             }}
@@ -126,13 +126,14 @@ const DetailsView = (props) => {
         {
             title: 'Action',
             key: 'action',
-            render: () => (
+            render: (question) => (
                 <span>
                     <Tooltip title='Delete this lesson' key='del-button'>
                         <Popconfirm
-                            title="Are you sure delete this task?"
+                            title="Are you sure delete this question?"
                             onConfirm={() => {
-
+                                // console.log(question, course);
+                                handleDeleteQuestion(course._id, question.key);
                             }}
                             onCancel={null}
                             okText="Yes"
@@ -143,7 +144,9 @@ const DetailsView = (props) => {
                     </Tooltip>
                     <Divider type='vertical' />
                     <Tooltip title='Edit this lesson' key='edit-button'>
-                        <Button type='primary' icon='edit' />
+                        <Button type='primary' icon='edit' onClick={() => {
+                            props.history.push(`/${course._id}/${question.key}/test/edit`);
+                        }} />
                     </Tooltip>
                 </span>
             ),

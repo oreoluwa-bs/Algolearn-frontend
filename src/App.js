@@ -18,6 +18,7 @@ import WrappedNormalAccountPageForm from './views/AccountPage';
 import WrappedNormalCreateTestForm from './views/CreateTestPage';
 
 import './App.css';
+import EditTestPageWrapper from './components/TutorMisc/EditPageWrapper';
 
 
 const { Footer } = Layout;
@@ -36,11 +37,14 @@ function App() {
               <Route path='/login' component={WrappedNormalLoginForm} />
               <Route path='/signup/:accountType' component={WrappedNormalSignupForm} />
               <Route path='/dashboard' component={Dashboard} />
+              <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
+              <Route path='/tests/:courseId/' component={TestPage} />
+
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
               <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
               <Route path='/:courseId/test/create' component={WrappedNormalCreateTestForm} />
-              <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
-              <Route path='/tests/:courseId/' component={TestPage} />
+              <Route path='/:courseId/:questId/test/edit' component={EditTestPageWrapper} />
+
               <Route path='/account' component={WrappedNormalAccountPageForm} />
 
               <Route component={Error404Page} />

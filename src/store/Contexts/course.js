@@ -140,6 +140,50 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleEditTest = (courseId, testId, values) => {
+        axios.put(`${this.props.apiUrl}/course/${courseId}/test/${testId}`, {
+            question: values.question,
+            answer: values.correctOption,
+            options: values.options,
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then((res) => {
+            this.getCourses();
+            this.feedback({
+                status: 'success',
+                message: `Your test has been edited!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Test could not be edited'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
+    handleDeleteQuestion = (courseId, testId) => {
+        axios.delete(`${this.props.apiUrl}/course/${courseId}/test/${testId}`, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then((res) => {
+            this.getCourses();
+            this.feedback({
+                status: 'success',
+                message: `Your question has been deleted!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Question could not be deleted'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -158,6 +202,8 @@ class CourseContextProvider extends Component {
                 handleDeleteCourse: this.handleDeleteCourse,
                 handleEditCourse: this.handleEditCourse,
                 handleCreateTest: this.handleCreateTest,
+                handleEditTest: this.handleEditTest,
+                handleDeleteQuestion: this.handleDeleteQuestion,
             }}>
                 {this.props.children}
             </CourseContext.Provider>
