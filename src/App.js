@@ -6,39 +6,56 @@ import LandingPage from './views/LandingPage';
 import CataloguePage from './views/CataloguePage';
 import Navbar from './components/Navbar';
 import WrappedNormalLoginForm from './views/LoginPage';
-import WrappedNormalTutorSignupForm from './views/TutorSignupPage';
-import WrappedNormalStudentSignupForm from './views/SignupPage';
+import WrappedNormalSignupForm from './views/SignupPage';
 import CourseDetailLarge from './components/Catalogue/CourseDetailLarge';
-
-import './App.css';
 import Dashboard from './views/Dashboard';
 import WrappedNormalCreateCourseForm from './views/CreateCoursePage';
+import Classroom from './components/Classroom';
+import RootContext from './store/Contexts';
+import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
+import TestPage from './components/Classroom/TestPage';
+import WrappedNormalAccountPageForm from './views/AccountPage';
+import WrappedNormalCreateTestForm from './views/CreateTestPage';
+
+import './App.css';
+import EditTestPageWrapper from './components/TutorMisc/EditPageWrapper';
+import EditLessonPageWrapper from './components/TutorMisc/EditLessonWrapper';
 
 
 const { Footer } = Layout;
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Layout>
-          <Navbar />
+      <RootContext>
+        <div className="app-container">
+          <Layout>
+            <Navbar />
 
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route exact path='/catalogue' component={CataloguePage} />
-            <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
-            <Route path='/login' component={WrappedNormalLoginForm} />
-            <Route path='/signup' component={WrappedNormalStudentSignupForm} />
-            <Route path='/tutor-signup' component={WrappedNormalTutorSignupForm} />
-            <Route path='/dashboard' component={Dashboard} />
-            <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route exact path='/catalogue' component={CataloguePage} />
+              <Route path='/catalogue/:courseId' component={CourseDetailLarge} />
+              <Route path='/login' component={WrappedNormalLoginForm} />
+              <Route path='/signup/:accountType' component={WrappedNormalSignupForm} />
+              <Route path='/dashboard' component={Dashboard} />
+              <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
+              <Route path='/tests/:courseId/' component={TestPage} />
 
-            <Route component={Error404Page} />
-          </Switch>
+              <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
+              <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />
+              <Route path='/:courseId/test/create' component={WrappedNormalCreateTestForm} />
+              <Route path='/:courseId/:questId/test/edit' component={EditTestPageWrapper} />
+              <Route path='/:courseId/:lessonId/lesson/edit' component={EditLessonPageWrapper} />
 
-          <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
-        </Layout>
-      </div>
+              <Route path='/account' component={WrappedNormalAccountPageForm} />
+
+              <Route component={Error404Page} />
+            </Switch>
+
+            <Footer style={{ textAlign: 'center' }}>AlgoLearn ©2019 Created by Oreoluwa Bimbo-Salami</Footer>
+          </Layout>
+        </div>
+      </RootContext>
     </BrowserRouter>
   );
 }

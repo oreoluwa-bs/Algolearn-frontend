@@ -1,21 +1,26 @@
-import React, { } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Layout, Form, Icon, Input, Button, Row, Col, Typography } from 'antd';
 import '../styles/forms.css';
+import { AuthContext } from '../store/Contexts/auth';
 
 const { Title, Text } = Typography;
 
 const LoginPage = (props) => {
+    const { auth, handleLogin } = useContext(AuthContext);
     const handleSubmit = (e) => {
-        // console.log(this.state);
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values);
+                handleLogin(values)
             }
         });
     };
     const { getFieldDecorator } = props.form;
+
+    if (auth) {
+        return <Redirect to='/dashboard' />
+    }
     return (
         <Layout className='layout' >
             <div style={{ marginTop: '100px', minHeight: 'calc(100vh - 233px)' }}>
@@ -29,9 +34,8 @@ const LoginPage = (props) => {
                         <Col xs={{ span: 24, order: 1 }} xl={{ span: 14, order: 2 }}>
                             <div style={{ padding: 50 }}>
                                 <Title level={2} className='large-text bold' style={{ textAlign: 'center' }}>Login</Title>
-                                <Form onSubmit={handleSubmit} className='login-form'>
-                                    <Form.Item>
-                                        <label>Email Address:</label>
+                                <Form onSubmit={handleSubmit} className='login-form' hideRequiredMark>
+                                    <Form.Item label='Email Address'>
                                         {getFieldDecorator('email', {
                                             rules: [{ required: true, message: 'Please input your email!' }],
                                         })(
@@ -43,8 +47,7 @@ const LoginPage = (props) => {
                                             />,
                                         )}
                                     </Form.Item>
-                                    <Form.Item>
-                                        <label>Password:</label>
+                                    <Form.Item label='Password'>
                                         {getFieldDecorator('password', {
                                             rules: [{ required: true, message: 'Please input your Password!' }],
                                         })(
@@ -69,7 +72,7 @@ const LoginPage = (props) => {
                                     <Form.Item style={{ textAlign: 'center' }}>
                                         <Text type='secondary'>OR</Text>
                                         <br />
-                                        <Text>Not a member? <Link to='/signup'>Sign up</Link></Text>
+                                        <Text>Not a member? <Link to='/signup/student'>Student Sign up</Link> or <Link to='/signup/tutor'>Tutor Sign up</Link></Text>
                                     </Form.Item>
                                 </Form>
                             </div>

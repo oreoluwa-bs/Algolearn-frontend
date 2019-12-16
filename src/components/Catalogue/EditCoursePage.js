@@ -1,29 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Layout, Form, Icon, Input, Button } from 'antd';
-import { CourseContext } from '../store/Contexts/course';
 
 const { TextArea } = Input;
 
-const CreateCoursePage = (props) => {
-    const { handleCreateCourse } = useContext(CourseContext);
+const EditCoursePage = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                handleCreateCourse(values);
-                props.history.push('/dashboard');
+                props.handleEditCourse(props.course._id, values);
+                props.closeModal(false);
             }
         });
     };
     const { getFieldDecorator } = props.form;
     return (
         <Layout>
-            <div style={{ margin: '50px 50px 0', backgroundColor: 'white', padding: '40px 40px' }}>
-                <p className='large-text bold'>Create a course</p>
+            <div style={{ margin: '30px', backgroundColor: 'white', padding: '20px' }}>
                 <Form onSubmit={handleSubmit} className='login-form'>
                     <Form.Item label='Title'>
                         {getFieldDecorator('title', {
+                            initialValue: props.course.title,
                             rules: [{ required: true, message: 'Please input a title for this course' }],
                         })(
                             <Input size='large' prefix={<Icon type='book' style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -32,14 +30,15 @@ const CreateCoursePage = (props) => {
                     </Form.Item>
                     <Form.Item label='Description'>
                         {getFieldDecorator('description', {
+                            initialValue: props.course.description,
                             rules: [{ required: true, message: 'Please input course description!' }],
                         })(
-                            <TextArea autoSize={{ minRows: 21 }} size='large' />,
+                            <TextArea autoSize={{ minRows: 16 }} size='large' />,
                         )}
                     </Form.Item>
                     <Form.Item>
                         <Button style={{ float: 'right' }} size='large' type='primary' htmlType='submit'>
-                            Create course
+                            Save
                             </Button>
                     </Form.Item>
                 </Form>
@@ -48,6 +47,6 @@ const CreateCoursePage = (props) => {
     );
 }
 
-const WrappedNormalCreateCourseForm = Form.create({ name: 'createcourse' })(CreateCoursePage);
+const WrappedNormalEditCourseForm = Form.create({ name: 'editcourse' })(EditCoursePage);
 
-export default WrappedNormalCreateCourseForm;
+export default WrappedNormalEditCourseForm;

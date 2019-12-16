@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Rate, Typography, Avatar } from 'antd';
 
 const { Paragraph, Text } = Typography;
 
-class CourseDetailSmall extends Component {
-    state = {}
-    render() {
-        return (
-            <div className='course-card'>
-                <div className='course-card-top'></div>
-                <div className='course-card-body'>
-                    <h1>Course 2</h1>
-                    <Paragraph ellipsis={{ rows: 3 }}>
-                        Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                        Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-                        a design language for background applications, is refined by Ant UED Team. Ant Design, a
-                        design language for background applications, is refined by Ant UED Team. Ant Design, a design
-                        language for background applications, is refined by Ant UED Team. Ant Design, a design
-                        language for background applications, is refined by Ant UED Team.
-                                        </Paragraph>
+const CourseDetailSmall = (props) => {
+    let rating = 0;
+    props.course.ratings.forEach(rate => {
+        rating += rate;
+    });
+    return (
+        <div className='course-card'>
+            <div className='course-card-top'></div>
+            <div className='course-card-body'>
+                <h1>{props.course.title}</h1>
+                <Paragraph ellipsis={{ rows: 3 }}>{props.course.description}</Paragraph>
+                <div>
                     <div>
-                        <div>
-                            <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>JD</Avatar>
-                            <Text type='secondary'>John Doe</Text>
-                        </div>
+                        <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>{props.course.authorName.split(' ')[0][0]}{props.course.authorName.split(' ')[1][0]}</Avatar>
+                        <Text type='secondary'>{props.course.authorName}</Text>
                     </div>
-                    <Rate defaultValue={3} disabled />
                 </div>
+                <Rate defaultValue={Math.round(rating / props.course.ratings.length)} disabled />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default CourseDetailSmall;

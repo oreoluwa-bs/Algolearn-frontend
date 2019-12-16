@@ -5,23 +5,22 @@ import emptyImage from '../assets/images/undraw_404.svg';
 
 
 const Error404Page = (props) => {
-    console.log(props)
     return (
         <div>
             <Layout className="layout">
-                <div style={{ minHeight: 'calc(100vh - 233px)', marginTop: '100px' }}>
+                <div style={{ minHeight: '50vh', marginTop: '25vh' }}>
                     <Empty
                         image={emptyImage}
                         imageStyle={{
-                            height: 400,
+                            margin: '0 0px 50px'
                         }}
                         description={
-                            <p className='error404-text'>
+                            <span className='error404-text'>
                                 Page not found
-                        </p>
+                        </span>
                         }
                     >
-                        <Button type="primary" onClick={() => {
+                        <Button style={{ margin: '30px 0px 0px' }} type="primary" onClick={() => {
                             props.history.goBack()
                         }}>Go back</Button>
                     </Empty>

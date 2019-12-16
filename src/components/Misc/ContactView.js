@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Layout, Form, Icon, Input, Button, Row, Col } from 'antd';
 
 const { TextArea } = Input;
@@ -16,7 +16,7 @@ const ContactView = (props) => {
     const { getFieldDecorator } = props.form;
     return (
         <Layout className='layout' style={{ backgroundColor: 'white' }} >
-            <div style={{ margin: '50px auto', maxWidth: '500px' }}>
+            <div style={{ margin: '50px auto', maxWidth: '540px', padding:'0 40px' }}>
                 <p className='large-text bold'>Get in Touch</p>
                 <Form onSubmit={handleSubmit} className='login-form'>
                     <Row gutter={{ md: 24 }}>

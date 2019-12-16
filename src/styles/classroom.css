@@ -1,0 +1,25 @@
+.classroom .classroom-main {
+  padding: 50px;
+}
+.classroom .class-content {
+  padding: 24px 80px; 
+}
+.steps-action {
+  margin-top: 24px;
+}
+
+.references-links .ant-list-item {
+  padding: 2px 0;
+}
+
+@media screen and (max-width:768px){
+  .classroom .class-content {
+    padding: 24px 40px; 
+  }
+}
+
+@media screen and (max-width:575px){
+  .classroom .classroom-main {
+    padding: 30px;
+  }
+}
