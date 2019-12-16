@@ -1,15 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Layout, Button, message, Empty, Typography, List, Menu, Modal, Rate, Form } from 'antd';
 import { CourseContext } from '../../store/Contexts/course';
 import '../../styles/classroom.css';
+import { AuthContext } from '../../store/Contexts/auth';
 
 const { Content, Sider } = Layout;
-const { Title, Paragraph } = Typography;
+// const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const Classroom = (props) => {
     const { courses, handleRateCourse } = useContext(CourseContext);
+    const { handleCompleteCourse, auth } = useContext(AuthContext);
     const [collapsed, setCollapsed] = useState(false);
     const [modalVisible, setModal] = useState(false);
     const [userRate, setRate] = useState(3);
@@ -61,15 +64,22 @@ const Classroom = (props) => {
     const handleOk = () => {
         handleRateCourse(course._id, userRate);
         if (!course.test) {
-            return message.success('This is a success message');
+            // return message.success('This is a success message');
+            handleCompleteCourse(course._id);
+            props.history.push(`/dashboard`);
         } else {
-            // props.history.push(`/tests/${course._id}`);
+            props.history.push(`/tests/${course._id}`);
         }
     };
 
     const handleCancel = () => {
         setModal(false);
     };
+
+
+    if (!auth) {
+        return <Redirect to='/' />
+    }
 
     return (
         <Layout className='classroom'>

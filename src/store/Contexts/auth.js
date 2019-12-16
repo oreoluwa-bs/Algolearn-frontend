@@ -170,6 +170,35 @@ class AuthContextProvider extends Component {
         });
     }
 
+
+    handleCompleteCourse = (id) => {
+        axios.post(`${this.props.apiUrl}/auth/complete/${id}`, {}, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(() => {
+            const enrolledCourses = JSON.parse(localStorage.getItem('auth')).enrolledCourses
+            const enrollIndex = enrolledCourses.findIndex((course) => (
+                course._id === id
+            ));
+            enrolledCourses[enrollIndex] = {
+                ...enrolledCourses[enrollIndex],
+                isCompleted: true,
+            }
+            this.setState({
+                auth: {
+                    ...JSON.parse(localStorage.getItem('auth')),
+                    ...{
+                        enrolledCourses: enrolledCourses
+                    }
+                }
+            });
+            localStorage.setItem('auth', JSON.stringify(this.state.auth));
+        }).catch(() => {
+
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -189,6 +218,7 @@ class AuthContextProvider extends Component {
                 handleAccountUpdate: this.handleAccountUpdate,
                 handleAccountDelete: this.handleAccountDelete,
                 handleEnrollInCourse: this.handleEnrollInCourse,
+                handleCompleteCourse: this.handleCompleteCourse,
             }}>
                 {this.props.children}
             </AuthContext.Provider>
