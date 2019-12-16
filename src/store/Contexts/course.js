@@ -259,6 +259,17 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleRateCourse = (id, values) => {
+        axios.post(`${this.props.apiUrl}/course/${id}/rate`, {
+            rating: values
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then(() => {
+            this.getCourses();
+        }).catch(() => {
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -288,6 +299,9 @@ class CourseContextProvider extends Component {
                 handleCreateTest: this.handleCreateTest,
                 handleEditTest: this.handleEditTest,
                 handleDeleteQuestion: this.handleDeleteQuestion,
+
+                // Rate
+                handleRateCourse: this.handleRateCourse,
             }}>
                 {this.props.children}
             </CourseContext.Provider>
