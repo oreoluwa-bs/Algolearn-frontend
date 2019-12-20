@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { Layout, Button, message, Empty, Typography, List, Menu, Modal, Rate, Form } from 'antd';
+import { Layout, Button, Empty, Typography, List, Menu, Modal, Rate, Form } from 'antd';
 import { CourseContext } from '../../store/Contexts/course';
 import '../../styles/classroom.css';
 import { AuthContext } from '../../store/Contexts/auth';
@@ -115,12 +115,14 @@ const Classroom = (props) => {
                                             <div>
                                                 <Title level={4}>{lesson.title}</Title>
                                                 {
-                                                    lesson.videoUrl &&
-                                                    <iframe title={lesson.title} style={{ width: '100%', height: '600px', margin: '20px 0' }}
-                                                        src='https://www.youtube.com/embed/HyHNuVaZJ-k' frameBorder='0'
-                                                        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen>
+                                                    lesson.videoURL &&
+                                                    // <iframe title={lesson.title} style={{ width: '100%', height: '600px', margin: '20px 0' }}
+                                                    //     src={`${lesson.videoURL}`} frameBorder='0'
+                                                    //     allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen>
+                                                    // </iframe>
+                                                    <iframe title={lesson.title} src={`${lesson.videoURL}`}
+                                                        style={{ width: '100%', height: '600px', margin: '20px 0' }} frameBorder="0" allow="autoplay; fullscreen" allowFullScreen>
                                                     </iframe>
-
                                                 }
                                                 {
                                                     lesson.textContent &&

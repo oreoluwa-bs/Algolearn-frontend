@@ -94,7 +94,7 @@ const EditTestPage = (props) => {
                         >
                             <WrappedNormalOptionsForm addOption={addOptions} optLen={optionsdata.length} />
                         </Modal>
-                        <Table
+                        <Table tableLayout='fixed'
                             rowKey={(e) => e._id || (Math.random() * 12).toString()}
                             rowSelection={{
                                 columnTitle: 'Correct Option',

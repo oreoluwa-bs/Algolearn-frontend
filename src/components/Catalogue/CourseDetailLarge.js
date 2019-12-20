@@ -160,7 +160,7 @@ const DetailsView = (props) => {
         const format = {
             key: lesson._id,
             title: lesson.title,
-            textcontent: lesson.textContent.substring(0, 100),
+            textcontent: lesson.textContent ? lesson.textContent.substring(0, 100) : null,
             references: lesson.references.length
         };
         lessonData.push(format);
@@ -293,13 +293,13 @@ const DetailsView = (props) => {
                             <Col>
                                 <div>
                                     <Link to={`/${course._id}/lesson/create`} className='ant-btn ant-btn' style={{ marginBottom: 20 }}>Add a lesson</Link>
-                                    <Table dataSource={lessonData} columns={lessonColumns} />
+                                    <Table tableLayout='fixed' dataSource={lessonData} columns={lessonColumns} />
                                 </div>
                             </Col>
                             <Col>
                                 <div>
                                     <Link to={`/${course._id}/test/create`} className='ant-btn ant-btn' style={{ marginBottom: 20, marginTop: 20 }}>Add a Question</Link>
-                                    <Table dataSource={testData} columns={testColumns} />
+                                    <Table tableLayout='fixed' dataSource={testData} columns={testColumns} />
                                 </div>
                             </Col>
                         </Row>

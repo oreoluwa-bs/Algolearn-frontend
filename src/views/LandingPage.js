@@ -53,7 +53,7 @@ const LandingPage = () => {
                             {
                                 topCourses.length >= 1 &&
                                 <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-                                    <Link to=''>
+                                    <Link to={`/catalogue/${topCourses[0]._id}`}>
                                         <CourseDetailSmall course={topCourses[0]} />
                                     </Link>
                                 </Col>
@@ -61,19 +61,25 @@ const LandingPage = () => {
                             {
                                 topCourses.length >= 2 &&
                                 <Col xs={{ span: 0 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-                                    <CourseDetailSmall course={topCourses[1]} />
+                                    <Link to={`/catalogue/${topCourses[1]._id}`}>
+                                        <CourseDetailSmall course={topCourses[1]} />
+                                    </Link>
                                 </Col>
                             }
                             {
                                 topCourses.length >= 3 &&
                                 <Col xs={{ span: 0 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-                                    <CourseDetailSmall course={topCourses[2]} />
+                                    <Link to={`/catalogue/${topCourses[2]._id}`}>
+                                        <CourseDetailSmall course={topCourses[2]} />
+                                    </Link>
                                 </Col>
                             }
                             {
                                 topCourses.length >= 4 &&
                                 <Col xs={{ span: 0 }} xl={{ span: 6 }}>
-                                    <CourseDetailSmall course={topCourses[3]} />
+                                    <Link to={`/catalogue/${topCourses[3]._id}`}>
+                                        <CourseDetailSmall course={topCourses[3]} />
+                                    </Link>
                                 </Col>
                             }
                         </Row>

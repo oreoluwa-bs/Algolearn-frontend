@@ -95,7 +95,7 @@ const CreateTestPage = (props) => {
                                 setCorrectOption(tempOpt);
                             }
 
-                        }} dataSource={optionsdata} columns={[
+                        }} tableLayout='fixed' dataSource={optionsdata} columns={[
                             {
                                 title: 'Text',
                                 dataIndex: 'text',
