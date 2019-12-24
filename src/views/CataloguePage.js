@@ -11,10 +11,22 @@ const { Search } = Input;
 const CataloguePage = () => {
     const { courses, getCourses } = useContext(CourseContext);
     const [catCourses, setCatCourses] = useState([]);
+
     useEffect(() => {
         getCourses();
+    }, [getCourses])
+
+    useEffect(() => {
         setCatCourses(courses);
-    }, [courses, getCourses])
+    }, [courses])
+
+    const handleSearch = (e) => {
+        setCatCourses(courses.filter((course) => {
+            const title_course = course.title.toLowerCase();
+            const search_params = e.target.value.toLowerCase();
+            return title_course.includes(search_params);
+        }))
+    };
 
     return (
         <div>
@@ -23,12 +35,8 @@ const CataloguePage = () => {
                     <div style={{ width: '80vw', margin: '0 auto' }}>
                         <Search
                             placeholder="Search courses for"
-                            onSearch={value => {
-                                setCatCourses(catCourses.filter((course) => {
-                                    return course.title.includes(value)
-                                }))
-                            }}
-
+                            onSearch={handleSearch}
+                            onInput={handleSearch}
                             style={{ height: 50 }}
                         />
                         <br />
