@@ -103,7 +103,6 @@ const Dashboard = () => {
                                         < Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                                             {
                                                 activeCourses.map((course) => {
-                                                    console.log(course)
                                                     return (
                                                         <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
                                                             {

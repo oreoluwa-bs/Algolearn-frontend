@@ -11,38 +11,48 @@
 }
 
 .hero {
-  height: 50vh;
-  background-color: #7451eb;
+  height: 60vh;
+  /* background-color: #171f3b; */
+  background-image: linear-gradient(to left,#7451eb 0,#573dad 100%);
   overflow: hidden;
-  padding: 80px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.ant-carousel .slick-slide .carousel-content {
-  margin: 5% 20%;
-}
-  
-.ant-carousel .slick-slide h3 {
-  color: #fff;
+.hero .hero-bg{
+  height: 100%;
+  width: 100%;
+  padding: 80px;
+  background-image: url('../assets/images/homepage_banner_background.svg');
+  background-position: center center;
+  opacity: 0.3;
+  -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%);
+  mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%);
+  position: absolute;
 }
 
-.carousel-content{
+.hero-content{
   color: white;
+  text-align: center;
 }
-.carousel-content .carousel-caption{
+.hero-content .hero-caption{
   font-size: 40px;
   font-weight: bold;
   margin: 0;
 }
-.carousel-content .carousel-text{
+.hero-content .hero-text{
+  opacity: 0.75;
   font-size: 20px;
-  margin: 0 0 40px;
+  margin: 10px 0 40px;
 }
 
-.hero .carousel-content{
-  position: absolute;
-  bottom: 0;
-  padding: 0 0 100px;
+.hero .hero-content{
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* padding: 0 0 100px; */
 }
 
 @media screen and (min-width:2000px){

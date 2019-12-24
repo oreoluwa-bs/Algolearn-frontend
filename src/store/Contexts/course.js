@@ -119,10 +119,10 @@ class CourseContextProvider extends Component {
 
 
     // Lesson
-    handleCreateLesson = (id, values) => {
+    handleCreateLesson = async (id, values) => {
         axios.post(`${this.props.apiUrl}/course/${id}/create-lesson`, {
             title: values.title,
-            videoURL: values.videoUrl,
+            vidData: values.vidData,
             textContent: values.content,
             references: values.references,
         }, {
@@ -144,10 +144,10 @@ class CourseContextProvider extends Component {
         });
     }
 
-    handleEditLesson = (courseId, lessonId, values) => {
+    handleEditLesson = async (courseId, lessonId, values) => {
         axios.put(`${this.props.apiUrl}/course/${courseId}/${lessonId}`, {
             title: values.title,
-            videoURL: values.videoUrl,
+            vidData: values.vidData,
             textContent: values.content,
             references: values.references,
         }, {

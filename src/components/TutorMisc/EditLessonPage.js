@@ -3,6 +3,8 @@ import { Layout, Form, Icon, Input, Button, Upload, Table, Tooltip, Divider, Mod
 import WrappedNormalReferenceForm from '../Misc/ReferenceForm';
 import WrappedNormalEditReferenceForm from '../Misc/EditRefForm';
 import { CourseContext } from '../../store/Contexts/course';
+import axios from 'axios';
+import { config } from '../../config';
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
@@ -13,17 +15,22 @@ const EditLessonPage = (props) => {
     const [editRefModal, setEditRefModal] = useState(false);
     const [refdata, setRefData] = useState([]);
     const [filedata, setFileData] = useState(null);
-    const [videoDataAsURL, setVideoDataAsURL] = useState();
+    const [videoData, setVideoData] = useState();
 
     const handleLessonSubmit = (e) => {
         e.preventDefault();
-        props.form.validateFields((err, values) => {
+        props.form.validateFields(async (err, values) => {
             values.references = refdata;
-            values.vid = filedata;
-            values.videoUrl = videoDataAsURL;
+            values.vidData = videoData;
+            // values.videoUrl = videoDataAsURL;
             if (!err) {
-                handleEditLesson(props.course._id, props.lesson._id, values);
-                props.history.push('/catalogue/' + props.course._id);
+                message.loading('Editing lesson... Please wait!').then(() => {
+                    handleEditLesson(props.course._id, props.lesson._id, values).then(() => {
+                        setTimeout(() => {
+                            props.history.push(`/catalogue/${props.course._id}`)
+                        }, 1000);
+                    });
+                });
             }
         });
     };
@@ -65,6 +72,40 @@ const EditLessonPage = (props) => {
         setRefData(newRefdata);
     }
 
+
+    const handleUpload = ({ file, onSuccess, onError }) => {
+        const formData = new FormData();
+        formData.append('video', file);
+        axios.post(`${config.apiUrl}/video/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then((response) => {
+            setVideoData(response.data.fileData);
+            onSuccess(response);
+        }).catch((err) => {
+            onError(err);
+        });
+    }
+
+    const remFile = () => {
+        if (!videoData) {
+            return
+        } else {
+            axios.delete(`${config.apiUrl}/video/${videoData.filename}`, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(() => {
+                setFileData(null);
+                setVideoData(null);
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
+
     return (
         <Layout>
             <div style={{ margin: '50px 50px 0', backgroundColor: 'white', padding: '40px 40px' }}>
@@ -94,43 +135,29 @@ const EditLessonPage = (props) => {
                             <Dragger
                                 accept='video/*,.mkv'
                                 listType='picture'
-                                beforeUpload={(file) => {
-                                    console.log(file.type);
-                                    if (file.type.includes('video')) {
-                                        const reader = new FileReader();
-                                        reader.readAsDataURL(file);
-                                        reader.onload = (e) => {
-                                            const asUrl = e.target.result;
-                                            message.success(`${file.name} file uploaded successfully.`);
-                                            setVideoDataAsURL(asUrl);
-                                        }
-                                        setFileData(file);
-                                    } else {
-                                        message.error(`${file.name} file uploaded failed.`);
-                                        setFileData(null);
-                                        setVideoDataAsURL(null);
-                                    }
-                                    return false;
-                                }}
                                 name='vid-upload'
-
-
-                                file={filedata && filedata.file ? filedata.file : null}
+                                action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
+                                customRequest={handleUpload}
                                 onChange={(info) => {
                                     if (info.fileList.length > 1) {
                                         info.fileList.shift();
                                     }
-                                    if (!info.file.type.includes('video')) {
-                                        info.fileList.shift();
+                                    const { status } = info.file;
+                                    if (status === 'done') {
+                                        message.success(`${info.file.name} file uploaded successfully.`);
+                                        setFileData(info);
+                                    } else if (status === 'error') {
+                                        message.error(`${info.file.name} file upload failed.`);
+                                        setFileData(null);
                                     }
                                 }}
+                                file={filedata && filedata.file ? filedata.file : null}
                                 showUploadList={{
                                     showDownloadIcon: false,
                                     showPreviewIcon: false,
                                 }}
                                 onRemove={() => {
-                                    setFileData(null);
-                                    setVideoDataAsURL(null);
+                                    remFile();
                                 }}
                             >
                                 {
@@ -149,7 +176,7 @@ const EditLessonPage = (props) => {
                                         <p className='ant-upload-drag-icon'>
                                             <Icon type='inbox' />
                                         </p>
-                                        <p className='ant-upload-text'>{filedata.name}</p>
+                                        <p className='ant-upload-text'>{filedata.file.name}</p>
                                     </span>
                                 }
                             </Dragger>,
@@ -182,7 +209,7 @@ const EditLessonPage = (props) => {
                         >
                             <WrappedNormalReferenceForm addRef={addRef} />
                         </Modal>
-                        <Table
+                        <Table tableLayout='fixed'
                             rowKey={(e) => e._id || (Math.random() * 12).toString()}
                             dataSource={refdata} columns={[
                                 {
