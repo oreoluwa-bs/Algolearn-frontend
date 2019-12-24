@@ -35,13 +35,14 @@ const LandingPage = () => {
     return (
         <Layout className="layout" >
             <div className='hero'>
-                <div className='carousel-content'>
-                    <p className='carousel-caption'>Your Course to Success</p>
-                    <p className='carousel-text'>Build skills with courses</p>
-                    <Link to='/signup/tutor' className='ant-btn ant-btn-lg'>Become a tutor</Link>
-                    <Divider type='vertical' />
-                    <Link to='/signup/student' className='ant-btn ant-btn-primary ant-btn-lg'>Become a learner</Link>
-                </div>
+                <div className='hero-bg'> </div>
+                <div className='hero-content'>
+                        <p className='hero-caption'>Begin your journey</p>
+                        <p className='hero-text'>Gain the neccessarye skills for success</p>
+                        <Link to='/signup/tutor' className='ant-btn ant-btn-lg'>Become a tutor</Link>
+                        <Divider type='vertical' />
+                        <Link to='/signup/student' className='ant-btn ant-btn-primary ant-btn-lg'>Become a learner</Link>
+                    </div>
             </div>
             {
                 courses && courses.length > 0 &&
