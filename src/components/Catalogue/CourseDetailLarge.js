@@ -61,10 +61,12 @@ const DetailsView = (props) => {
     }
 
     const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich'];
-    let rating = 0;
-    course.ratings.forEach(rate => {
-        rating += rate;
-    });
+    const rating = course.ratings.reduce((acc, currentOrder) => acc + currentOrder);
+
+    const colors_bg = ['#78C3FB', '#C28CAE', '#49475B', '#799496', '#4F646F', '#F87060', '#102542'];
+
+    const colors_random = () => Math.floor(Math.random() * colors_bg.length);
+
     const lessonColumns = [
         {
             title: 'Title',
@@ -201,7 +203,8 @@ const DetailsView = (props) => {
     ] : []
     return (
         <div>
-            <div style={{ backgroundColor: 'firebrick' }} className='course-header'>
+            <div style={{ backgroundColor: colors_bg[colors_random()] }} className='course-header'>
+                <div className='course-header-bg'></div>
                 <div className='course-header-container'>
                     <Icon type='book' />
                     <Title level={1} style={{ color: 'white' }}>{course.title}</Title>
@@ -256,8 +259,8 @@ const DetailsView = (props) => {
                                             <Text type='secondary'>Self-Paced Learning</Text>
                                         </div>
                                     </div>
-                                    <div>
-                                        <Avatar style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>{course.authorName.split(' ')[0][0]}{course.authorName.split(' ')[1][0]}</Avatar>
+                                    <div style={{ marginBottom: 10 }}>
+                                        <Avatar style={{ color: 'white', backgroundColor: colors_bg[colors_random()], marginRight: 10 }}>{course.authorName.split(' ')[0][0]}{course.authorName.split(' ')[1][0]}</Avatar>
                                         <Text type='secondary'>{course.authorName}</Text>
                                     </div>
                                     <Rate defaultValue={Math.round(rating / course.ratings.length)} disabled />

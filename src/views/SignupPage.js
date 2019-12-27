@@ -34,7 +34,7 @@ const StudentSignupPage = (props) => {
                 <div className='form-wrappwe'>
                     <Row>
                         <Col xs={{ span: 24 }} xl={{ span: 10 }}>
-                            <div className='form-img'>
+                            <div className='form-img' style={{ backgroundColor: '#89A6FB' }}>
 
                             </div>
                         </Col>
