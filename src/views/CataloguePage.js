@@ -32,7 +32,7 @@ const CataloguePage = () => {
         <div>
             <Layout className="layout" >
                 <div style={{ marginTop: '50px' }}>
-                    <div style={{ width: '80vw', margin: '0 auto' }}>
+                    <div style={{ width: '75vw', margin: '0 auto' }}>
                         <Search
                             placeholder="Search courses for"
                             onSearch={handleSearch}
@@ -49,7 +49,7 @@ const CataloguePage = () => {
                                 {
                                     catCourses.map((course) => {
                                         return (
-                                            <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} style={{ marginBottom: 40 }}>
+                                            <Col key={course._id} xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 6 }} style={{ marginBottom: 40 }}>
                                                 <Link to={`/catalogue/${course._id}`}>
                                                     <CourseDetailSmall course={course} />
                                                 </Link>

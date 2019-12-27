@@ -108,7 +108,7 @@ const Classroom = (props) => {
                                         </Menu>
                                     }
                                 </Sider>
-                                <Content style={{ background: '#fff' }}>
+                                <Content style={{ background: 'white' }}>
                                     <div className='class-content'>
                                         {
                                             lesson &&
@@ -116,13 +116,12 @@ const Classroom = (props) => {
                                                 <Title level={4}>{lesson.title}</Title>
                                                 {
                                                     lesson.videoURL &&
-                                                    // <iframe title={lesson.title} style={{ width: '100%', height: '600px', margin: '20px 0' }}
-                                                    //     src={`${lesson.videoURL}`} frameBorder='0'
-                                                    //     allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen>
-                                                    // </iframe>
-                                                    <iframe title={lesson.title} src={`${lesson.videoURL}`}
-                                                        style={{ width: '100%', height: '600px', margin: '20px 0' }} frameBorder="0" allow="autoplay; fullscreen" allowFullScreen>
-                                                    </iframe>
+                                                    <div style={{ width: '70%', margin: '20px auto' }}>
+                                                        <iframe title={lesson.title} src={`${lesson.videoURL}`}
+                                                            style={{ width: '100%', height: '600px', margin: '20px auto', border: '1px solid #eee' }}
+                                                            frameBorder="0" allow="fullscreen" allowFullScreen>
+                                                        </iframe>
+                                                    </div>
                                                 }
                                                 {
                                                     lesson.textContent &&
