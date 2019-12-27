@@ -18,3 +18,13 @@
 .large-text{
   font-size: 20px;
 }
+
+.address-map {
+  max-width: 600px;
+  height: 265px;
+  margin-top: 30px;
+  background-image: url('./assets/images/Map@2x.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

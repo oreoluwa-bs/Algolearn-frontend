@@ -6,7 +6,7 @@ import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import '../styles/landingpage.css';
 import { CourseContext } from '../store/Contexts/course';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const LandingPage = () => {
     const { courses } = useContext(CourseContext);
@@ -37,12 +37,23 @@ const LandingPage = () => {
             <div className='hero'>
                 <div className='hero-bg'> </div>
                 <div className='hero-content'>
-                        <p className='hero-caption'>Begin your journey</p>
-                        <p className='hero-text'>Gain the neccessarye skills for success</p>
-                        <Link to='/signup/tutor' className='ant-btn ant-btn-lg'>Become a tutor</Link>
-                        <Divider type='vertical' />
-                        <Link to='/signup/student' className='ant-btn ant-btn-primary ant-btn-lg'>Become a learner</Link>
-                    </div>
+                    <p className='hero-caption'>Get better grades</p>
+                    <p className='hero-text'>Gain the neccessary skills for success</p>
+                </div>
+            </div>
+            <div className='get-started' >
+                <div className='get-started-content'>
+                    <Title level={1} style={{ fontWeight: 'bold' }}>Begin your journey</Title>
+                    <Paragraph>
+                        Get a better understanding of your Computer Science couses with AlgoLearn.
+
+                    </Paragraph>
+                    <Link to='/signup/tutor' className='ant-btn ant-btn-primary ant-btn-lg' style={{ backgroundColor: '#7D8CC4', borderColor: '#7D8CC4' }}>
+                        Become a tutor
+                    </Link>
+                    <Divider type='vertical' />
+                    <Link to='/signup/student' className='ant-btn ant-btn-primary ant-btn-lg'>Become a learner</Link>
+                </div>
             </div>
             {
                 courses && courses.length > 0 &&

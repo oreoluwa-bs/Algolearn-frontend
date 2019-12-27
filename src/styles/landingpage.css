@@ -11,15 +11,14 @@
 }
 
 .hero {
-  height: 60vh;
+  height: 50vh;
   /* background-color: #171f3b; */
   background-image: linear-gradient(to left,#7451eb 0,#573dad 100%);
   overflow: hidden;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
-  align-items: center;
 }
 
 .hero .hero-bg{
@@ -28,20 +27,22 @@
   padding: 80px;
   background-image: url('../assets/images/homepage_banner_background.svg');
   background-position: center center;
-  opacity: 0.3;
-  -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%);
-  mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%);
+  opacity: 0.2;
+  /* -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%); */
+  /* mask-image: radial-gradient(circle,rgba(0,0,0,0) 0,#000 100%); */
   position: absolute;
 }
 
 .hero-content{
+  padding: 80px;
   color: white;
-  text-align: center;
+  /* text-align: center; */
 }
 .hero-content .hero-caption{
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
   margin: 0;
+  /* margin: 0 0 40px; */
 }
 .hero-content .hero-text{
   opacity: 0.75;
@@ -49,10 +50,15 @@
   margin: 10px 0 40px;
 }
 
-.hero .hero-content{
-  /* position: absolute; */
-  /* bottom: 0; */
-  /* padding: 0 0 100px; */
+.get-started {
+  background-color: white;
+  padding: 60px 0 80px;
+}
+
+.get-started-content {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
 }
 
 @media screen and (min-width:2000px){

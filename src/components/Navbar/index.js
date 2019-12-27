@@ -15,12 +15,9 @@ const Navbar = () => {
     const [drawerState, setDrawerState] = useState(false);
 
 
-    const showDrawer = () => {
-        setDrawerState(true)
-    };
-    const onCloseDrawer = () => {
-        setDrawerState(false)
-    };
+    const showDrawer = () => setDrawerState(true);
+
+    const onCloseDrawer = () => setDrawerState(false);
 
     return (
         <Header>

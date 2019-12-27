@@ -27,13 +27,13 @@ const LoginPage = (props) => {
                 <div className='form-wrappwe'>
                     <Row>
                         <Col xs={{ span: 24, order: 2 }} xl={{ span: 10, order: 1 }}>
-                            <div className='form-img'>
+                            <div className='form-img' style={{ backgroundColor: '#16E0BD' }}>
 
                             </div>
                         </Col>
                         <Col xs={{ span: 24, order: 1 }} xl={{ span: 14, order: 2 }}>
                             <div style={{ padding: 50 }}>
-                                <Title level={2} className='large-text bold' style={{ textAlign: 'center' }}>Login</Title>
+                                <Title className='large-text bold' style={{ textAlign: 'center' }}>Login</Title>
                                 <Form onSubmit={handleSubmit} className='login-form' hideRequiredMark>
                                     <Form.Item label='Email Address'>
                                         {getFieldDecorator('email', {

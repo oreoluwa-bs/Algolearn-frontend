@@ -12,9 +12,11 @@
 .form-wrappwe .form-img{
     width: 100%;
     min-height: 600px;
-    background-color: aquamarine;
+    background-color: #16E0BD;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    background-image: url('../assets/images/homepage_banner_background.svg');
+    background-position: center;
 }
 
 @media screen and (max-width:1200px){
