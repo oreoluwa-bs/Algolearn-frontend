@@ -2,15 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Menu, Avatar } from 'antd';
 import { AuthContext } from '../../../store/Contexts/auth';
+import { ColorContext } from '../../../store/Contexts/colors';
 
 const { SubMenu } = Menu;
 
 const SignedInLinks = () => {
     const { auth, handleLogout } = useContext(AuthContext);
-
-    const colors_bg = ['#78C3FB', '#C28CAE', '#49475B', '#799496', '#4F646F', '#F87060', '#102542'];
-
-    const colors_random = () => Math.floor(Math.random() * colors_bg.length);
+    const { colors_bg, colors_random } = useContext(ColorContext);
 
     return (
         <div className='nav-links-right'>

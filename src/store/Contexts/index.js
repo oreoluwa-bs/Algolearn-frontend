@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContextProvider from './auth';
 import CourseContextProvider from './course';
+import ColorContextProvider from './colors';
 import { config } from '../../config';
 
 function RootContext(props) {
@@ -8,7 +9,9 @@ function RootContext(props) {
     return (
         <AuthContextProvider apiUrl={apiUrl}>
             <CourseContextProvider apiUrl={apiUrl}>
-                {props.children}
+                <ColorContextProvider>
+                    {props.children}
+                </ColorContextProvider>
             </CourseContextProvider>
         </AuthContextProvider>
     );
