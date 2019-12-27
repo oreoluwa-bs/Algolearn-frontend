@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Rate, Typography, Avatar } from 'antd';
+import { ColorContext } from '../../store/Contexts/colors';
 
 const { Paragraph, Text } = Typography;
 
 const CourseDetailSmall = (props) => {
+    const { colors_bg, colors_random } = useContext(ColorContext);
     const rating = props.course.ratings.reduce((acc, currentOrder) => acc + currentOrder);
-
-    const colors_bg = ['#78C3FB', '#C28CAE', '#49475B', '#799496', '#4F646F', '#F87060', '#102542'];
-
-    const colors_random = () =>  Math.floor(Math.random() * colors_bg.length);
     
     return (
         <div className='course-card'>
@@ -18,7 +16,7 @@ const CourseDetailSmall = (props) => {
                 <Paragraph ellipsis={{ rows: 3 }}>{props.course.description}</Paragraph>
                 <div>
                     <div>
-                        <Avatar size='small' style={{ color: '#c56a00', backgroundColor: '#cde3cf', marginRight: 10 }}>{props.course.authorName.split(' ')[0][0]}{props.course.authorName.split(' ')[1][0]}</Avatar>
+                        <Avatar size='small' style={{ color: 'white', backgroundColor: colors_bg[colors_random()], marginRight: 10 }}>{props.course.authorName.split(' ')[0][0]}{props.course.authorName.split(' ')[1][0]}</Avatar>
                         <Text type='secondary'>{props.course.authorName}</Text>
                     </div>
                 </div>

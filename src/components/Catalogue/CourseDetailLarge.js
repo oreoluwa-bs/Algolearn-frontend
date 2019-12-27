@@ -10,6 +10,7 @@ import { CourseContext } from '../../store/Contexts/course';
 import { AuthContext } from '../../store/Contexts/auth';
 import CheckOtherCourses from './CheckOthers';
 import WrappedNormalEditCourseForm from './EditCoursePage';
+import { ColorContext } from '../../store/Contexts/colors';
 
 const { Paragraph, Text, Title } = Typography;
 const { Content } = Layout;
@@ -47,6 +48,8 @@ export default CourseDetailLarge;
 
 const DetailsView = (props) => {
     const { handleDeleteCourse, handleEditCourse, handleDeleteLesson, handleDeleteQuestion } = useContext(CourseContext);
+    const { colors_bg, colors_random } = useContext(ColorContext);
+    
     const { handleEnrollInCourse } = useContext(AuthContext);
     const [courseEditModal, setCourseEditModal] = useState(false);
 
@@ -62,10 +65,6 @@ const DetailsView = (props) => {
 
     const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich'];
     const rating = course.ratings.reduce((acc, currentOrder) => acc + currentOrder);
-
-    const colors_bg = ['#78C3FB', '#C28CAE', '#49475B', '#799496', '#4F646F', '#F87060', '#102542'];
-
-    const colors_random = () => Math.floor(Math.random() * colors_bg.length);
 
     const lessonColumns = [
         {
