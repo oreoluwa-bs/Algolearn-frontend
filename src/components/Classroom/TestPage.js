@@ -139,7 +139,7 @@ const TestPage = (props) => {
                                 <div className='steps-action' style={{ float: 'right' }}>
                                     {
                                         <div>
-                                            <Button type='primary' onClick={() => setModal(true)}>
+                                            <Button type='primary' onClick={() => setModal(true)} disabled={auth.role === 'admin'}>
                                                 Submit test
                                             </Button>
                                             <Modal

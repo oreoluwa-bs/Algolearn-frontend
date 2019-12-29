@@ -270,12 +270,38 @@ class CourseContextProvider extends Component {
         });
     }
 
+    handleFlagCourse = (values) => {
+        axios.post(`${this.props.apiUrl}/course/${values.courseId}/flag`, {
+            courseId: values.courseId,
+            reason: values.reason,
+            title: values.title,
+            reporterId: values.reporterId,
+            reporterName: values.reporterName,
+            reportedDate: Date(Date.now()).toString(),
+        }, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }).then(() => {
+            this.feedback({
+                status: 'info',
+                message: `Thank you for your feedback!`
+            });
+        }).catch(() => {
+            this.feedback({
+                status: 'error',
+                message: `Course could not be reported right now. Try again later!`
+            });
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
         }
         if (response.status === 'error') {
             message.error(response.message);
+        }
+        if (response.status === 'info') {
+            message.info(response.message);
         }
     }
     render() {
@@ -302,6 +328,9 @@ class CourseContextProvider extends Component {
 
                 // Rate
                 handleRateCourse: this.handleRateCourse,
+
+                // Flag
+                handleFlagCourse: this.handleFlagCourse,
             }}>
                 {this.props.children}
             </CourseContext.Provider>

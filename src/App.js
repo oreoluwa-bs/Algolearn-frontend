@@ -16,10 +16,15 @@ import WrappedNormalCreateLessonForm from './views/CreateLessonPage';
 import TestPage from './components/Classroom/TestPage';
 import WrappedNormalAccountPageForm from './views/AccountPage';
 import WrappedNormalCreateTestForm from './views/CreateTestPage';
-
-import './App.css';
 import EditTestPageWrapper from './components/TutorMisc/EditPageWrapper';
 import EditLessonPageWrapper from './components/TutorMisc/EditLessonWrapper';
+
+import AdminIndex from './views/admin pages/AdminIndex';
+import WrappedNormalAdminLoginForm from './views/admin pages/AdminLogin';
+import AdminDashboard from './views/admin pages/AdminDashboard';
+
+import './App.css';
+import WrappedNormalAdminSignupForm from './views/admin pages/AdminSignup';
 
 
 const { Footer } = Layout;
@@ -48,6 +53,11 @@ function App() {
               <Route path='/:courseId/:lessonId/lesson/edit' component={EditLessonPageWrapper} />
 
               <Route path='/account' component={WrappedNormalAccountPageForm} />
+
+              <Route exact path='/admin' component={AdminIndex} />
+              <Route path='/admin/login' component={WrappedNormalAdminLoginForm} />
+              <Route path='/admin/quip' component={WrappedNormalAdminSignupForm} />
+              <Route path='/admin/dashboard' component={AdminDashboard} />
 
               <Route component={Error404Page} />
             </Switch>

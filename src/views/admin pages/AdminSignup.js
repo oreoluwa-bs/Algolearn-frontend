@@ -1,32 +1,29 @@
 import React, { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Layout, Form, Icon, Input, Button, Row, Col, Typography } from 'antd';
-import { AuthContext } from '../store/Contexts/auth';
+// import { AdminUserContext } from '../../store/Contexts/admin';
+import { AuthContext } from '../../store/Contexts/auth';
 
 const { Title } = Typography;
 
-const StudentSignupPage = (props) => {
-    const { auth, handleCreateAccount } = useContext(AuthContext);
+const AdminSignupPage = (props) => {
+    // const { auth, handleCreateAccount } = useContext(AdminUserContext);
+    const { auth, handleAdminCreateAccount } = useContext(AuthContext);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                if (props.match.params.accountType.toLowerCase() === 'tutor') {
-                    values.role = 'tutor'
-                    handleCreateAccount(values);
-                    props.history.push('/login');
-                } else {
-                    values.role = 'student'
-                    handleCreateAccount(values);
-                    props.history.push('/login');
-                }
+                values.role = 'admin';
+                handleAdminCreateAccount(values);
+                props.history.push('/admin/login');
             }
         });
     };
 
     const { getFieldDecorator } = props.form;
-    if (auth) {
-        return <Redirect to='/dashboard' />
+    if (auth && auth.role === 'admin') {
+        return <Redirect to='/admin/dashboard' />
     }
     return (
         <Layout className='layout' >
@@ -34,7 +31,7 @@ const StudentSignupPage = (props) => {
                 <div className='form-wrappwe'>
                     <Row>
                         <Col xs={{ span: 24 }} xl={{ span: 10 }}>
-                            <div className='form-img' style={{ backgroundColor: '#89A6FB' }}>
+                            <div className='form-img' style={{ backgroundColor: '#F7C548' }}>
 
                             </div>
                         </Col>
@@ -79,7 +76,6 @@ const StudentSignupPage = (props) => {
                                                 size='large'
                                                 type='email'
                                                 prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                placeholder='john.d@gmail.com' id='email'
                                             />,
                                         )}
                                     </Form.Item>
@@ -91,12 +87,11 @@ const StudentSignupPage = (props) => {
                                                 size='large'
                                                 prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                                 type='password'
-                                                placeholder='' id='passowrd'
                                             />,
                                         )}
                                     </Form.Item>
                                     <Form.Item>
-                                        <Link to='/login'>Already a member?</Link>
+                                        <Link to='/admin/login'>Already an admin?</Link>
                                     </Form.Item>
                                     <Form.Item>
                                         <Button size='large' block type='primary' htmlType='submit' className='login-form-button'>
@@ -113,6 +108,6 @@ const StudentSignupPage = (props) => {
     );
 }
 
-const WrappedNormalSignupForm = Form.create({ name: 'signup' })(StudentSignupPage);
+const WrappedNormalAdminSignupForm = Form.create({ name: 'signup' })(AdminSignupPage);
 
-export default WrappedNormalSignupForm;
+export default WrappedNormalAdminSignupForm;

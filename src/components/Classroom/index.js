@@ -11,10 +11,11 @@ const { Content, Sider } = Layout;
 const { Title } = Typography;
 
 const Classroom = (props) => {
-    const { courses, handleRateCourse } = useContext(CourseContext);
+    const { courses, handleRateCourse, handleFlagCourse } = useContext(CourseContext);
     const { handleCompleteCourse, auth } = useContext(AuthContext);
     const [collapsed, setCollapsed] = useState(false);
     const [modalVisible, setModal] = useState(false);
+    const [modalFlagVisible, setFlagModal] = useState(false);
     const [userRate, setRate] = useState(3);
     const [course, setCurrCourse] = useState();
     const [lessons, setLessons] = useState([]);
@@ -52,11 +53,15 @@ const Classroom = (props) => {
         }
     }, [lessons, courses, props.match.params.lessonId])
 
+    useEffect(() => {
+        if (lessons && !lesson) {
+            if (lessons.length > 0) {
+                props.history.push(`/classroom/${props.match.params.courseId}/${lessons[0]._id}`);
+            }
+        }
+    }, [lesson, props.history, props.match.params.courseId, lessons]);
 
-    const showModal = () => {
-        setModal(true);
-    };
-
+    
     const handleRating = (value) => {
         setRate(value);
     };
@@ -64,7 +69,6 @@ const Classroom = (props) => {
     const handleOk = () => {
         handleRateCourse(course._id, userRate);
         if (!course.test) {
-            // return message.success('This is a success message');
             handleCompleteCourse(course._id);
             props.history.push(`/dashboard`);
         } else {
@@ -72,8 +76,16 @@ const Classroom = (props) => {
         }
     };
 
-    const handleCancel = () => {
-        setModal(false);
+    const handleFlag = (reason) => {
+        const values = {
+            courseId: course._id,
+            reason,
+            title: course.title,
+            reporterId: auth._id,
+            reporterName: `${auth.firstname} ${auth.lastname}`,
+        }
+        handleFlagCourse(values);
+        setFlagModal(false);
     };
 
 
@@ -113,7 +125,27 @@ const Classroom = (props) => {
                                         {
                                             lesson &&
                                             <div>
-                                                <Title level={4}>{lesson.title}</Title>
+                                                <div style={{}}>
+                                                    <Title level={4} style={{ float: 'left' }}>{lesson.title}</Title>
+                                                    <Button icon='flag' style={{ float: 'right' }} onClick={() => setFlagModal(true)} disabled={auth.role === 'admin'} />
+                                                    <Modal
+                                                        title='Report'
+                                                        visible={modalFlagVisible}
+                                                        onOk={() => setFlagModal(false)}
+                                                        onCancel={() => setFlagModal(false)}
+                                                        footer={null}
+                                                        className='flag-modal'
+
+                                                    >
+                                                        <List
+                                                            size="large"
+                                                            bordered
+                                                            dataSource={['Using someone elses content', 'It\'s inappropriate', 'Innaccurate Content', 'Spam', 'Not as it seems']}
+                                                            renderItem={item => <List.Item className='flag-modal-list-item' onClick={() => { handleFlag(item) }}>{item}</List.Item>}
+                                                        />
+                                                    </Modal>
+                                                </div>
+                                                <br />
                                                 {
                                                     lesson.videoURL &&
                                                     <div style={{ width: '70%', margin: '20px auto' }}>
@@ -159,7 +191,7 @@ const Classroom = (props) => {
                                                         {
                                                             lessons[lessons.length - 1]._id === lesson._id && (
                                                                 <div>
-                                                                    <Button type='primary' onClick={showModal}>
+                                                                    <Button type='primary' onClick={() => setModal(true)}>
                                                                         Done
                                                                 </Button>
                                                                     <Modal
@@ -167,9 +199,9 @@ const Classroom = (props) => {
                                                                         title='Feedback'
                                                                         visible={modalVisible}
                                                                         onOk={handleOk}
-                                                                        onCancel={handleCancel}
+                                                                        onCancel={() => setModal(false)}
                                                                         footer={[
-                                                                            <Button key='submit' type='primary' onClick={handleOk}>
+                                                                            <Button key='submit' type='primary' onClick={handleOk} disabled={auth.role === 'admin'}>
                                                                                 {
                                                                                     course.test ? 'Take test' : 'Done'
                                                                                 }

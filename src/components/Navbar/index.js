@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Button, Icon } from 'antd';
 import SignedInLinks from './SignedIn/SignedInLinks';
@@ -14,7 +14,9 @@ const Navbar = () => {
     const { auth } = useContext(AuthContext);
     const [drawerState, setDrawerState] = useState(false);
 
-
+    useEffect(() => {
+        console.log(':)');
+    }, [auth])
     const showDrawer = () => setDrawerState(true);
 
     const onCloseDrawer = () => setDrawerState(false);
@@ -32,8 +34,8 @@ const Navbar = () => {
             {
                 auth ?
                     <div>
-                        <SignedInLinks />
-                        <SignedInDrawer onClose={onCloseDrawer} visible={drawerState} />
+                        <SignedInLinks auth={auth} />
+                        <SignedInDrawer onClose={onCloseDrawer} visible={drawerState} auth={auth} />
                     </div>
                     :
                     <div>

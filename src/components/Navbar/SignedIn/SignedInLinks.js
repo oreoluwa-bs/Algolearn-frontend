@@ -6,7 +6,7 @@ import { ColorContext } from '../../../store/Contexts/colors';
 
 const { SubMenu } = Menu;
 
-const SignedInLinks = () => {
+const SignedInLinks = (props) => {
     const { auth, handleLogout } = useContext(AuthContext);
     const { colors_bg, colors_random } = useContext(ColorContext);
 
@@ -21,11 +21,22 @@ const SignedInLinks = () => {
                     <span>Catalogue</span>
                     <Link to='/catalogue' />
                 </Menu.Item>
-                <Menu.Item key='classroom'>
-                    <Icon type='dashboard' />
-                    <span>Dashboard</span>
-                    <Link to='/dashboard' />
-                </Menu.Item>
+                {
+                    props.auth.role !== 'admin' &&
+                    <Menu.Item key='classroom'>
+                        <Icon type='dashboard' />
+                        <span>Dashboard</span>
+                        <Link to='/dashboard' />
+                    </Menu.Item>
+                }
+                {
+                    props.auth.role === 'admin' &&
+                    <Menu.Item key='classroom'>
+                        <Icon type='dashboard' />
+                        <span>Dashboard</span>
+                        <Link to='/admin/dashboard' />
+                    </Menu.Item>
+                }
                 <span className='ant-divider' style={{ margin: '0 1em' }} />
                 <SubMenu
                     title={

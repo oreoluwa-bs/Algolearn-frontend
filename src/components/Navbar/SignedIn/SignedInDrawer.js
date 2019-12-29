@@ -18,11 +18,22 @@ const SignedInDrawer = (props) => {
                         <span>Catalogue</span>
                         <Link to='/catalogue' />
                     </Menu.Item>
-                    <Menu.Item key='classroom'>
-                        <Icon type='dashboard' />
-                        <span>Dashboard</span>
-                        <Link to='/dashboard' />
-                    </Menu.Item>
+                    {
+                        props.auth.role !== 'admin' &&
+                        <Menu.Item key='classroom'>
+                            <Icon type='dashboard' />
+                            <span>Dashboard</span>
+                            <Link to='/dashboard' />
+                        </Menu.Item>
+                    }
+                    {
+                        props.auth.role === 'admin' &&
+                        <Menu.Item key='classroom'>
+                            <Icon type='dashboard' />
+                            <span>Dashboard</span>
+                            <Link to='/admin/dashboard' />
+                        </Menu.Item>
+                    }
                     <Menu.Divider />
                     <Menu.Item key='manageaccount'>
                         <Icon type='user' />

@@ -199,6 +199,58 @@ class AuthContextProvider extends Component {
         });
     }
 
+
+
+    // Admin 
+
+    handleAdminLogin = (credentials) => {
+        axios.post(`${this.props.apiUrl}/admin/auth/login`, {
+            email: credentials.email,
+            password: credentials.password
+        }).then((res) => {
+            this.setState({
+                auth: res.data.auth
+            });
+            localStorage.setItem('auth', JSON.stringify(res.data.auth));
+            localStorage.setItem('token', res.data.token);
+            this.feedback({
+                status: 'success',
+                message: `Hello, ${this.state.auth.firstname}!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'Incorrect email or password'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
+    handleAdminCreateAccount = (credentials) => {
+        axios.post(`${this.props.apiUrl}/admin/auth/create-user`, {
+            email: credentials.email,
+            password: credentials.password,
+            firstname: credentials.firstname,
+            lastname: credentials.lastname,
+            role: credentials.role.toLowerCase(),
+        }).then(() => {
+            this.feedback({
+                status: 'success',
+                message: `Your account has been created!`
+            });
+        }).catch(() => {
+            this.setState({
+                response: {
+                    status: 'error',
+                    message: 'User account could not be created'
+                }
+            });
+            this.feedback(this.state.response);
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -219,6 +271,10 @@ class AuthContextProvider extends Component {
                 handleAccountDelete: this.handleAccountDelete,
                 handleEnrollInCourse: this.handleEnrollInCourse,
                 handleCompleteCourse: this.handleCompleteCourse,
+
+                // Admin
+                handleAdminLogin: this.handleAdminLogin,
+                handleAdminCreateAccount: this.handleAdminCreateAccount,
             }}>
                 {this.props.children}
             </AuthContext.Provider>

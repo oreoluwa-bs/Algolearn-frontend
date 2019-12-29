@@ -1,5 +1,5 @@
 .classroom .classroom-main {
-  padding: 50px;
+  padding: 50px 50px 0;
 }
 .classroom .class-content {
   padding: 24px 80px; 
@@ -12,6 +12,26 @@
   padding: 2px 0;
 }
 
+.flag-modal .ant-modal-body {
+  padding: 0;
+}
+.flag-modal .ant-modal-header {
+  border: 0;
+}
+
+.flag-modal .flag-modal-list-item{
+    text-align: center;
+    cursor: pointer;
+}
+.flag-modal .ant-list-bordered {
+  border-radius: 0;
+}
+
+.flag-modal .flag-modal-list-item:hover{
+  background-color: #1890FF;
+  color: white;
+}
+
 @media screen and (max-width:768px){
   .classroom .class-content {
     padding: 24px 40px; 
@@ -20,6 +40,6 @@
 
 @media screen and (max-width:575px){
   .classroom .classroom-main {
-    padding: 30px;
+    padding: 30px 30px 0;
   }
 }

@@ -49,7 +49,7 @@ export default CourseDetailLarge;
 const DetailsView = (props) => {
     const { handleDeleteCourse, handleEditCourse, handleDeleteLesson, handleDeleteQuestion } = useContext(CourseContext);
     const { colors_bg, colors_random } = useContext(ColorContext);
-    
+
     const { handleEnrollInCourse } = useContext(AuthContext);
     const [courseEditModal, setCourseEditModal] = useState(false);
 
@@ -58,9 +58,11 @@ const DetailsView = (props) => {
     let isEnrolled = false;
 
     if (auth) {
-        isEnrolled = auth.enrolledCourses.some((cour) => {
-            return cour._id === course._id
-        });
+        if (auth.enrolledCourses) {
+            isEnrolled = auth.enrolledCourses.some((cour) => {
+                return cour._id === course._id
+            });
+        }
     }
 
     const contentValue = ['Poor', 'Decent', 'Good', 'Very Good', 'Rich'];
@@ -268,7 +270,7 @@ const DetailsView = (props) => {
                                             auth &&
                                             <div>
                                                 <div className='enroll-btn'>
-                                                    <Button type='primary' size='large' disabled={auth._id === course.authorId || isEnrolled} onClick={() => {
+                                                    <Button type='primary' size='large' disabled={(auth._id === course.authorId || isEnrolled) || auth.role === 'admin'} onClick={() => {
                                                         handleEnrollInCourse(course._id);
                                                     }}>Enroll in course</Button>
                                                 </div>

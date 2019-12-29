@@ -31,8 +31,16 @@ const AccountPage = (props) => {
     if (!auth) {
         return <Redirect to='/' />
     }
-    const enrolledCourses = [...new Set(auth.enrolledCourses.map(course => course._id))];
-    const createdCourses = [...new Set(auth.createdCourses.map(course => course._id))];
+
+    let enrolledCourses = [];
+    let createdCourses = [];
+
+    if (auth) {
+        if (auth.role !== 'admin') {
+            enrolledCourses = [...new Set(auth.enrolledCourses.map(course => course._id))];
+            createdCourses = [...new Set(auth.createdCourses.map(course => course._id))];
+        }
+    }
 
     const createdCoursesNum = courses.filter((course) => {
         return createdCourses.map((id) => {
@@ -94,18 +102,21 @@ const AccountPage = (props) => {
                                             </Form.Item>
                                         </Col>
                                     </Row>
-                                    <Form.Item>
-                                        <label>Account Type:</label>
-                                        <br />
-                                        {getFieldDecorator('role', {
-                                            initialValue: auth.role
-                                        })(
-                                            <Radio.Group name="radiogroup">
-                                                <Radio value='student'>Student</Radio>
-                                                <Radio value='tutor'>Tutor</Radio>
-                                            </Radio.Group>,
-                                        )}
-                                    </Form.Item>
+                                    {
+                                        auth.role !== 'admin' &&
+                                        <Form.Item>
+                                            <label>Account Type:</label>
+                                            <br />
+                                            {getFieldDecorator('role', {
+                                                initialValue: auth.role
+                                            })(
+                                                <Radio.Group name="radiogroup">
+                                                    <Radio value='student'>Student</Radio>
+                                                    <Radio value='tutor'>Tutor</Radio>
+                                                </Radio.Group>,
+                                            )}
+                                        </Form.Item>
+                                    }
 
                                     <Form.Item>
                                         <label>Email Address:</label>
@@ -146,20 +157,23 @@ const AccountPage = (props) => {
                             <div className='course-add-info'>
                                 <div className='course-add-body'>
                                     <Card bordered={false} title='Account Information'>
-                                        <div className='course-add-meta'>
-                                            {/* {
+                                        {
+                                            auth.role !== 'admin' &&
+                                            <div className='course-add-meta'>
+                                                {/* {
                                                 course.tests && course.tests.length > 0 &&
                                                 <div>
                                                     <Icon type='check-square' />
                                                     <Text type='secondary'>Interactive Quizes</Text>
                                                 </div>
                                             } */}
-                                            <Statistic title="Enrolled Courses" value={enrolledCourses.length === 0 ? 0 : enrolledCoursesNum} />
-                                            {
-                                                auth.role === 'tutor' &&
-                                                <Statistic title="Created Courses" value={createdCourses.length === 0 ? 0 : createdCoursesNum} />
-                                            }
-                                        </div>
+                                                <Statistic title="Enrolled Courses" value={enrolledCourses.length === 0 ? 0 : enrolledCoursesNum} />
+                                                {
+                                                    auth.role === 'tutor' &&
+                                                    <Statistic title="Created Courses" value={createdCourses.length === 0 ? 0 : createdCoursesNum} />
+                                                }
+                                            </div>
+                                        }
                                     </Card>
                                 </div>
                             </div>
