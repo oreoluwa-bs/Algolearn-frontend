@@ -39,7 +39,7 @@ const StudentSignupPage = (props) => {
                             </div>
                         </Col>
                         <Col xs={{ span: 24 }} xl={{ span: 14 }}>
-                            <div style={{ padding: 50 }}>
+                            <div className='form-contantin'>
                                 <Title className='large-text bold' style={{ textAlign: 'center' }}>Create an account</Title>
                                 <Form onSubmit={handleSubmit} className='login-form'>
                                     <Row gutter={{ md: 24 }}>

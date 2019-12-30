@@ -35,7 +35,7 @@ const AdminLoginPage = (props) => {
                             </div>
                         </Col>
                         <Col xs={{ span: 24, order: 1 }} xl={{ span: 14, order: 2 }}>
-                            <div style={{ padding: 50 }}>
+                            <div className='form-contantin'>
                                 <Title className='large-text bold' style={{ textAlign: 'center' }}>Login</Title>
                                 <Form onSubmit={handleSubmit} className='login-form' hideRequiredMark>
                                     <Form.Item label='Email Address'>

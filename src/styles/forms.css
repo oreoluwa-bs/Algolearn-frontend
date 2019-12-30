@@ -18,6 +18,9 @@
     background-image: url('../assets/images/homepage_banner_background.svg');
     background-position: center;
 }
+.form-contantin{
+    padding: 50px;
+}
 
 @media screen and (max-width:1200px){
     .form-wrappwe .form-img{
@@ -33,7 +36,7 @@
         max-width: 60vw;
     }
     .form-wrappwe .form-img{
-        min-height: 200px;
+        min-height: 180px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
     }
@@ -47,5 +50,8 @@
         min-height: 200px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
+    }
+    .form-contantin {
+        padding: 30px;
     }
 }
