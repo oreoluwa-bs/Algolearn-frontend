@@ -18,14 +18,15 @@ import WrappedNormalAccountPageForm from './views/AccountPage';
 import WrappedNormalCreateTestForm from './views/CreateTestPage';
 import EditTestPageWrapper from './components/TutorMisc/EditPageWrapper';
 import EditLessonPageWrapper from './components/TutorMisc/EditLessonWrapper';
+import WrappedNormalForgotPasswordForm from './views/ForgotPassword';
 
 import AdminIndex from './views/admin pages/AdminIndex';
 import WrappedNormalAdminLoginForm from './views/admin pages/AdminLogin';
 import AdminDashboard from './views/admin pages/AdminDashboard';
-
-import './App.css';
 import WrappedNormalAdminSignupForm from './views/admin pages/AdminSignup';
 
+import './App.css';
+import WrappedNormalAdminForgotPasswordForm from './views/admin pages/AdminForgotPassword';
 
 const { Footer } = Layout;
 function App() {
@@ -45,6 +46,9 @@ function App() {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
               <Route path='/tests/:courseId/' component={TestPage} />
+
+              <Route path='/forgot-password' component={WrappedNormalForgotPasswordForm} />
+              <Route path='/forgotadminpassword' component={WrappedNormalAdminForgotPasswordForm} />
 
               <Route path='/course/create' component={WrappedNormalCreateCourseForm} />
               <Route path='/:courseId/lesson/create' component={WrappedNormalCreateLessonForm} />

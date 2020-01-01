@@ -3,10 +3,13 @@ import { Layout, Form, Input, Button, Table, Tooltip, Divider, Modal, message, P
 import WrappedNormalOptionsForm from '../components/Misc/OptionsForm';
 import WrappedNormalEditOptionsForm from '../components/Misc/EditOptionsForm';
 import { CourseContext } from '../store/Contexts/course';
+import { Redirect } from 'react-router-dom';
+import { AuthContext } from '../store/Contexts/auth';
 
 const { TextArea } = Input;
 
 const CreateTestPage = (props) => {
+    const { auth } = useContext(AuthContext);
     const { handleCreateTest } = useContext(CourseContext);
     const [optionsModal, setOptionsModal] = useState(false);
     const [editOptionsModal, setEditOptionsModal] = useState(false);
@@ -60,6 +63,10 @@ const CreateTestPage = (props) => {
             return opt.key !== option.key;
         });
         setOptionsData(newOptionsdata);
+    }
+
+    if (!auth) {
+        return <Redirect to='/dashboard' />
     }
 
     return (

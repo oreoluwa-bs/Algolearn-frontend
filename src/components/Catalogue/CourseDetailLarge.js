@@ -179,7 +179,6 @@ const DetailsView = (props) => {
         };
         testData.push(format);
     });
-
     const moreButtons = auth && auth.role === 'tutor' && auth._id === course.authorId ? [
         <Tooltip title='Delete this course' key='del-button'>
             <Popconfirm
@@ -265,6 +264,9 @@ const DetailsView = (props) => {
                                         <Text type='secondary'>{course.authorName}</Text>
                                     </div>
                                     <Rate defaultValue={Math.round(rating / course.ratings.length)} disabled />
+                                    <div style={{ marginBottom: -20, marginTop: 10 }}>
+                                        <Text type='secondary'>{course.ratings.length - 1} {course.ratings.length - 1 === 1 ? 'Review' : 'Reviews'}</Text>
+                                    </div>
                                     <div>
                                         {
                                             auth &&

@@ -61,7 +61,7 @@ const LoginPage = (props) => {
                                     </Form.Item>
                                     <Form.Item>
                                         <div style={{ float: 'left' }}>
-                                            <Link to='' >Forgot password?</Link>
+                                            <Link to='/forgot-password'>Forgot password?</Link>
                                         </div>
                                     </Form.Item>
                                     <Form.Item>

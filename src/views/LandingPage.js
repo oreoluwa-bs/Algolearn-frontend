@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Typography, Divider } from 'antd';
 import WrappedNormalContactForm from '../components/Misc/ContactView';
 import CourseDetailSmall from '../components/Catalogue/CourseDetailSmall';
 import '../styles/landingpage.css';
 import { CourseContext } from '../store/Contexts/course';
+import { AuthContext } from '../store/Contexts/auth';
 
 const { Title, Paragraph } = Typography;
 
 const LandingPage = () => {
+    const { handleInit } = useContext(AuthContext);
     const { courses } = useContext(CourseContext);
     const topCourses = courses.sort((a, b) => {
         let arating = 0;
@@ -31,6 +33,10 @@ const LandingPage = () => {
         // names must be equal
         return 0;
     });
+
+    useEffect(() => {
+        handleInit();
+    }, [handleInit]);
 
     return (
         <Layout className="layout" >

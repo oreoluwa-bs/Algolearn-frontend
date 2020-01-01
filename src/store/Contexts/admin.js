@@ -49,6 +49,22 @@ class AdminUserContextProvider extends Component {
         });
     }
 
+    handleForgotPassword = (values) => {
+        axios.post(`${this.props.apiUrl}/admin/forgotadminpassword`, {
+            email: values.email,
+        }).then(() => {
+            this.feedback({
+                status: 'info',
+                message: 'Check your email for a confirmation!'
+            });
+        }).catch(() => {
+            this.feedback({
+                status: 'error',
+                message: 'Email address provided, does not have an account!'
+            });
+        });
+    }
+
     feedback = (response) => {
         if (response.status === 'success') {
             message.success(response.message);
@@ -56,13 +72,16 @@ class AdminUserContextProvider extends Component {
         if (response.status === 'error') {
             message.error(response.message);
         }
+        if (response.status === 'info') {
+            message.info(response.message);
+        }
     }
     render() {
         return (
             <AdminUserContext.Provider value={{
                 ...this.state,
                 getReportedCourses: this.getReportedCourses,
-
+                handleForgotPassword: this.handleForgotPassword,
             }}>
                 {this.props.children}
             </AdminUserContext.Provider>

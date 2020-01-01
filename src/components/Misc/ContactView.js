@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Form, Icon, Input, Button, Row, Col, Typography } from 'antd';
+import { AuthContext } from '../../store/Contexts/auth';
 
 const { TextArea } = Input;
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const ContactView = (props) => {
+    const { handleContactUs } = useContext(AuthContext);
+
     const handleSubmit = (e) => {
         // console.log(this.state);
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values);
+                // console.log(values);
+                handleContactUs(values);
             }
         });
     };
@@ -38,7 +42,7 @@ const ContactView = (props) => {
                             <div>
                                 <Form onSubmit={handleSubmit} className='login-form'>
                                     <Form.Item label='Name'>
-                                        {getFieldDecorator('Name', {
+                                        {getFieldDecorator('name', {
                                             rules: [{ required: true, message: 'Please input your name!' }],
                                         })(
                                             <Input

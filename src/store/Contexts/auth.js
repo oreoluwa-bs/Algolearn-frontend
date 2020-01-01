@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import axios from 'axios';
-import { message } from 'antd';
+import { message, notification, Avatar } from 'antd';
 
 export const AuthContext = createContext();
 
@@ -12,6 +12,40 @@ class AuthContextProvider extends Component {
             status: null,
             message: null
         }
+    }
+
+    handleInit = () => {
+        axios.get(`${this.props.apiUrl}/`).then(() => {
+            return
+        }).catch(() => {
+            return
+        });
+    }
+
+    handleContactUs = (values) => {
+        axios.post(`${this.props.apiUrl}/contact-us`, {
+            name: values.name,
+            email: values.email,
+            message: values.message,
+        }).then(() => {
+            notification.info({
+                message: `Hello ${values.name}`,
+                description: <div>
+                    <p>Thanks for you're feedback!, We love hearing from you</p>
+                    <div style={{ marginTop: 10 }}>
+                        <Avatar src={`https://api.adorable.io/avatars/285/${values.email}.png`} style={{ marginRight: 10 }} />
+                        <span className='ant-typography ant-typography-secondary' style={{ verticalAlign: 'middle' }}>
+                            - Algolearn Support
+                        </span>
+                    </div>
+                </div>
+            });
+        }).catch(() => {
+            this.feedback({
+                status: 'error',
+                message: 'Your mail didn\'t go through! Try again later.'
+            });
+        });
     }
 
     handleLogout = () => {
@@ -63,7 +97,11 @@ class AuthContextProvider extends Component {
                 status: 'success',
                 message: `Your account has been created!`
             });
-        }).catch(() => {
+            this.feedback({
+                status: 'success',
+                message: `Proceed to Login page!`
+            });
+        }).catch((err) => {
             this.setState({
                 response: {
                     status: 'error',
@@ -133,6 +171,23 @@ class AuthContextProvider extends Component {
                 }
             });
             this.feedback(this.state.response);
+        });
+    }
+
+
+    handleForgotPassword = (values) => {
+        axios.post(`${this.props.apiUrl}/auth/forgot-password`, {
+            email: values.email,
+        }).then(() => {
+            this.feedback({
+                status: 'info',
+                message: 'Check your email for a confirmation!'
+            });
+        }).catch(() => {
+            this.feedback({
+                status: 'error',
+                message: 'Email address provided, does not have an account!'
+            });
         });
     }
 
@@ -258,6 +313,9 @@ class AuthContextProvider extends Component {
         if (response.status === 'error') {
             message.error(response.message);
         }
+        if (response.status === 'info') {
+            message.info(response.message);
+        }
     }
 
     render() {
@@ -275,6 +333,11 @@ class AuthContextProvider extends Component {
                 // Admin
                 handleAdminLogin: this.handleAdminLogin,
                 handleAdminCreateAccount: this.handleAdminCreateAccount,
+
+                // Init
+                handleInit: this.handleInit,
+                handleContactUs: this.handleContactUs,
+                handleForgotPassword: this.handleForgotPassword,
             }}>
                 {this.props.children}
             </AuthContext.Provider>

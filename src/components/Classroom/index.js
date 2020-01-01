@@ -61,14 +61,14 @@ const Classroom = (props) => {
         }
     }, [lesson, props.history, props.match.params.courseId, lessons]);
 
-    
+
     const handleRating = (value) => {
         setRate(value);
     };
 
     const handleOk = () => {
         handleRateCourse(course._id, userRate);
-        if (!course.test) {
+        if (course.test && course.test.length <= 0) {
             handleCompleteCourse(course._id);
             props.history.push(`/dashboard`);
         } else {
@@ -157,7 +157,11 @@ const Classroom = (props) => {
                                                 }
                                                 {
                                                     lesson.textContent &&
-                                                    <ReactMarkdown source={lesson.textContent} />
+                                                    <div className='class-texct'>
+                                                        <br />
+                                                        <br />
+                                                        <ReactMarkdown source={lesson.textContent} />
+                                                    </div>
                                                     // <Paragraph>{lesson.textContent}</Paragraph>
                                                 }
                                                 {
@@ -203,7 +207,7 @@ const Classroom = (props) => {
                                                                         footer={[
                                                                             <Button key='submit' type='primary' onClick={handleOk} disabled={auth.role === 'admin'}>
                                                                                 {
-                                                                                    course.test ? 'Take test' : 'Done'
+                                                                                    course.test && course.test.length > 0 ? 'Take test' : 'Done'
                                                                                 }
                                                                             </Button>,
                                                                         ]}

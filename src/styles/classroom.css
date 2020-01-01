@@ -32,6 +32,10 @@
   color: white;
 }
 
+.classroom .class-content h1 {
+  font-size: 1.6em;
+}
+
 @media screen and (max-width:768px){
   .classroom .class-content {
     padding: 24px 40px; 
@@ -42,4 +46,959 @@
   .classroom .classroom-main {
     padding: 30px 30px 0;
   }
+}
+
+
+/** git hub markdown styles **/
+.classroom .class-content .class-texct .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.classroom .class-content .class-texct .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
+
+.classroom .class-content .class-texct .anchor:focus {
+  outline: none;
+}
+
+.classroom .class-content .class-texct h1 .octicon-link,
+.classroom .class-content .class-texct h2 .octicon-link,
+.classroom .class-content .class-texct h3 .octicon-link,
+.classroom .class-content .class-texct h4 .octicon-link,
+.classroom .class-content .class-texct h5 .octicon-link,
+.classroom .class-content .class-texct h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.classroom .class-content .class-texct h1:hover .anchor,
+.classroom .class-content .class-texct h2:hover .anchor,
+.classroom .class-content .class-texct h3:hover .anchor,
+.classroom .class-content .class-texct h4:hover .anchor,
+.classroom .class-content .class-texct h5:hover .anchor,
+.classroom .class-content .class-texct h6:hover .anchor {
+  text-decoration: none;
+}
+
+.classroom .class-content .class-texct h1:hover .anchor .octicon-link,
+.classroom .class-content .class-texct h2:hover .anchor .octicon-link,
+.classroom .class-content .class-texct h3:hover .anchor .octicon-link,
+.classroom .class-content .class-texct h4:hover .anchor .octicon-link,
+.classroom .class-content .class-texct h5:hover .anchor .octicon-link,
+.classroom .class-content .class-texct h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.classroom .class-content .class-texct {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #24292e;
+  line-height: 1.5;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.classroom .class-content .class-texct .pl-c {
+  color: #6a737d;
+}
+
+.classroom .class-content .class-texct .pl-c1,
+.classroom .class-content .class-texct .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.classroom .class-content .class-texct .pl-e,
+.classroom .class-content .class-texct .pl-en {
+  color: #6f42c1;
+}
+
+.classroom .class-content .class-texct .pl-s .pl-s1,
+.classroom .class-content .class-texct .pl-smi {
+  color: #24292e;
+}
+
+.classroom .class-content .class-texct .pl-ent {
+  color: #22863a;
+}
+
+.classroom .class-content .class-texct .pl-k {
+  color: #d73a49;
+}
+
+.classroom .class-content .class-texct .pl-pds,
+.classroom .class-content .class-texct .pl-s,
+.classroom .class-content .class-texct .pl-s .pl-pse .pl-s1,
+.classroom .class-content .class-texct .pl-sr,
+.classroom .class-content .class-texct .pl-sr .pl-cce,
+.classroom .class-content .class-texct .pl-sr .pl-sra,
+.classroom .class-content .class-texct .pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.classroom .class-content .class-texct .pl-smw,
+.classroom .class-content .class-texct .pl-v {
+  color: #e36209;
+}
+
+.classroom .class-content .class-texct .pl-bu {
+  color: #b31d28;
+}
+
+.classroom .class-content .class-texct .pl-ii {
+  background-color: #b31d28;
+  color: #fafbfc;
+}
+
+.classroom .class-content .class-texct .pl-c2 {
+  background-color: #d73a49;
+  color: #fafbfc;
+}
+
+.classroom .class-content .class-texct .pl-c2:before {
+  content: "^M";
+}
+
+.classroom .class-content .class-texct .pl-sr .pl-cce {
+  color: #22863a;
+  font-weight: 700;
+}
+
+.classroom .class-content .class-texct .pl-ml {
+  color: #735c0f;
+}
+
+.classroom .class-content .class-texct .pl-mh,
+.classroom .class-content .class-texct .pl-mh .pl-en,
+.classroom .class-content .class-texct .pl-ms {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.classroom .class-content .class-texct .pl-mi {
+  color: #24292e;
+  font-style: italic;
+}
+
+.classroom .class-content .class-texct .pl-mb {
+  color: #24292e;
+  font-weight: 700;
+}
+
+.classroom .class-content .class-texct .pl-md {
+  background-color: #ffeef0;
+  color: #b31d28;
+}
+
+.classroom .class-content .class-texct .pl-mi1 {
+  background-color: #f0fff4;
+  color: #22863a;
+}
+
+.classroom .class-content .class-texct .pl-mc {
+  background-color: #ffebda;
+  color: #e36209;
+}
+
+.classroom .class-content .class-texct .pl-mi2 {
+  background-color: #005cc5;
+  color: #f6f8fa;
+}
+
+.classroom .class-content .class-texct .pl-mdr {
+  color: #6f42c1;
+  font-weight: 700;
+}
+
+.classroom .class-content .class-texct .pl-ba {
+  color: #586069;
+}
+
+.classroom .class-content .class-texct .pl-sg {
+  color: #959da5;
+}
+
+.classroom .class-content .class-texct .pl-corl {
+  color: #032f62;
+  text-decoration: underline;
+}
+
+.classroom .class-content .class-texct details {
+  display: block;
+}
+
+.classroom .class-content .class-texct summary {
+  display: list-item;
+}
+
+.classroom .class-content .class-texct a {
+  background-color: transparent;
+}
+
+.classroom .class-content .class-texct a:active,
+.classroom .class-content .class-texct a:hover {
+  outline-width: 0;
+}
+
+.classroom .class-content .class-texct strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.classroom .class-content .class-texct h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.classroom .class-content .class-texct img {
+  border-style: none;
+}
+
+.classroom .class-content .class-texct code,
+.classroom .class-content .class-texct kbd,
+.classroom .class-content .class-texct pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.classroom .class-content .class-texct hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.classroom .class-content .class-texct input {
+  font: inherit;
+  margin: 0;
+}
+
+.classroom .class-content .class-texct input {
+  overflow: visible;
+}
+
+.classroom .class-content .class-texct [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.classroom .class-content .class-texct * {
+  box-sizing: border-box;
+}
+
+.classroom .class-content .class-texct input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.classroom .class-content .class-texct a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.classroom .class-content .class-texct a:hover {
+  text-decoration: underline;
+}
+
+.classroom .class-content .class-texct strong {
+  font-weight: 600;
+}
+
+.classroom .class-content .class-texct hr {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.classroom .class-content .class-texct hr:before {
+  content: "";
+  display: table;
+}
+
+.classroom .class-content .class-texct hr:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.classroom .class-content .class-texct table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.classroom .class-content .class-texct td,
+.classroom .class-content .class-texct th {
+  padding: 0;
+}
+
+.classroom .class-content .class-texct details summary {
+  cursor: pointer;
+}
+
+.classroom .class-content .class-texct h1,
+.classroom .class-content .class-texct h2,
+.classroom .class-content .class-texct h3,
+.classroom .class-content .class-texct h4,
+.classroom .class-content .class-texct h5,
+.classroom .class-content .class-texct h6 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct h1 {
+  font-size: 32px;
+}
+
+.classroom .class-content .class-texct h1,
+.classroom .class-content .class-texct h2 {
+  font-weight: 600;
+}
+
+.classroom .class-content .class-texct h2 {
+  font-size: 24px;
+}
+
+.classroom .class-content .class-texct h3 {
+  font-size: 20px;
+}
+
+.classroom .class-content .class-texct h3,
+.classroom .class-content .class-texct h4 {
+  font-weight: 600;
+}
+
+.classroom .class-content .class-texct h4 {
+  font-size: 16px;
+}
+
+.classroom .class-content .class-texct h5 {
+  font-size: 14px;
+}
+
+.classroom .class-content .class-texct h5,
+.classroom .class-content .class-texct h6 {
+  font-weight: 600;
+}
+
+.classroom .class-content .class-texct h6 {
+  font-size: 12px;
+}
+
+.classroom .class-content .class-texct p {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct blockquote {
+  margin: 0;
+}
+
+.classroom .class-content .class-texct ol,
+.classroom .class-content .class-texct ul {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.classroom .class-content .class-texct ol ol,
+.classroom .class-content .class-texct ul ol {
+  list-style-type: lower-roman;
+}
+
+.classroom .class-content .class-texct ol ol ol,
+.classroom .class-content .class-texct ol ul ol,
+.classroom .class-content .class-texct ul ol ol,
+.classroom .class-content .class-texct ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+.classroom .class-content .class-texct dd {
+  margin-left: 0;
+}
+
+.classroom .class-content .class-texct code,
+.classroom .class-content .class-texct pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+}
+
+.classroom .class-content .class-texct pre {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct input::-webkit-inner-spin-button,
+.classroom .class-content .class-texct input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.classroom .class-content .class-texct .border {
+  border: 1px solid #e1e4e8!important;
+}
+
+.classroom .class-content .class-texct .border-0 {
+  border: 0!important;
+}
+
+.classroom .class-content .class-texct .border-bottom {
+  border-bottom: 1px solid #e1e4e8!important;
+}
+
+.classroom .class-content .class-texct .rounded-1 {
+  border-radius: 3px!important;
+}
+
+.classroom .class-content .class-texct .bg-white {
+  background-color: #fff!important;
+}
+
+.classroom .class-content .class-texct .bg-gray-light {
+  background-color: #fafbfc!important;
+}
+
+.classroom .class-content .class-texct .text-gray-light {
+  color: #6a737d!important;
+}
+
+.classroom .class-content .class-texct .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.classroom .class-content .class-texct .my-2 {
+  margin-bottom: 8px!important;
+  margin-top: 8px!important;
+}
+
+.classroom .class-content .class-texct .pl-0 {
+  padding-left: 0!important;
+}
+
+.classroom .class-content .class-texct .py-0 {
+  padding-bottom: 0!important;
+  padding-top: 0!important;
+}
+
+.classroom .class-content .class-texct .pl-1 {
+  padding-left: 4px!important;
+}
+
+.classroom .class-content .class-texct .pl-2 {
+  padding-left: 8px!important;
+}
+
+.classroom .class-content .class-texct .py-2 {
+  padding-bottom: 8px!important;
+  padding-top: 8px!important;
+}
+
+.classroom .class-content .class-texct .pl-3,
+.classroom .class-content .class-texct .px-3 {
+  padding-left: 16px!important;
+}
+
+.classroom .class-content .class-texct .px-3 {
+  padding-right: 16px!important;
+}
+
+.classroom .class-content .class-texct .pl-4 {
+  padding-left: 24px!important;
+}
+
+.classroom .class-content .class-texct .pl-5 {
+  padding-left: 32px!important;
+}
+
+.classroom .class-content .class-texct .pl-6 {
+  padding-left: 40px!important;
+}
+
+.classroom .class-content .class-texct .f6 {
+  font-size: 12px!important;
+}
+
+.classroom .class-content .class-texct .lh-condensed {
+  line-height: 1.25!important;
+}
+
+.classroom .class-content .class-texct .text-bold {
+  font-weight: 600!important;
+}
+
+.classroom .class-content .class-texct:before {
+  content: "";
+  display: table;
+}
+
+.classroom .class-content .class-texct:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.classroom .class-content .class-texct>:first-child {
+  margin-top: 0!important;
+}
+
+.classroom .class-content .class-texct>:last-child {
+  margin-bottom: 0!important;
+}
+
+.classroom .class-content .class-texct a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.classroom .class-content .class-texct blockquote,
+.classroom .class-content .class-texct dl,
+.classroom .class-content .class-texct ol,
+.classroom .class-content .class-texct p,
+.classroom .class-content .class-texct pre,
+.classroom .class-content .class-texct table,
+.classroom .class-content .class-texct ul {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct hr {
+  background-color: #e1e4e8;
+  border: 0;
+  height: .25em;
+  margin: 24px 0;
+  padding: 0;
+}
+
+.classroom .class-content .class-texct blockquote {
+  border-left: .25em solid #dfe2e5;
+  color: #6a737d;
+  padding: 0 1em;
+}
+
+.classroom .class-content .class-texct blockquote>:first-child {
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.classroom .class-content .class-texct kbd {
+  background-color: #fafbfc;
+  border: 1px solid #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+  color: #444d56;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.classroom .class-content .class-texct h1,
+.classroom .class-content .class-texct h2,
+.classroom .class-content .class-texct h3,
+.classroom .class-content .class-texct h4,
+.classroom .class-content .class-texct h5,
+.classroom .class-content .class-texct h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.classroom .class-content .class-texct h1 {
+  font-size: 2em;
+}
+
+.classroom .class-content .class-texct h1,
+.classroom .class-content .class-texct h2 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: .3em;
+}
+
+.classroom .class-content .class-texct h2 {
+  font-size: 1.5em;
+}
+
+.classroom .class-content .class-texct h3 {
+  font-size: 1.25em;
+}
+
+.classroom .class-content .class-texct h4 {
+  font-size: 1em;
+}
+
+.classroom .class-content .class-texct h5 {
+  font-size: .875em;
+}
+
+.classroom .class-content .class-texct h6 {
+  color: #6a737d;
+  font-size: .85em;
+}
+
+.classroom .class-content .class-texct ol,
+.classroom .class-content .class-texct ul {
+  padding-left: 2em;
+}
+
+.classroom .class-content .class-texct ol ol,
+.classroom .class-content .class-texct ol ul,
+.classroom .class-content .class-texct ul ol,
+.classroom .class-content .class-texct ul ul {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.classroom .class-content .class-texct li {
+  word-wrap: break-all;
+}
+
+.classroom .class-content .class-texct li>p {
+  margin-top: 16px;
+}
+
+.classroom .class-content .class-texct li+li {
+  margin-top: .25em;
+}
+
+.classroom .class-content .class-texct dl {
+  padding: 0;
+}
+
+.classroom .class-content .class-texct dl dt {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.classroom .class-content .class-texct dl dd {
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.classroom .class-content .class-texct table {
+  display: block;
+  overflow: auto;
+  width: 100%;
+}
+
+.classroom .class-content .class-texct table th {
+  font-weight: 600;
+}
+
+.classroom .class-content .class-texct table td,
+.classroom .class-content .class-texct table th {
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
+}
+
+.classroom .class-content .class-texct table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.classroom .class-content .class-texct table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.classroom .class-content .class-texct img {
+  background-color: #fff;
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
+.classroom .class-content .class-texct img[align=right] {
+  padding-left: 20px;
+}
+
+.classroom .class-content .class-texct img[align=left] {
+  padding-right: 20px;
+}
+
+.classroom .class-content .class-texct code {
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
+
+.classroom .class-content .class-texct pre {
+  word-wrap: normal;
+}
+
+.classroom .class-content .class-texct pre>code {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+}
+
+.classroom .class-content .class-texct .highlight {
+  margin-bottom: 16px;
+}
+
+.classroom .class-content .class-texct .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.classroom .class-content .class-texct .highlight pre,
+.classroom .class-content .class-texct pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+.classroom .class-content .class-texct pre code {
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  overflow: visible;
+  padding: 0;
+  word-wrap: normal;
+}
+
+.classroom .class-content .class-texct .commit-tease-sha {
+  color: #444d56;
+  display: inline-block;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 90%;
+}
+
+.classroom .class-content .class-texct .blob-wrapper {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.classroom .class-content .class-texct .blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.classroom .class-content .class-texct .blob-num {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: rgba(27,31,35,.3);
+  cursor: pointer;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.classroom .class-content .class-texct .blob-num:hover {
+  color: rgba(27,31,35,.6);
+}
+
+.classroom .class-content .class-texct .blob-num:before {
+  content: attr(data-line-number);
+}
+
+.classroom .class-content .class-texct .blob-code {
+  line-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  vertical-align: top;
+}
+
+.classroom .class-content .class-texct .blob-code-inner {
+  color: #24292e;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  overflow: visible;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.classroom .class-content .class-texct .pl-token.active,
+.classroom .class-content .class-texct .pl-token:hover {
+  background: #ffea7f;
+  cursor: pointer;
+}
+
+.classroom .class-content .class-texct kbd {
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+  color: #444d56;
+  display: inline-block;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.classroom .class-content .class-texct :checked+.radio-label {
+  border-color: #0366d6;
+  position: relative;
+  z-index: 1;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="1"] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="2"] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="3"] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="4"] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="5"] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="6"] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="7"] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="8"] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="9"] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="10"] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="11"] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.classroom .class-content .class-texct .tab-size[data-tab-size="12"] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.classroom .class-content .class-texct .task-list-item {
+  list-style-type: none;
+}
+
+.classroom .class-content .class-texct .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.classroom .class-content .class-texct .task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+.classroom .class-content .class-texct hr {
+  border-bottom-color: #eee;
+}
+
+.classroom .class-content .class-texct .pl-0 {
+  padding-left: 0!important;
+}
+
+.classroom .class-content .class-texct .pl-1 {
+  padding-left: 4px!important;
+}
+
+.classroom .class-content .class-texct .pl-2 {
+  padding-left: 8px!important;
+}
+
+.classroom .class-content .class-texct .pl-3 {
+  padding-left: 16px!important;
+}
+
+.classroom .class-content .class-texct .pl-4 {
+  padding-left: 24px!important;
+}
+
+.classroom .class-content .class-texct .pl-5 {
+  padding-left: 32px!important;
+}
+
+.classroom .class-content .class-texct .pl-6 {
+  padding-left: 40px!important;
+}
+
+.classroom .class-content .class-texct .pl-7 {
+  padding-left: 48px!important;
+}
+
+.classroom .class-content .class-texct .pl-8 {
+  padding-left: 64px!important;
+}
+
+.classroom .class-content .class-texct .pl-9 {
+  padding-left: 80px!important;
+}
+
+.classroom .class-content .class-texct .pl-10 {
+  padding-left: 96px!important;
+}
+
+.classroom .class-content .class-texct .pl-11 {
+  padding-left: 112px!important;
+}
+
+.classroom .class-content .class-texct .pl-12 {
+  padding-left: 128px!important;
 }

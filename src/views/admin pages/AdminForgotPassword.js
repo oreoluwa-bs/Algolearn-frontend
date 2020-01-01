@@ -1,28 +1,26 @@
 import React, { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Layout, Form, Icon, Input, Button, Row, Col, Typography } from 'antd';
-// import { AdminUserContext } from '../../store/Contexts/admin';
 import { AuthContext } from '../../store/Contexts/auth';
+import { AdminUserContext } from '../../store/Contexts/admin';
 
 const { Title } = Typography;
 
-const AdminLoginPage = (props) => {
-    // const { auth, handleLogin } = useContext(AdminUserContext);
-    const { auth, handleAdminLogin } = useContext(AuthContext);
-
+const AdminForgotPassword = (props) => {
+    const { auth } = useContext(AuthContext);
+    const { handleForgotPassword } = useContext(AdminUserContext);
     const handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                handleAdminLogin(values);
-                props.history.push('/admin/dashboard');
+                handleForgotPassword(values);
             }
         });
     };
     const { getFieldDecorator } = props.form;
 
-    if (auth && auth.role === 'admin') {
-        return <Redirect to='/admin/dashboard' />
+    if (auth) {
+        return <Redirect to='/dashboard' />
     }
     return (
         <Layout className='layout' >
@@ -30,15 +28,15 @@ const AdminLoginPage = (props) => {
                 <div className='form-wrappwe'>
                     <Row>
                         <Col xs={{ span: 24, order: 2 }} xl={{ span: 10, order: 1 }}>
-                            <div className='form-img' style={{ backgroundColor: '#F7A072' }}>
+                            <div className='form-img' style={{ backgroundColor: '#16E0BD' }}>
 
                             </div>
                         </Col>
                         <Col xs={{ span: 24, order: 1 }} xl={{ span: 14, order: 2 }}>
                             <div className='form-contantin'>
-                                <Title className='large-text bold' style={{ textAlign: 'center' }}>Login</Title>
+                                <Title className='large-text bold' style={{ textAlign: 'center' }}>Forgot password</Title>
                                 <Form onSubmit={handleSubmit} className='login-form' hideRequiredMark>
-                                    <Form.Item label='Email Address'>
+                                    <Form.Item label='Email Address' style={{ marginTop: 30 }}>
                                         {getFieldDecorator('email', {
                                             rules: [{ required: true, message: 'Please input your email!' }],
                                         })(
@@ -49,25 +47,9 @@ const AdminLoginPage = (props) => {
                                             />,
                                         )}
                                     </Form.Item>
-                                    <Form.Item label='Password'>
-                                        {getFieldDecorator('password', {
-                                            rules: [{ required: true, message: 'Please input your Password!' }],
-                                        })(
-                                            <Input
-                                                size='large'
-                                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                type='password'
-                                            />,
-                                        )}
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <div style={{ float: 'left' }}>
-                                            <Link to='/forgotadminpassword'>Forgot password?</Link>
-                                        </div>
-                                    </Form.Item>
                                     <Form.Item>
                                         <Button size='large' type='primary' block htmlType='submit' className='login-form-button'>
-                                            Log in
+                                            Reset Password
                                         </Button>
                                     </Form.Item>
                                 </Form>
@@ -80,6 +62,6 @@ const AdminLoginPage = (props) => {
     );
 }
 
-const WrappedNormalAdminLoginForm = Form.create({ name: 'admin-login' })(AdminLoginPage);
+const WrappedNormalAdminForgotPasswordForm = Form.create({ name: 'forgor-password' })(AdminForgotPassword);
 
-export default WrappedNormalAdminLoginForm;
+export default WrappedNormalAdminForgotPasswordForm;

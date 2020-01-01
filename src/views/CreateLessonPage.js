@@ -5,11 +5,14 @@ import { CourseContext } from '../store/Contexts/course';
 import WrappedNormalEditReferenceForm from '../components/Misc/EditRefForm';
 import axios from 'axios';
 import { config } from '../config';
+import { AuthContext } from '../store/Contexts/auth';
+import { Redirect } from 'react-router-dom';
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
 const CreateLessonPage = (props) => {
+    const { auth } = useContext(AuthContext);
     const { handleCreateLesson } = useContext(CourseContext);
     const [refModal, setRefModal] = useState(false);
     const [editRefModal, setEditRefModal] = useState(false);
@@ -103,6 +106,9 @@ const CreateLessonPage = (props) => {
         }
     }
 
+    if (!auth) {
+        return <Redirect to='/dashboard' />
+    }
     return (
         <Layout>
             <div style={{ margin: '50px 50px 0', backgroundColor: 'white', padding: '40px 40px' }}>

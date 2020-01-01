@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import WrappedNormalEditTestForm from './EditTestPage';
 import { CourseContext } from '../../store/Contexts/course';
+import { AuthContext } from '../../store/Contexts/auth';
+import { Redirect } from 'react-router-dom';
 
 const EditTestPageWrapper = (props) => {
+    const { auth } = useContext(AuthContext);
     const { courses } = useContext(CourseContext);
     const [tempCourse, setTempCourses] = useState([]);
     const [course, setCourse] = useState(null);
@@ -24,6 +27,10 @@ const EditTestPageWrapper = (props) => {
             }
         }
     }, [courses, currCourse, currQuestion, props]);
+
+    if (!auth) {
+        return <Redirect to='/dashboard' />
+    }
 
     return (
         <WrappedNormalEditTestForm test={currQuestion} course={course} history={props.history} />

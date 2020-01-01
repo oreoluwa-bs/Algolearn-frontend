@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CourseContext } from '../../store/Contexts/course';
 import WrappedNormalEditLessonForm from './EditLessonPage';
+import { AuthContext } from '../../store/Contexts/auth';
+import { Redirect } from 'react-router-dom';
 
 const EditLessonPageWrapper = (props) => {
+    const { auth } = useContext(AuthContext);
     const { courses } = useContext(CourseContext);
     const [tempCourse, setTempCourses] = useState([]);
     const [course, setCourse] = useState(null);
@@ -24,6 +27,10 @@ const EditLessonPageWrapper = (props) => {
             }
         }
     }, [courses, currCourse, currLesson, props]);
+
+    if (!auth) {
+        return <Redirect to='/dashboard' />
+    }
 
     return (
         <WrappedNormalEditLessonForm lesson={currLesson} course={course} history={props.history} />

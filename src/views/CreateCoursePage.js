@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { Layout, Form, Icon, Input, Button } from 'antd';
 import { CourseContext } from '../store/Contexts/course';
+import { AuthContext } from '../store/Contexts/auth';
+import { Redirect } from 'react-router-dom';
 
 const { TextArea } = Input;
 
 const CreateCoursePage = (props) => {
+    const { auth } = useContext(AuthContext);
     const { handleCreateCourse } = useContext(CourseContext);
 
     const handleSubmit = (e) => {
@@ -17,6 +20,10 @@ const CreateCoursePage = (props) => {
         });
     };
     const { getFieldDecorator } = props.form;
+
+    if (!auth) {
+        return <Redirect to='/dashboard' />
+    }
     return (
         <Layout>
             <div style={{ margin: '50px 50px 0', backgroundColor: 'white', padding: '40px 40px' }}>

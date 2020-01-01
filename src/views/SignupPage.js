@@ -14,11 +14,11 @@ const StudentSignupPage = (props) => {
                 if (props.match.params.accountType.toLowerCase() === 'tutor') {
                     values.role = 'tutor'
                     handleCreateAccount(values);
-                    props.history.push('/login');
+                    // props.history.push('/login');
                 } else {
                     values.role = 'student'
                     handleCreateAccount(values);
-                    props.history.push('/login');
+                    // props.history.push('/login');
                 }
             }
         });

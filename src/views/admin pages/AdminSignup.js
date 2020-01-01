@@ -22,10 +22,7 @@ const AdminSignupPage = (props) => {
     };
 
     const { getFieldDecorator } = props.form;
-    // if (auth && auth.role === 'admin') {
-    //     return <Redirect to='/admin/dashboard' />
-    // }
-    if (!auth) {
+    if (!auth || auth.role !== 'admin') {
         return <Redirect to='/admin/login' />
     }
     return (
