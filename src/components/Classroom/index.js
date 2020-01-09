@@ -140,7 +140,7 @@ const Classroom = (props) => {
                                                         <List
                                                             size="large"
                                                             bordered
-                                                            dataSource={['Using someone elses content', 'It\'s inappropriate', 'Innaccurate Content', 'Spam', 'Not as it seems']}
+                                                            dataSource={['Using someone elses content', 'It\'s inappropriate', 'Inaccurate Content', 'Spam', 'Offensive','Fails to teach its aim']}
                                                             renderItem={item => <List.Item className='flag-modal-list-item' onClick={() => { handleFlag(item) }}>{item}</List.Item>}
                                                         />
                                                     </Modal>
