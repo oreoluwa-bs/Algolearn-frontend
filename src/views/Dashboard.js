@@ -52,7 +52,7 @@ const Dashboard = () => {
     }, [courses, auth]);
 
     if (!auth) {
-        return <Redirect to='/' />
+        return <Redirect to='/login' />
     }
 
     // console.log(completedCourses);

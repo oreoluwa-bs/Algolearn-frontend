@@ -37,23 +37,21 @@ const AccountPage = (props) => {
 
     if (auth) {
         if (auth.role !== 'admin') {
-            enrolledCourses = [...new Set(auth.enrolledCourses.map(course => course._id))];
-            createdCourses = [...new Set(auth.createdCourses.map(course => course._id))];
+            let ecourses = courses.filter(course => {
+                return auth.enrolledCourses.find((co) => {
+                    return co._id === course._id
+                });
+            });
+            enrolledCourses = [...new Set(ecourses)];
+
+            let ccreated = courses.filter(course => {
+                return auth.createdCourses.find((co) => {
+                    return co._id === course._id
+                });
+            });
+            createdCourses = [...new Set(ccreated)];
         }
     }
-
-    const createdCoursesNum = courses.filter((course) => {
-        return createdCourses.map((id) => {
-            // console.log(course._id === id)
-            return course._id === id;
-        });
-    }).length;
-
-    const enrolledCoursesNum = courses.filter((course) => {
-        return enrolledCourses.map((id) => {
-            return course._id === id;
-        })
-    }).length;
 
     return (
         <Layout className='layout' >
@@ -167,10 +165,10 @@ const AccountPage = (props) => {
                                                     <Text type='secondary'>Interactive Quizes</Text>
                                                 </div>
                                             } */}
-                                                <Statistic title="Enrolled Courses" value={enrolledCourses.length === 0 ? 0 : enrolledCoursesNum} />
+                                                <Statistic title="Enrolled Courses" value={enrolledCourses.length} />
                                                 {
                                                     auth.role === 'tutor' &&
-                                                    <Statistic title="Created Courses" value={createdCourses.length === 0 ? 0 : createdCoursesNum} />
+                                                    <Statistic title="Created Courses" value={createdCourses.length} />
                                                 }
                                             </div>
                                         }

@@ -6,6 +6,7 @@ export const AdminUserContext = createContext();
 
 class AdminUserContextProvider extends Component {
     state = {
+        usersNum: 0,
         reportedCoursesMain: [],
         response: {
             status: null,
@@ -13,9 +14,18 @@ class AdminUserContextProvider extends Component {
         }
     }
 
+    getAllUsers = () => {
+        axios.get(`${this.props.apiUrl}/auth/`).then((res) => {
+            this.setState({
+                usersNum: res.data.data.length
+            })
+        }).catch(() => {
+        });
+    }
+
     getReportedCourses = () => {
         axios.get(`${this.props.apiUrl}/admin/courses/reported`).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             this.setState({
                 reportedCoursesMain: res.data.data
             });
@@ -80,6 +90,7 @@ class AdminUserContextProvider extends Component {
         return (
             <AdminUserContext.Provider value={{
                 ...this.state,
+                getAllUsers: this.getAllUsers,
                 getReportedCourses: this.getReportedCourses,
                 handleForgotPassword: this.handleForgotPassword,
             }}>

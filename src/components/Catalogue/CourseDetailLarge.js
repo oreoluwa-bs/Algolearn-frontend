@@ -274,6 +274,7 @@ const DetailsView = (props) => {
                                                 <div className='enroll-btn'>
                                                     <Button type='primary' size='large' disabled={(auth._id === course.authorId || isEnrolled) || auth.role === 'admin'} onClick={() => {
                                                         handleEnrollInCourse(course._id);
+                                                        props.history.push(`/classroom/${course._id}/1`);
                                                     }}>Enroll in course</Button>
                                                 </div>
                                             </div>

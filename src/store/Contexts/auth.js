@@ -186,7 +186,7 @@ class AuthContextProvider extends Component {
         }).catch(() => {
             this.feedback({
                 status: 'error',
-                message: 'Email address provided, does not have an account!'
+                message: 'Email address provided does not have an account!'
             });
         });
     }

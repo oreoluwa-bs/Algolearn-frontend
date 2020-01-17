@@ -11,20 +11,29 @@ const { Content } = Layout;
 const AdminDashboard = (props) => {
     const { auth } = useContext(AuthContext);
     const { courses } = useContext(CourseContext);
-    const { reportedCoursesMain, getReportedCourses } = useContext(AdminUserContext);
+    const { reportedCoursesMain, getReportedCourses, getAllUsers, usersNum } = useContext(AdminUserContext);
     const { colors_bg, colors_random } = useContext(ColorContext);
     const [reportedCourses, setReportedCourses] = useState([]);
+    const [allUsers, setallUsers] = useState(0);
 
     useEffect(() => {
         getReportedCourses();
     }, [getReportedCourses]);
 
     useEffect(() => {
+        getAllUsers();
+    }, [getAllUsers]);
+
+    useEffect(() => {
         setReportedCourses(reportedCoursesMain);
     }, [reportedCoursesMain]);
 
+    useEffect(() => {
+        setallUsers(usersNum);
+    }, [usersNum]);
+
     if (!auth) {
-        return <Redirect to='/' />
+        return <Redirect to='/admin/login' />
     }
     return (
         <Layout className='admin-dashboard'>
@@ -40,7 +49,7 @@ const AdminDashboard = (props) => {
                                             <Card>
                                                 <Statistic
                                                     title='Users'
-                                                    value={2}
+                                                    value={allUsers}
                                                     valueStyle={{ color: colors_bg[colors_random()] }}
                                                     prefix={<Icon type='user' />}
                                                 />
@@ -59,9 +68,10 @@ const AdminDashboard = (props) => {
                                         <Col span={8}>
                                             <Card>
                                                 <Statistic
-                                                    title='Idle'
-                                                    value={9.3}
-                                                    valueStyle={{ color: '#cf1322' }}
+                                                    title='Reported Courses'
+                                                    value={reportedCourses.length}
+                                                    // valueStyle={{ color: '#cf1322' }}
+                                                    valueStyle={{ color: colors_bg[colors_random()] }}
                                                 />
                                             </Card>
                                         </Col>

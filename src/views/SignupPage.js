@@ -15,10 +15,15 @@ const StudentSignupPage = (props) => {
                     values.role = 'tutor'
                     handleCreateAccount(values);
                     // props.history.push('/login');
+                    // setTimeout(() => {
+                    //     props.history.push('/login');
+                    // }, 3000)
                 } else {
                     values.role = 'student'
                     handleCreateAccount(values);
-                    // props.history.push('/login');
+                    // setTimeout(() => {
+                    //     props.history.push('/login');
+                    // }, 3000)
                 }
             }
         });

@@ -51,7 +51,7 @@ const LandingPage = () => {
                 <div className='get-started-content'>
                     <Title level={1} style={{ fontWeight: 'bold' }}>Begin your journey</Title>
                     <Paragraph>
-                        Get a better understanding of your Computer Science couses with AlgoLearn.
+                        Get a better understanding of your Computer Science courses with AlgoLearn.
 
                     </Paragraph>
                     <Link to='/signup/tutor' className='ant-btn ant-btn-primary ant-btn-lg' style={{ backgroundColor: '#7D8CC4', borderColor: '#7D8CC4' }}>
@@ -65,7 +65,7 @@ const LandingPage = () => {
                 courses && courses.length > 0 &&
                 <Layout>
                     <div style={{ width: '65vw', margin: '100px auto' }}>
-                        <Title level={2}>Check out our newest courses</Title>
+                        <Title level={2}>Check out our top rated courses</Title>
                         <br></br>
                         <Row gutter={{ xs: 10, md: 28, lg: 36, xl: 48 }}>
                             {
