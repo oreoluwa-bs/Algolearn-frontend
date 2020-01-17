@@ -21,6 +21,7 @@ const Classroom = (props) => {
     const [lessons, setLessons] = useState([]);
     const [lesson, setLesson] = useState([]);
     const [lessonIndex, setLessonIndex] = useState([]);
+    const [currKey, setCurrKey] = useState();
 
     const onCollapse = collapsed => {
         setCollapsed(collapsed);
@@ -52,6 +53,13 @@ const Classroom = (props) => {
             setLesson(tempLesson);
         }
     }, [lessons, courses, props.match.params.lessonId])
+
+    useEffect(() => {
+        if (lessons && lessons.length > 0) {
+            // console.log(lessons);
+            setCurrKey(lessons[0]._id);
+        }
+    }, [lessons]);
 
     useEffect(() => {
         if (lessons && !lesson) {
@@ -88,6 +96,14 @@ const Classroom = (props) => {
         setFlagModal(false);
     };
 
+    const handleChangeLessonTopic = (e) => {
+        // console.log(e.id);
+        setCurrKey(e.key);
+    };
+    const handleNextLesson = () => {
+        props.history.push(`/classroom/${course._id}/${lessons[lessonIndex + 1]._id}`);
+        setCurrKey(lessons[lessonIndex + 1]._id);
+    }
 
     if (!auth) {
         return <Redirect to='/' />
@@ -107,11 +123,13 @@ const Classroom = (props) => {
                                         lesson && lesson._id &&
                                         <Menu
                                             theme='dark'
-                                            defaultSelectedKeys={[lesson._id]}
+                                            // defaultSelectedKeys={[]}
+                                            selectedKeys={[currKey]}
+                                            onClick={handleChangeLessonTopic}
                                             mode='inline'>
                                             {
                                                 lessons.map((lesson) => (
-                                                    <Menu.Item key={lesson._id}>
+                                                    <Menu.Item id={lesson._id} key={lesson._id}>
                                                         <span>{lesson.title}</span>
                                                         <Link to={`/classroom/${course._id}/${lesson._id}`} />
                                                     </Menu.Item>
@@ -140,7 +158,7 @@ const Classroom = (props) => {
                                                         <List
                                                             size="large"
                                                             bordered
-                                                            dataSource={['Using someone elses content', 'It\'s inappropriate', 'Inaccurate Content', 'Spam', 'Offensive','Fails to teach its aim']}
+                                                            dataSource={['Using someone elses content', 'It\'s inappropriate', 'Inaccurate Content', 'Spam', 'Offensive', 'Fails to teach its aim']}
                                                             renderItem={item => <List.Item className='flag-modal-list-item' onClick={() => { handleFlag(item) }}>{item}</List.Item>}
                                                         />
                                                     </Modal>
@@ -187,9 +205,9 @@ const Classroom = (props) => {
                                                     <div className='steps-action' style={{ float: 'right' }}>
                                                         {
                                                             lessons[lessons.length - 1]._id !== lesson._id && (
-                                                                <Link to={`/classroom/${course._id}/${lessons[lessonIndex + 1]._id}`} className='ant-btn ant-btn-primary'>
+                                                                <Button type='primary' onClick={handleNextLesson}>
                                                                     Next lesson
-                                                                </Link>
+                                                                </Button>
                                                             )
                                                         }
                                                         {
