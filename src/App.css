@@ -28,3 +28,14 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.discussion-board .ant-page-header-heading-title, .discussion-board .ant-page-header-back-button{
+  color: white;
+}
+.discussion-board .ant-page-header-back-button:hover{
+  color: #1890ff;
+}
+.discussion-board .discussion-container{
+    height: calc(50vh - 45px);
+    /* width: 35%; */
+}

@@ -27,6 +27,7 @@ import WrappedNormalAdminSignupForm from './views/admin pages/AdminSignup';
 
 import './App.css';
 import WrappedNormalAdminForgotPasswordForm from './views/admin pages/AdminForgotPassword';
+import DisscussionBoard from './views/DiscussionBoard';
 
 const { Footer } = Layout;
 function App() {
@@ -46,6 +47,8 @@ function App() {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/classroom/:courseId/:lessonId' component={Classroom} />
               <Route path='/tests/:courseId/' component={TestPage} />
+
+              <Route path='/discuss' component={DisscussionBoard} />
 
               <Route path='/forgot-password' component={WrappedNormalForgotPasswordForm} />
               <Route path='/forgotadminpassword' component={WrappedNormalAdminForgotPasswordForm} />

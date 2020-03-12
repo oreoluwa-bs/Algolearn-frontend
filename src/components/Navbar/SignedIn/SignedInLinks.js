@@ -9,6 +9,7 @@ const { SubMenu } = Menu;
 const SignedInLinks = (props) => {
     const { auth, handleLogout } = useContext(AuthContext);
     const { colors_bg, colors_random } = useContext(ColorContext);
+    localStorage.setItem('avatarColor', colors_bg[colors_random()])
 
     return (
         <div className='nav-links-right'>
@@ -41,7 +42,7 @@ const SignedInLinks = (props) => {
                 <SubMenu
                     title={
                         <span className='submenu-title-wrapper'>
-                            <Avatar size='large' shape='circle' style={{ color: 'white', backgroundColor: colors_bg[colors_random()] }}>{auth.firstname[0]}{auth.lastname[0]}</Avatar>
+                            <Avatar size='large' shape='circle' style={{ color: 'white', backgroundColor: localStorage.getItem('avatarColor') }}>{auth.firstname[0]}{auth.lastname[0]}</Avatar>
                         </span>
                     }
                 >

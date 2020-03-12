@@ -7,7 +7,6 @@ import '../../styles/classroom.css';
 import { AuthContext } from '../../store/Contexts/auth';
 
 const { Content, Sider } = Layout;
-// const { Title, Paragraph } = Typography;
 const { Title } = Typography;
 
 const Classroom = (props) => {
@@ -145,7 +144,11 @@ const Classroom = (props) => {
                                             <div>
                                                 <div style={{}}>
                                                     <Title level={4} style={{ float: 'left' }}>{lesson.title}</Title>
+                                                    <Link to={`/discuss/?userId=${auth._id}&room=${course._id}`}>
+                                                        <Button type='primary' icon='message' style={{ float: 'right', marginLeft: 10 }} onClick={() => null} disabled={auth.role === 'admin'} />
+                                                    </Link>
                                                     <Button icon='flag' style={{ float: 'right' }} onClick={() => setFlagModal(true)} disabled={auth.role === 'admin'} />
+
                                                     <Modal
                                                         title='Report'
                                                         visible={modalFlagVisible}
